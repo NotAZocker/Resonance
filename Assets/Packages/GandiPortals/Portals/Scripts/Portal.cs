@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,7 @@ public class Portal : MonoBehaviour
 
 
     //Functions
-    private void Start()
+    private void Awake()
     {
         if (renderBoundingBoxCorners.Length != 2 
             ||  renderBoundingBoxCorners[0] != null 
@@ -57,12 +58,19 @@ public class Portal : MonoBehaviour
             }
         }
 
-        Matrix4x4 rotationMatrix = Matrix4x4.Rotate(Quaternion.AngleAxis(180, Vector3.up));
-        TeleportMatrix = linkedPortal.transform.localToWorldMatrix * rotationMatrix * transform.worldToLocalMatrix;
+        if(linkedPortal != null)
+        {
+            CalculateTeleportMatrix();
+        }
 
         InitScreenTexture();
     }
 
+    private void CalculateTeleportMatrix()
+    {
+        Matrix4x4 rotationMatrix = Matrix4x4.Rotate(Quaternion.AngleAxis(180, Vector3.up));
+        TeleportMatrix = linkedPortal.transform.localToWorldMatrix * rotationMatrix * transform.worldToLocalMatrix;
+    }
 
     private void LateUpdate()
     {
@@ -72,7 +80,7 @@ public class Portal : MonoBehaviour
 
             if (renderBoundingBox.Contains(MainCamera.transform.position))
             {
-                RenderScreen(MainCamera);
+                if(linkedPortal != null) RenderScreen(MainCamera);
             }
         }
     }
@@ -171,5 +179,8 @@ public class Portal : MonoBehaviour
 
         portalA.linkedPortal = portalB;
         portalB.linkedPortal = portalA;
+
+        portalA.CalculateTeleportMatrix();
+        portalB.CalculateTeleportMatrix();
     }
 }
