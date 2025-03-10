@@ -3,29 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+[RequireComponent(typeof(FirstPersonController))]
 [RequireComponent(typeof(Rigidbody))]
-public class PortalTravelerTeleport : MonoBehaviour, IPortalTravelerTeleport
+public class PortalTravalerTeleportPlayer : MonoBehaviour, IPortalTravelerTeleport
 {
+	//Settings
+	//[SerializeField]
+	//private GameEvent playerTeleportedEvent;
+
+
 	//Globals
+	private FirstPersonController ownControler;
 	private Rigidbody ownRigidbody;
 
 
 	//Functions
-	protected virtual void Awake()
+	private void Awake()
 	{
+		ownControler = GetComponent<FirstPersonController>();
 		ownRigidbody = GetComponent<Rigidbody>();
 	}
 
 
-	public virtual void Teleport(Matrix4x4 teleportMatrix)
+	public void Teleport(Matrix4x4 teleportMatrix)
 	{
 		Matrix4x4 m = teleportMatrix * transform.localToWorldMatrix;
 
-        transform.SetPositionAndRotation(m.GetColumn(3), m.rotation);
-
-        ownRigidbody.position = m.GetColumn(3);
+		ownRigidbody.position = m.GetColumn(3);
 		ownRigidbody.rotation = m.rotation;
 		ownRigidbody.linearVelocity = teleportMatrix.MultiplyVector(ownRigidbody.linearVelocity);
 		ownRigidbody.angularVelocity = teleportMatrix.MultiplyVector(ownRigidbody.angularVelocity);
+
+		//playerTeleportedEvent.Invoke();
 	}
 }

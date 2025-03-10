@@ -1,5 +1,6 @@
+using System;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 [RequireComponent(typeof(IPortalTravelerTeleport))]
 public class PortalTraveler : MonoBehaviour
@@ -13,6 +14,8 @@ public class PortalTraveler : MonoBehaviour
 	private IPortalTravelerTeleport ownTeleport = default;
 	private Portal approachedPortal = null;
 	private Transform clone = null;
+
+	public UnityEvent OnTeleport;
 
 
 	//Functions
@@ -75,7 +78,9 @@ public class PortalTraveler : MonoBehaviour
             {
                 ownTeleport.Teleport(approachedPortal.TeleportMatrix);
 				ApproachPortal(approachedPortal.LinkedPortal);
-			}
+
+				OnTeleport.Invoke();
+            }
 		}
 	}
 
