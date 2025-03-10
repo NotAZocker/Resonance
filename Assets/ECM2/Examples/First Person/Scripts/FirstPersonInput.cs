@@ -7,20 +7,20 @@ namespace ECM2.Examples.FirstPerson
     /// First person character input.
     /// Extends the default CharacterInput component adding support for typical first person controls.
     /// </summary>
-    
+
     public class FirstPersonInput : CharacterInput
     {
         [Space(15.0f)]
         public bool invertLook = true;
         [Tooltip("Look sensitivity")]
         public Vector2 sensitivity = new Vector2(0.05f, 0.05f);
-        
+
         [Space(15.0f)]
         [Tooltip("How far in degrees can you move the camera down.")]
         public float minPitch = -80.0f;
         [Tooltip("How far in degrees can you move the camera up.")]
         public float maxPitch = 80.0f;
-        
+
         /// <summary>
         /// Cached FirstPersonCharacter.
         /// </summary>
@@ -37,12 +37,12 @@ namespace ECM2.Examples.FirstPerson
         /// Polls look InputAction (if any).
         /// Return its current value or zero if no valid InputAction found.
         /// </summary>
-        
+
         public Vector2 GetLookInput()
         {
             return lookInputAction?.ReadValue<Vector2>() ?? Vector2.zero;
         }
-        
+
         /// <summary>
         /// Initialize player InputActions (if any).
         /// E.g. Subscribe to input action events and enable input actions here.
@@ -51,13 +51,13 @@ namespace ECM2.Examples.FirstPerson
         protected override void InitPlayerInput()
         {
             base.InitPlayerInput();
-            
+
             // Look input action (no handler, this is polled, e.g. GetLookInput())
 
             lookInputAction = inputActionsAsset.FindAction("Look");
             lookInputAction?.Enable();
         }
-        
+
         /// <summary>
         /// Unsubscribe from input action events and disable input actions.
         /// </summary>
@@ -65,7 +65,7 @@ namespace ECM2.Examples.FirstPerson
         protected override void DeinitPlayerInput()
         {
             base.DeinitPlayerInput();
-            
+
             // Unsubscribe from input action events and disable input actions
 
             if (lookInputAction != null)
@@ -78,7 +78,7 @@ namespace ECM2.Examples.FirstPerson
         protected override void Awake()
         {
             base.Awake();
-            
+
             firstPersonCharacter = character as FirstPersonCharacter;
         }
 
@@ -90,21 +90,21 @@ namespace ECM2.Examples.FirstPerson
         protected override void HandleInput()
         {
             // Move
-            
+
             Vector2 movementInput = GetMovementInput();
-            
+
             Vector3 movementDirection = Vector3.zero;
-            
+
             movementDirection += Vector3.forward * movementInput.y;
             movementDirection += Vector3.right * movementInput.x;
-            
-            movementDirection = 
+
+            movementDirection =
                 movementDirection.relativeTo(firstPersonCharacter.cameraTransform, firstPersonCharacter.GetUpVector());
-            
+
             firstPersonCharacter.SetMovementDirection(movementDirection);
-            
+
             // Look
-            
+
             Vector2 lookInput = GetLookInput() * sensitivity;
 
             firstPersonCharacter.AddControlYawInput(lookInput.x);
