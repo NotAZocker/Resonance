@@ -36,13 +36,41 @@ public class RoomController : MonoBehaviour
     public bool TryAttachRoom(RoomController otherRoom)
     {
         RoomConnector myConnector = GetFreeDoorConnector();
-        if (myConnector == null) return false;
+        if (myConnector == null)
+        {
+            Debug.LogError("No free connectors found in room: " + name);
+            return false;
+        }
 
         RoomConnector otherConnector = otherRoom.GetFreeDoorConnector();
-        if (otherConnector == null) return false;
+        if (otherConnector == null)
+        {
+            Debug.LogError("No free connectors found in room: " + otherRoom.name);
+            return false;
+        }
+
+        print("before room rot: " + otherRoom.transform.rotation.eulerAngles);
+
+        otherRoom.transform.Rotate(Vector3.up, CalculateNewRoomRotation(myConnector, otherConnector));
+
+        print("AFTER room rot: " + otherRoom.transform.rotation.eulerAngles);
 
         myConnector.TrySetOtherConnector(otherConnector);
 
-        return false;
+        return true;
+    }
+
+    private float CalculateNewRoomRotation(RoomConnector myConnector, RoomConnector otherConnector)
+    {
+        float myYRotation = myConnector.GetYRotation();
+        float otherYRotation = otherConnector.GetYRotation(); 
+
+        float angle = myYRotation - otherYRotation;
+
+        print("myYRotation: " + myYRotation + "; otherYRotatoin: " + otherYRotation);
+
+        print("Rot angle: " + angle);
+
+        return angle;
     }
 }

@@ -25,9 +25,11 @@ public class RoomConnector : MonoBehaviour
         isConnected = connected;
     }
 
-    public Vector3 GetDirection()
+    public float GetYRotation()
     {
-        return transform.forward;
+        print(name + "; LocalEulerAngles: " + transform.eulerAngles);
+
+        return transform.eulerAngles.y;
     }
 
     internal bool TrySetOtherConnector(RoomConnector otherConnector)
@@ -39,7 +41,7 @@ public class RoomConnector : MonoBehaviour
         otherConnector.TrySetOtherConnector(this);
 
         this.otherConnector = otherConnector;
-        if(portal.LinkedPortal != null) Portal.Link(portal, otherConnector.portal);
+        if(portal.LinkedPortal == null) Portal.Link(portal, otherConnector.portal);
 
         return true;
     }
