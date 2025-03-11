@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class RoomConnector : MonoBehaviour
 {
@@ -44,5 +45,19 @@ public class RoomConnector : MonoBehaviour
         if(portal.LinkedPortal == null) Portal.Link(portal, otherConnector.portal);
 
         return true;
+    }
+
+    internal void DeleteConnection()
+    {
+        if(!isConnected) return;
+
+        SetConnection(false);
+
+        portal.Unlink();
+
+        if(otherConnector != null)
+        {
+            DeleteConnection();
+        }
     }
 }

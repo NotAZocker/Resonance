@@ -21,7 +21,7 @@ public class RoomSpawner : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space)) SpawnNewRandomRoom(lastSpawnedRoom);
     }
 
-    public void SpawnNewRandomRoom(RoomController attachRoom)
+    public RoomController SpawnNewRandomRoom(RoomController attachRoom)
     {
         RoomController newRoom = Instantiate(roomPrefabs[Random.Range(0, roomPrefabs.Length)]);
 
@@ -36,10 +36,17 @@ public class RoomSpawner : MonoBehaviour
             lastSpawnedRoom = newRoom;
             roomsSpawned++;
         }
+
+        return newRoom;
     }
 
     private Vector3 GetNextSpawnPosition()
     {
         return roomsSpawned * roomSpawnDistance * Vector3.right;
     }
+}
+
+public class WorldManager : MonoBehaviour
+{
+    FirstPersonController player;
 }

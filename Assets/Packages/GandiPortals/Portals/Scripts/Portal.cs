@@ -183,4 +183,9 @@ public class Portal : MonoBehaviour
         portalA.CalculateTeleportMatrix();
         portalB.CalculateTeleportMatrix();
     }
+
+    internal void Unlink()
+    {
+        linkedPortal = null;
+    }
 }
