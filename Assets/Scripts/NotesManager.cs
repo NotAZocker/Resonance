@@ -37,6 +37,10 @@ public class NotesManager : MonoBehaviour
         if (note.isRead)
         {
             unreadNotesSOList.Remove(note);
+            if (readNotesSOList.Contains(note) == note)
+            {
+                readNotesSOList.Remove(note);
+            }
             readNotesSOList.Add(note);
             noteTextSOList.Remove(note);
         }

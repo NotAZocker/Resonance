@@ -25,6 +25,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-429028593-0
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1006970856-0
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1750878248-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-2132928679-0
         values:
         - colorIndex: 5
           iconNameOrGuid: AvatarMask On Icon
@@ -40,3 +41,5 @@ MonoBehaviour:
           iconNameOrGuid: Canvas Icon
         - colorIndex: 3
           iconNameOrGuid: PreMatCylinder
+        - colorIndex: 0
+          iconNameOrGuid: EventSystem Icon
