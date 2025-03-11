@@ -240,8 +240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946442f878c45cc498284d6c95f11db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 503590817}
-  offset: {x: 0, y: 0, z: 0}
+  playerCamera: {fileID: 503590817}
+  offset: {x: 0.5, y: -0.5, z: 1}
+  rotation: {x: 0, y: 90, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
