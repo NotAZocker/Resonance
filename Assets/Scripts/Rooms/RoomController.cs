@@ -7,6 +7,52 @@ public class RoomController : MonoBehaviour
     [SerializeField] RoomConnector[] roomConnectors;
     RoomController[] connectedRooms;
 
+    [SerializeField] GameObject roomItemsParent1, roomItemsParent2;
+
+    private void Awake()
+    {
+        roomItemsParent1.SetActive(true);
+        roomItemsParent2.SetActive(false);
+    }
+
+    public bool TryDespawnRoom()
+    {
+        int connectionCount = 0;
+
+        for (int i = 0; i < roomConnectors.Length; i++)
+        {
+            if (roomConnectors[i].IsConnected)
+            {
+                connectionCount++;
+            }
+        }
+
+        if(connectionCount > 1)
+        {
+            Debug.LogError("Room has multiple connections");
+            return false;
+        }
+
+        // remove connections
+
+        for (int i = 0; i < roomConnectors.Length; i++)
+        {
+            roomConnectors[i].DeleteConnection();
+        }
+
+        // remove room
+
+        Destroy(gameObject, 0.1f);
+
+        return true;
+    }
+
+    public void ChangeRoomItems()
+    {
+        roomItemsParent1.SetActive(!roomItemsParent1.activeSelf);
+        roomItemsParent2.SetActive(!roomItemsParent2.activeSelf);
+    }
+
     internal RoomConnector GetFreeDoorConnector()
     {
         // Put roomConnections in a randomly ordered list
