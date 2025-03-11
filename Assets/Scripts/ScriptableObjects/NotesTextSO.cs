@@ -6,4 +6,5 @@ public class NotesTextSO : ScriptableObject
     public string noteName;
     [TextArea(15, 30)]
     public string text;
+    public bool isRead;
 }

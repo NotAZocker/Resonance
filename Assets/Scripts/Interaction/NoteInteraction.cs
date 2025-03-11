@@ -1,18 +1,27 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NoteInteraction : MonoBehaviour, IInteract
 {
     [Header("Settings")]
-    [SerializeField] private List<NotesTextSO> noteTextSOList;
+    [SerializeField] private NotesTextSO noteSO;
+
+    private NotesUI notesUI;
+
+    private void Awake()
+    {
+        notesUI = GameObject.FindWithTag("NotesUI").GetComponent<NotesUI>();
+    }
+
+    private void Start()
+    {
+        NotesManager.Instance.unreadNotesSOList.Add(noteSO);
+    }
 
     public void Interact()
     {
-        NotesTextSO randomNote = noteTextSOList[Random.Range(0, noteTextSOList.Count)];
-
-        Debug.Log("Note Title: " + randomNote.name);
-        Debug.Log("Note Text: " + randomNote.text);
-
-        noteTextSOList.Remove(randomNote);
+        noteSO.isRead = true;
+        notesUI.SetNotesUITitleAndText(noteSO);
+        NotesManager.Instance.RemoveNoteFromList(noteSO);
+        UIManager.Instance.ShowNotesDisplay();
     }
 }

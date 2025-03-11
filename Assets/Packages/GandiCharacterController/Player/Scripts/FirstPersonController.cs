@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -17,12 +15,12 @@ public class FirstPersonController : MonoBehaviour
         //set the vertical velocity
         Velocity
     }
-	#endregion
+    #endregion
 
 
-	#region Settings
-	//references
-	[Header("References")]
+    #region Settings
+    //references
+    [Header("References")]
     [Tooltip("The Reference to  the characters Camera.")]
     [SerializeField]
     private Transform characterCamera = default;
@@ -123,7 +121,7 @@ public class FirstPersonController : MonoBehaviour
     [Tooltip("Revoke the sprinting status, when movement input is zero or max sprint angle is exceeded.")]
     [SerializeField]
     public bool revokeIsSprinting = false;
-    
+
     //crouch
     [Header("Crouch")]
     [Tooltip("The ability to crouch.")]
@@ -136,12 +134,12 @@ public class FirstPersonController : MonoBehaviour
     [Range(0.0f, 1.0f)]
     [SerializeField]
     public float crouchSpeedMultiplier = 0.5f;
-	#endregion
-    
-    
-	#region Globals
-	//references
-	private Rigidbody ownRigidbody;
+    #endregion
+
+
+    #region Globals
+    //references
+    private Rigidbody ownRigidbody;
     private CapsuleCollider ownCollider;
 
     //general movement
@@ -152,7 +150,7 @@ public class FirstPersonController : MonoBehaviour
     private bool CanMove { get => enableMovementControls && enableMove; }
     private Vector2 movementInput = default;
     private float movementTime = 0.0f; //time since velocity was zero the last time
-    
+
     //jump
     private bool CanJump { get => enableMovementControls && enableJump; }
     private float jumpAmount;
@@ -163,17 +161,17 @@ public class FirstPersonController : MonoBehaviour
     private bool CanSprint { get => enableMovementControls && enableSprint; }
     public bool IsSprinting { get; private set; } = false;
     private float sprintRemaining = 1.0f;
-    
+
     //crouch
     private bool CanCrouch { get => enableMovementControls && enableCrouch; }
     private bool isCrouching = false;
     public bool IsCrouching { get => isCrouching; private set => ToggleCrouch(value); }
     private float originalHeight;
-	#endregion
+    #endregion
 
 
-	#region Unity Messages
-	private void Awake()
+    #region Unity Messages
+    private void Awake()
     {
         ownRigidbody = GetComponent<Rigidbody>();
         ownCollider = GetComponent<CapsuleCollider>();
@@ -181,9 +179,9 @@ public class FirstPersonController : MonoBehaviour
 
         //gravity
         if (useGlobalGravity)
-		{
+        {
             gravity = Physics.gravity;
-		}
+        }
 
         //precalculate jumpAmount
         switch (jumpMode)
@@ -209,15 +207,15 @@ public class FirstPersonController : MonoBehaviour
         CheckJump();
         GravityUpdate();
     }
-	#endregion
+    #endregion
 
 
-	#region Input
+    #region Input
     /// <summary>
     /// Rotates the player and it's Camera.
     /// </summary>
     /// <param name="rotation">The horizontal and vertical rotation in degrees.</param>
-	public void InputRotation(Vector2 rotation)
+    public void InputRotation(Vector2 rotation)
     {
         if (enableCameraControls)
         {
@@ -225,9 +223,9 @@ public class FirstPersonController : MonoBehaviour
 
             float pitch = characterCamera.localEulerAngles.x;
             if (pitch > 180.0f)
-			{
+            {
                 pitch -= 360.0f;
-			}
+            }
             pitch = Mathf.Clamp(pitch - rotation.y, -upperVerticalRotationLimit, lowerVerticalRotationLimit);
             characterCamera.localEulerAngles = new Vector3(pitch, 0, 0);
         }
@@ -410,9 +408,9 @@ public class FirstPersonController : MonoBehaviour
     private void MovementUpdate()
     {
         if (!CanMove)
-		{
+        {
             return;
-		}
+        }
 
         Vector3 targetVelocity3D = transform.TransformDirection(new Vector3(movementInput.x, 0, movementInput.y));
         Vector2 targetVelocity = new Vector2(targetVelocity3D.x, targetVelocity3D.z);
@@ -484,9 +482,9 @@ public class FirstPersonController : MonoBehaviour
     /// Update routine for applying gravity.
     /// </summary>
     private void GravityUpdate()
-	{
+    {
         ownRigidbody.AddForce(gravity, ForceMode.Acceleration);
-	}
+    }
 
 
     /// <summary>
@@ -500,7 +498,7 @@ public class FirstPersonController : MonoBehaviour
         }
 
         if (IsGrounded)
-		{
+        {
             coyoteJumpAvailable = true;
         }
 
@@ -525,7 +523,7 @@ public class FirstPersonController : MonoBehaviour
     /// Apply a jump after checking conditions
     /// </summary>
     private void Jump()
-	{
+    {
         switch (jumpMode)
         {
             case JumpMode.Force:
