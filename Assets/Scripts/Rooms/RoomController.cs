@@ -49,11 +49,7 @@ public class RoomController : MonoBehaviour
             return false;
         }
 
-        print("before room rot: " + otherRoom.transform.rotation.eulerAngles);
-
         otherRoom.transform.Rotate(Vector3.up, CalculateNewRoomRotation(myConnector, otherConnector));
-
-        print("AFTER room rot: " + otherRoom.transform.rotation.eulerAngles);
 
         myConnector.TrySetOtherConnector(otherConnector);
 
@@ -65,11 +61,7 @@ public class RoomController : MonoBehaviour
         float myYRotation = myConnector.GetYRotation();
         float otherYRotation = otherConnector.GetYRotation(); 
 
-        float angle = myYRotation - otherYRotation;
-
-        print("myYRotation: " + myYRotation + "; otherYRotatoin: " + otherYRotation);
-
-        print("Rot angle: " + angle);
+        float angle = myYRotation - otherYRotation + 180;
 
         return angle;
     }
