@@ -8,6 +8,7 @@ public class RoomController : MonoBehaviour
     public Vector2 RoomSize => roomSize;
 
     [SerializeField] RoomConnector[] roomConnectors;
+    public RoomConnector[] RoomConnectors => roomConnectors;
     RoomController[] connectedRooms;
 
     [SerializeField] GameObject roomItemsParent1, roomItemsParent2;
@@ -21,13 +22,6 @@ public class RoomController : MonoBehaviour
 
     private void Awake()
     {
-        print("Awake");
-        Setup();
-    }
-
-    private void OnEnable()
-    {
-        print("OnEnable");
         Setup();
     }
     private void Setup()
@@ -101,11 +95,15 @@ public class RoomController : MonoBehaviour
 
     internal RoomConnector GetFreeDoorConnector()
     {
-
         // Put roomConnections in a randomly ordered list
-        List<RoomConnector> shuffledConnectors = new List<RoomConnector>();
+        List<RoomConnector> connectorList = new List<RoomConnector>();
 
-        List<RoomConnector> connectorList = roomConnectors.ToList();
+        foreach (RoomConnector connector in roomConnectors) 
+        {
+            connectorList.Add(connector);
+        }
+
+        List<RoomConnector> shuffledConnectors = new List<RoomConnector>();
 
         for (int i = 0; i < connectorList.Count; i++)
         {
@@ -131,14 +129,14 @@ public class RoomController : MonoBehaviour
         RoomConnector myConnector = GetFreeDoorConnector();
         if (myConnector == null)
         {
-            Debug.LogError("No free connectors found in room: " + name);
+            Debug.Log("No free connectors found in room: " + name);
             return false;
         }
 
         RoomConnector otherConnector = otherRoom.GetFreeDoorConnector();
         if (otherConnector == null)
         {
-            Debug.LogError("No free connectors found in room: " + otherRoom.name);
+            Debug.Log("No free connectors found in room: " + otherRoom.name);
             return false;
         }
 

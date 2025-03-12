@@ -36,8 +36,8 @@ public class Portal : MonoBehaviour
     private void Awake()
     {
         if (renderBoundingBoxCorners.Length != 2 
-            ||  renderBoundingBoxCorners[0] != null 
-            || renderBoundingBoxCorners[1] != null)
+            ||  renderBoundingBoxCorners[0] == null 
+            || renderBoundingBoxCorners[1] == null)
         {
             Debug.LogWarning("Portal needs exact 2 Render Bounding Box Corners.", this);
             renderBoundingBox = new Bounds(Vector3.zero, Vector3.positiveInfinity);
