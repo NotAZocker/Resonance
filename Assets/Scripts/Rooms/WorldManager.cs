@@ -18,7 +18,7 @@ public class WorldManager : MonoBehaviour
 
     [Header("World Change Probabilities")]
     [SerializeField] float roomSpawnProbability = 5;
-    [SerializeField] float roomDestroyProbability = 1;
+    [SerializeField] float roomDestroyProbabilityPerRoom = 1/5;
     [SerializeField] float roomConnectProbability = 3;
 
     FirstPersonController player;
@@ -51,7 +51,7 @@ public class WorldManager : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(player.transform.position, lastSpawnPlayerPosition) > playerMoveDistanceToSpawn)
+        if(Vector3.Distance(player.transform.position, lastSpawnPlayerPosition) > playerMoveDistanceToSpawn)
         {
             ChangeSomethingInTheWorld();
             lastSpawnPlayerPosition = player.transform.position;
@@ -60,11 +60,6 @@ public class WorldManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             lastSpawnedRoom = SpawnNewRandomRoom(lastSpawnedRoom);
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SpawnNewRandomRoom(GetRoomOutOfPlayerVision());
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -81,6 +76,7 @@ public class WorldManager : MonoBehaviour
     private void ChangeSomethingInTheWorld()
     {
         int placeSpecialRoomProbability = GetPlaceSpecialRoomProbability();
+        int roomDestroyProbability = (int)(rooms.Count  * roomDestroyProbabilityPerRoom);
         float totalProbability = roomSpawnProbability + roomConnectProbability + roomDestroyProbability + placeSpecialRoomProbability;
         float rand = UnityEngine.Random.Range(0, totalProbability);
 
@@ -118,7 +114,7 @@ public class WorldManager : MonoBehaviour
 
     int GetPlaceSpecialRoomProbability()
     {
-        if (specialRooms.Count == 0) return 0;
+        if(specialRooms.Count == 0) return 0;
 
         if (rooms.Count < 20) return 0;
         else return rooms.Count / specialRooms.Count;
@@ -126,6 +122,12 @@ public class WorldManager : MonoBehaviour
 
     private void DestroyRoom(RoomController roomController)
     {
+        if(roomController == null)
+        {
+            print("No room to destroy found.");
+            return;
+        }
+
         rooms.Remove(roomController);
 
         if (placedSpecialRooms.Contains(roomController))
@@ -148,7 +150,17 @@ public class WorldManager : MonoBehaviour
         }
         while ((IsInPlayerVision(room) || isEndRoom && room.GetConnectionCount() > 1) && safetyCounter < 50);
 
-        if (safetyCounter == 50) print("Safety spawn room in vision");
+        if (safetyCounter == 50)
+        {
+            if (isEndRoom)
+            {
+                return null;
+            }
+            else
+            {
+                print("Safety spawn room in vision");
+            }
+        }
 
         return room;
     }
@@ -159,7 +171,7 @@ public class WorldManager : MonoBehaviour
 
         for (int i = 0; i < connectors.Length; i++)
         {
-            if (InInFrontOfPlayer(connectors[i].transform.position)
+            if (InInFrontOfPlayer(connectors[i].transform.position) 
                 && !IsViewObstructed(connectors[i].transform.position)
                 || IsCloseToPlayer(connectors[i].transform.position))
             {
@@ -215,7 +227,11 @@ public class WorldManager : MonoBehaviour
 
     public RoomController SpawnNewRandomRoom(RoomController attachRoom)
     {
-        RoomController newRoom = roomPrefabs[UnityEngine.Random.Range(0, roomPrefabs.Length)];
+        RoomController newRoom = null;
+        do
+        {
+            newRoom = roomPrefabs[UnityEngine.Random.Range(0, roomPrefabs.Length)];
+        } while (newRoom.name == attachRoom.name);
 
         return SpawnNewRoom(attachRoom, newRoom);
     }
@@ -259,7 +275,7 @@ public class WorldManager : MonoBehaviour
         }
         while ((rand2 == rand1 || IsInPlayerVision(rooms[rand2])) && safetyCounter < 50);
 
-        if (!rooms[rand1].TryAttachRoom(rooms[rand2], true, false))
+        if(!rooms[rand1].TryAttachRoom(rooms[rand2], true, false))
         {
             Debug.Log("Can't attach room " + rand2 + " to room " + rand1);
         }
