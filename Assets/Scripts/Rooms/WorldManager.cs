@@ -228,10 +228,13 @@ public class WorldManager : MonoBehaviour
     public RoomController SpawnNewRandomRoom(RoomController attachRoom)
     {
         RoomController newRoom = null;
+        int safetyCounter = 0;
         do
         {
             newRoom = roomPrefabs[UnityEngine.Random.Range(0, roomPrefabs.Length)];
-        } while (newRoom.name == attachRoom.name);
+            safetyCounter++;
+
+        } while (newRoom.name == attachRoom.name && safetyCounter < 50);
 
         return SpawnNewRoom(attachRoom, newRoom);
     }
