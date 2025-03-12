@@ -1715,7 +1715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1861982878
 Transform:
   m_ObjectHideFlags: 0
@@ -1753,6 +1753,7 @@ MonoBehaviour:
   smoothTime: 1
   baseEmissionColor: {r: 0.31575078, g: 0.6402796, b: 0.9748427, a: 1}
   baseColor: {r: 0.9748427, g: 0.9748427, b: 0.9748427, a: 1}
+  emissionColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!65 &1861982880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2121,6 +2122,7 @@ MonoBehaviour:
   smoothTime: 1
   baseEmissionColor: {r: 0.29053432, g: 0.46278825, b: 0.81761, a: 1}
   baseColor: {r: 0.9764706, g: 0.9764706, b: 0.9764706, a: 1}
+  emissionColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2117020833
 GameObject:
   m_ObjectHideFlags: 0
@@ -2140,7 +2142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2117020834
 Transform:
   m_ObjectHideFlags: 0
@@ -2178,6 +2180,7 @@ MonoBehaviour:
   smoothTime: 1
   baseEmissionColor: {r: 0.31575078, g: 0.6402796, b: 0.9748427, a: 1}
   baseColor: {r: 0.9748427, g: 0.9748427, b: 0.9748427, a: 1}
+  emissionColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!65 &2117020836
 BoxCollider:
   m_ObjectHideFlags: 0
