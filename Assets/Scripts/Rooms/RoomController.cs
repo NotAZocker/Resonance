@@ -21,8 +21,23 @@ public class RoomController : MonoBehaviour
 
     private void Awake()
     {
-        roomItemsParent1.SetActive(true);
-        roomItemsParent2.SetActive(false);
+        print("Awake");
+        Setup();
+    }
+
+    private void OnEnable()
+    {
+        print("OnEnable");
+        Setup();
+    }
+    private void Setup()
+    {
+        if(roomItemsParent1 != null) roomItemsParent1.SetActive(true);
+        if(roomItemsParent2 != null) roomItemsParent2.SetActive(false);
+
+        BoxCollider checkSpaceFreeCollider = GetComponent<BoxCollider>();
+        checkSpaceFreeCollider.size = new Vector3(roomSize.x, 1, roomSize.y);
+
     }
 
     bool IsIntersectingWithExistingObjects(Vector2 size)
@@ -43,6 +58,8 @@ public class RoomController : MonoBehaviour
 
         return false;
     }
+
+
 
     public bool TryDespawnRoom()
     {

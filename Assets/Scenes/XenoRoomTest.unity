@@ -3575,7 +3575,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2120397772}
-  - component: {fileID: 2120397773}
   - component: {fileID: 2120397774}
   m_Layer: 0
   m_Name: RoomSpawner
@@ -3599,21 +3598,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2120397773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120397771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebedff66009195d409f777c38c3a787a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomParent: {fileID: 2120397772}
-  roomPrefabs:
-  - {fileID: 2736621275884251087, guid: be772d7f1c1473d41a26e3ad79bb5535, type: 3}
 --- !u!114 &2120397774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3626,7 +3610,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19284a2c6dccac3489f0b8f792b324d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomParent: {fileID: 2120397772}
   startRoom: {fileID: 171123332}
+  roomPrefabs:
+  - {fileID: 2736621275884251087, guid: be772d7f1c1473d41a26e3ad79bb5535, type: 3}
 --- !u!1001 &2240988969643754089
 PrefabInstance:
   m_ObjectHideFlags: 0
