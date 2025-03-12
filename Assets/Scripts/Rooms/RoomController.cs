@@ -26,8 +26,8 @@ public class RoomController : MonoBehaviour
     }
     private void Setup()
     {
-        if(roomItemsParent1 != null) roomItemsParent1.SetActive(true);
-        if(roomItemsParent2 != null) roomItemsParent2.SetActive(false);
+        if (roomItemsParent1 != null) roomItemsParent1.SetActive(true);
+        if (roomItemsParent2 != null) roomItemsParent2.SetActive(false);
 
         BoxCollider checkSpaceFreeCollider = GetComponent<BoxCollider>();
         checkSpaceFreeCollider.size = new Vector3(roomSize.x, 1, roomSize.y);
@@ -158,7 +158,7 @@ public class RoomController : MonoBehaviour
         {
             if (connector.IsConnected)
             {
-                   connector.DeleteConnection();
+                connector.DeleteConnection();
             }
         }
 

@@ -69,7 +69,7 @@ public class WorldManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            rooms.Add(SpawnNewRandomRoom(rooms[UnityEngine.Random.Range(0, rooms.Count)]));
+            SpawnNewRandomRoom(GetRoomOutOfPlayerVision());
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
