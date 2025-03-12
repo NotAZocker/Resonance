@@ -7,7 +7,7 @@ public class RoomController : MonoBehaviour
     [SerializeField] Vector2 roomSize;
     public Vector2 RoomSize => roomSize;
 
-    [SerializeField] RoomConnector[] roomConnectors;
+    RoomConnector[] roomConnectors;
     public RoomConnector[] RoomConnectors => roomConnectors;
     RoomController[] connectedRooms;
 
@@ -32,6 +32,7 @@ public class RoomController : MonoBehaviour
         BoxCollider checkSpaceFreeCollider = GetComponent<BoxCollider>();
         checkSpaceFreeCollider.size = new Vector3(roomSize.x, 1, roomSize.y);
 
+        roomConnectors = transform.GetComponentsInChildren<RoomConnector>();
     }
 
     bool IsIntersectingWithExistingObjects(Vector2 size)
