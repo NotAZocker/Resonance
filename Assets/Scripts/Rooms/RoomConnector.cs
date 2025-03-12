@@ -20,6 +20,14 @@ public class RoomConnector : MonoBehaviour
 
     public bool IsConnected => isConnected;
 
+    void Start()
+    {
+        if (!isConnected)
+        {
+            SetConnectionType(ConnectionType.None);
+        }
+    }
+
     void SetConnectionType(ConnectionType connectionType)
     {
         switch (connectionType)
