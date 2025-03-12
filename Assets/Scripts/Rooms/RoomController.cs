@@ -95,29 +95,13 @@ public class RoomController : MonoBehaviour
 
     internal RoomConnector GetFreeDoorConnector()
     {
-        // Put roomConnections in a randomly ordered list
-        List<RoomConnector> connectorList = new List<RoomConnector>();
-
-        foreach (RoomConnector connector in roomConnectors) 
+        for (int i = 0; i < 50; i++)
         {
-            connectorList.Add(connector);
-        }
+            int rand = UnityEngine.Random.Range(0, roomConnectors.Length);
 
-        List<RoomConnector> shuffledConnectors = new List<RoomConnector>();
-
-        for (int i = 0; i < connectorList.Count; i++)
-        {
-            int rand = Random.Range(0, connectorList.Count);
-
-            shuffledConnectors.Add(connectorList[rand]);
-            connectorList.RemoveAt(rand);
-        }
-
-        for (int i = 0; i < shuffledConnectors.Count; i++)
-        {
-            if (!shuffledConnectors[i].IsConnected)
+            if (!roomConnectors[rand].IsConnected)
             {
-                return shuffledConnectors[i];
+                return roomConnectors[rand];
             }
         }
 
@@ -165,5 +149,33 @@ public class RoomController : MonoBehaviour
         float angle = myYRotation - otherYRotation + 180;
 
         return angle;
+    }
+
+    internal void RemoveRoom()
+    {
+
+        foreach (RoomConnector connector in roomConnectors)
+        {
+            if (connector.IsConnected)
+            {
+                   connector.DeleteConnection();
+            }
+        }
+
+        Destroy(gameObject);
+    }
+
+    internal int GetConnectionCount()
+    {
+        int connections = 0;
+
+        foreach (RoomConnector connector in roomConnectors)
+        {
+            if (connector.IsConnected)
+            {
+                connections++;
+            }
+        }
+        return connections;
     }
 }
