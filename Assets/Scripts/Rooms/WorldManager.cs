@@ -9,7 +9,6 @@ public class WorldManager : MonoBehaviour
     [SerializeField] RoomController startRoom;
     [SerializeField] RoomController[] roomPrefabs;
 
-    RoomSpawner roomSpawner;
     FirstPersonController player;
 
     List<RoomController> rooms = new List<RoomController>();
@@ -18,7 +17,6 @@ public class WorldManager : MonoBehaviour
 
     private void Awake()
     {
-        roomSpawner = GetComponent<RoomSpawner>();
         lastSpawnedRoom = startRoom;
 
         rooms.Add(startRoom);
@@ -76,8 +74,6 @@ public class WorldManager : MonoBehaviour
             rand2 = UnityEngine.Random.Range(0, rooms.Count);
         }
         while (rand2 == rand1);
-
-        print("Connect rooms " + rand1 + " and " + rand2);
 
         if(!rooms[rand1].TryAttachRoom(rooms[rand2], true, false))
         {
