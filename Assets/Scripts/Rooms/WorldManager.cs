@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class WorldManager : MonoBehaviour
 {
+    [SerializeField] Transform roomParent;
     [SerializeField] RoomController startRoom;
+    [SerializeField] RoomController[] roomPrefabs;
 
     RoomSpawner roomSpawner;
     FirstPersonController player;
@@ -18,6 +20,8 @@ public class WorldManager : MonoBehaviour
     {
         roomSpawner = GetComponent<RoomSpawner>();
         lastSpawnedRoom = startRoom;
+
+        rooms.Add(startRoom);
     }
 
     private void Start()
@@ -29,14 +33,38 @@ public class WorldManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            lastSpawnedRoom = roomSpawner.SpawnNewRandomRoom(lastSpawnedRoom);
+            lastSpawnedRoom = SpawnNewRandomRoom(lastSpawnedRoom);
             rooms.Add(lastSpawnedRoom);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            rooms.Add(SpawnNewRandomRoom(rooms[UnityEngine.Random.Range(0, rooms.Count)]));
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ConnectRandomRooms();
         }
+    }
+
+    public RoomController SpawnNewRandomRoom(RoomController attachRoom)
+    {
+        RoomController newRoom = roomPrefabs[UnityEngine.Random.Range(0, roomPrefabs.Length)];
+
+        return SpawnNewRoom(attachRoom, newRoom);
+    }
+
+    public RoomController SpawnNewRoom(RoomController attachRoom, RoomController roomPrefab)
+    {
+        RoomController newRoom = Instantiate(roomPrefab, roomParent);
+
+        if (!attachRoom.TryAttachRoom(newRoom))
+        {
+            Debug.LogError("Can't attach room to " + attachRoom.name);
+        }
+
+        return newRoom;
     }
 
     private void ConnectRandomRooms()
@@ -49,6 +77,11 @@ public class WorldManager : MonoBehaviour
         }
         while (rand2 == rand1);
 
+        print("Connect rooms " + rand1 + " and " + rand2);
 
+        if(!rooms[rand1].TryAttachRoom(rooms[rand2], true, false))
+        {
+            Debug.LogError("Can't attach room " + rand2 + " to room " + rand1);
+        }
     }
 }

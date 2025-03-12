@@ -109,7 +109,7 @@ public class RoomController : MonoBehaviour
         return null;
     }
 
-    public bool TryAttachRoom(RoomController otherRoom, bool usePortal = false)
+    public bool TryAttachRoom(RoomController otherRoom, bool usePortal = false, bool moveOtherRoom = true)
     {
         RoomConnector myConnector = GetFreeDoorConnector();
         if (myConnector == null)
@@ -125,13 +125,16 @@ public class RoomController : MonoBehaviour
             return false;
         }
 
-        otherRoom.transform.Rotate(Vector3.up, CalculateNewRoomRotation(myConnector, otherConnector));
-        otherRoom.transform.position = myConnector.transform.position - otherConnector.transform.position;
-
-        while (otherRoom.IsIntersectingWithExistingObjects(otherRoom.RoomSize))
+        if (moveOtherRoom)
         {
-            usePortal = true;
-            otherRoom.transform.position += Vector3.up * roomSpawnDistance;
+            otherRoom.transform.Rotate(Vector3.up, CalculateNewRoomRotation(myConnector, otherConnector));
+            otherRoom.transform.position = myConnector.transform.position - otherConnector.transform.position;
+
+            while (otherRoom.IsIntersectingWithExistingObjects(otherRoom.RoomSize))
+            {
+                usePortal = true;
+                otherRoom.transform.position += Vector3.up * roomSpawnDistance;
+            }
         }
 
         myConnector.TrySetOtherConnector(otherConnector, usePortal);
