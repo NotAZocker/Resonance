@@ -1156,7 +1156,7 @@ MonoBehaviour:
   - {fileID: 1365821458520758375}
   roomItemsParent1: {fileID: 0}
   roomItemsParent2: {fileID: 0}
-  collisionSizeFactor: 5
+  collisionSizeFactor: 0.4
   roomSpawnDistance: 20
 --- !u!65 &96012003206914216
 BoxCollider:
