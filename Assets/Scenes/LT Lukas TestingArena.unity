@@ -1801,9 +1801,17 @@ MonoBehaviour:
   roomParent: {fileID: 975222772}
   startRoom: {fileID: 1335684276}
   roomPrefabs:
-  - {fileID: 2736621275884251087, guid: be772d7f1c1473d41a26e3ad79bb5535, type: 3}
+  - {fileID: 1163786210785882302, guid: 3c7cce4d7b116904e832d7f22ec50604, type: 3}
+  - {fileID: 2091273543105699592, guid: aaffd3d3a2ddf2e47b6027485cd3674e, type: 3}
   - {fileID: 6934914002485491107, guid: 30f174708925eba4088fd96b9b1a2bfc, type: 3}
+  - {fileID: 2736621275884251087, guid: 2eed845d09193d545abe9bbe07f18886, type: 3}
+  specialRooms: []
   roomSpawnDistanceToPlayer: 20
+  startRoomCount: 1
+  playerMoveDistanceToSpawn: 15
+  roomSpawnProbability: 0
+  roomDestroyProbability: 1
+  roomConnectProbability: 50
 --- !u!4 &975222772
 Transform:
   m_ObjectHideFlags: 0
