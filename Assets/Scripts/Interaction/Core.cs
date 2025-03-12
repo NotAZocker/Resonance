@@ -12,9 +12,10 @@ public class Core : MonoBehaviour, IInteract
     [SerializeField] private float maxGlowIntensity = 5f;
     [SerializeField] private float coreBloomThreshold = 1f;
     [SerializeField] private float standardBloomThreshold = 2f;
-    [SerializeField] private float smoothTime = 1f;
+    [SerializeField] private float smoothTime = .5f;
     [SerializeField] private Color baseEmissionColor;
     [SerializeField] private Color baseColor;
+    [SerializeField] private Color emissionColor;
 
     private Material material;
     private Bloom bloom;
@@ -22,8 +23,8 @@ public class Core : MonoBehaviour, IInteract
     private float currentGlowIntensity = 0f;
     private float currentBloomThreshold = 0f;
 
-    private float glowVelocity = 0f;
-    private float bloomVelocity = 0f;
+    private float glowVelocity = 2f;
+    private float bloomVelocity = 2f;
 
     public void Interact()
     {
@@ -69,7 +70,7 @@ public class Core : MonoBehaviour, IInteract
         currentGlowIntensity = Mathf.SmoothDamp(currentGlowIntensity, targetGlowIntensity, ref glowVelocity, smoothTime);
         currentBloomThreshold = Mathf.SmoothDamp(currentBloomThreshold, targetBloomThreshold, ref bloomVelocity, smoothTime);
 
-        Color emissionColor = baseEmissionColor * currentGlowIntensity;
+        emissionColor = baseEmissionColor.linear * currentGlowIntensity;
         bloom.threshold.value = currentBloomThreshold;
 
         if (distance <= maxDistance)
