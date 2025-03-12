@@ -11,11 +11,16 @@ public class WorldManager : MonoBehaviour
 
     [SerializeField] float roomSpawnDistanceToPlayer = 20;
 
+    [SerializeField] int startRoomCount = 10;
+    [SerializeField] float playerMoveDistanceToSpawn = 15;
+
     FirstPersonController player;
 
     List<RoomController> rooms = new List<RoomController>();
 
     RoomController lastSpawnedRoom;
+
+    Vector3 lastSpawnPlayerPosition;
 
     private void Awake()
     {
@@ -27,10 +32,23 @@ public class WorldManager : MonoBehaviour
     private void Start()
     {
         player = FindAnyObjectByType<FirstPersonController>();
+
+        lastSpawnPlayerPosition = player.transform.position;
+
+        for (int i = 0; i < startRoomCount; i++)
+        {
+            SpawnNewRandomRoom(GetRoomOutOfPlayerVision());
+        }
     }
 
     private void Update()
     {
+        if(Vector3.Distance(player.transform.position, lastSpawnPlayerPosition) > playerMoveDistanceToSpawn)
+        {
+            ChangeSomethingInTheWorld();
+            lastSpawnPlayerPosition = player.transform.position;
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             lastSpawnedRoom = SpawnNewRandomRoom(lastSpawnedRoom);
@@ -47,7 +65,32 @@ public class WorldManager : MonoBehaviour
         }
     }
 
-    RoomController GetRoomOutOfPlayerVision()
+    private void ChangeSomethingInTheWorld()
+    {
+        int rand = UnityEngine.Random.Range(0, 10);
+
+        print("Change sth: " + rand);
+
+        if(rand < 1)
+        {
+            DestroyRoom(GetRoomOutOfPlayerVision(true));
+        }else if(rand < 5)
+        {
+            ConnectRandomRooms();
+        }
+        else
+        {
+            SpawnNewRandomRoom(GetRoomOutOfPlayerVision());
+        }
+    }
+
+    private void DestroyRoom(RoomController roomController)
+    {
+        rooms.Remove(roomController);
+        roomController.RemoveRoom();
+    }
+
+    RoomController GetRoomOutOfPlayerVision(bool isEndRoom = false)
     {
         RoomController room;
         int safetyCounter = 0;
@@ -56,7 +99,7 @@ public class WorldManager : MonoBehaviour
             room = rooms[UnityEngine.Random.Range(0, rooms.Count)];
             safetyCounter++;
         }
-        while (IsInPlayerVision(room) && safetyCounter < 50);
+        while ((IsInPlayerVision(room) || isEndRoom && room.GetConnectionCount() > 1) && safetyCounter < 50);
 
         if (safetyCounter == 50) print("Safety spawn room in vision");
 
@@ -82,8 +125,6 @@ public class WorldManager : MonoBehaviour
         bool IsCloseToPlayer(Vector3 position)
         {
             bool isCloseToPlayer = Vector3.Distance(player.transform.position, position) < roomSpawnDistanceToPlayer;
-
-            print("IsCloseToPlayer: " + isCloseToPlayer);
 
             return isCloseToPlayer;
         }
@@ -120,8 +161,6 @@ public class WorldManager : MonoBehaviour
             Vector3 playerToPosition = position - playerPos;
 
             float angle = Vector3.Angle(playerForward, playerToPosition);
-
-            print("Angle: " + angle);
 
             return angle < 90;
         }
@@ -175,7 +214,7 @@ public class WorldManager : MonoBehaviour
 
         if(!rooms[rand1].TryAttachRoom(rooms[rand2], true, false))
         {
-            Debug.LogError("Can't attach room " + rand2 + " to room " + rand1);
+            Debug.Log("Can't attach room " + rand2 + " to room " + rand1);
         }
     }
 }

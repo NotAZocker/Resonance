@@ -7,6 +7,8 @@ using UnityEngine;
 [SelectionBase]
 public class Portal : MonoBehaviour
 {
+    [SerializeField] bool playerIsInBoundingBox;
+
     //Settings
     [SerializeField]
     private Portal linkedPortal;
@@ -46,7 +48,7 @@ public class Portal : MonoBehaviour
         {
             if (renderBoundingBoxCorners[0].localPosition.sqrMagnitude < 0.01 && renderBoundingBoxCorners[1].localPosition.sqrMagnitude < 0.01)
             {
-                Debug.Log("Portals with global render bounding box might eat up resources unnecessarily.", this);
+                // Debug.Log("Portals with global render bounding box might eat up resources unnecessarily.", this);
                 renderBoundingBox = new Bounds(Vector3.zero, Vector3.positiveInfinity);
             }
             else
@@ -74,6 +76,8 @@ public class Portal : MonoBehaviour
 
     private void LateUpdate()
     {
+        playerIsInBoundingBox = renderBoundingBox.Contains(MainCamera.transform.position);
+
         if (MainCamera != null)
         {
             CheckResolution();

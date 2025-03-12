@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac0d8c0ea6e33b419cbaf21fa9805cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIsInBoundingBox: 0
   linkedPortal: {fileID: 0}
   ScreenRenderer: {fileID: 1014286522409251045}
   ownCamera: {fileID: 2714438160897297946}
@@ -190,7 +191,7 @@ Transform:
   m_GameObject: {fileID: 5872248911178035700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 10, z: -30}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -221,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 6555165123167879278}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
