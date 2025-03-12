@@ -56,9 +56,7 @@ MonoBehaviour:
   portalMaterial: {fileID: 2100000, guid: 1f2766c3e95165e4f957053d17beb6b3, type: 2}
   CameraNearClipOffset: 0.05
   CameraNearClipLimit: 0.3
-  renderBoundingBoxCorners:
-  - {fileID: 6338015332319849028}
-  - {fileID: 5855212263954190766}
+  renderBoundingBoxCorners: []
 --- !u!65 &1443827092928314829
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -191,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 5872248911178035700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 10, z: -30}
+  m_LocalPosition: {x: -15, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
