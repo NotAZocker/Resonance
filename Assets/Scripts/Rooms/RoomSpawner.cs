@@ -1,52 +1,30 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
+using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
 {
-    [SerializeField] RoomController startRoom;
+    [SerializeField] Transform roomParent;
 
     [SerializeField] RoomController[] roomPrefabs;
 
-    [SerializeField] int roomSpawnDistance = 20;
-
-    int roomsSpawned = 1;
-    RoomController lastSpawnedRoom;
-
-    private void Awake()
-    {
-        lastSpawnedRoom = startRoom;
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space)) SpawnNewRandomRoom(lastSpawnedRoom);
-    }
-
     public RoomController SpawnNewRandomRoom(RoomController attachRoom)
     {
-        RoomController newRoom = Instantiate(roomPrefabs[Random.Range(0, roomPrefabs.Length)]);
+        RoomController newRoom = roomPrefabs[Random.Range(0, roomPrefabs.Length)];
 
-        newRoom.transform.position = GetNextSpawnPosition();
+        return SpawnNewRoom(attachRoom, newRoom);
+    }
+
+    public RoomController SpawnNewRoom(RoomController attachRoom, RoomController roomPrefab)
+    {
+        RoomController newRoom = Instantiate(roomPrefab, roomParent);
 
         if (!attachRoom.TryAttachRoom(newRoom))
         {
-            Debug.LogError("Failed to attach new room");
-        }
-        else
-        {
-            lastSpawnedRoom = newRoom;
-            roomsSpawned++;
+            Debug.LogError("Can't attach room to " + attachRoom.name);
         }
 
         return newRoom;
     }
-
-    private Vector3 GetNextSpawnPosition()
-    {
-        return roomsSpawned * roomSpawnDistance * Vector3.right;
-    }
-}
-
-public class WorldManager : MonoBehaviour
-{
-    FirstPersonController player;
 }
