@@ -43,8 +43,6 @@ public class Core : MonoBehaviour, IInteract
         {
             Debug.LogError("There is no renderer on this object!");
         }
-
-        material.EnableKeyword("_EMISSION");
     }
 
     private void Start()
@@ -76,12 +74,12 @@ public class Core : MonoBehaviour, IInteract
 
         if (distance <= maxGlowDistance)
         {
-            material.color = emissionColor;
+            material.SetColor("_EmissionColor", emissionColor);
             material.EnableKeyword("_EMISSION");
         }
         else
         {
-            material.color = baseColor;
+            material.SetColor("_EmissionColor", baseColor);
             material.DisableKeyword("_EMISSION");
         }
     }
