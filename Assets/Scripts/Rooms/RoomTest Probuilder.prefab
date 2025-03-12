@@ -1148,7 +1148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6200af210cb11940bae0661290430cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomSize: {x: 10, y: 10}
+  roomSize: {x: 4, y: 4}
   roomConnectors:
   - {fileID: 3801607455921610356}
   - {fileID: 3309407969539965349}
