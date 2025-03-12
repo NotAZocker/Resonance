@@ -4,13 +4,7 @@ public class NoteInteraction : MonoBehaviour, IInteract
 {
     [Header("Settings")]
     [SerializeField] private NotesTextSO noteSO;
-
-    private NotesUI notesUI;
-
-    private void Awake()
-    {
-        notesUI = GameObject.FindWithTag("NotesUI").GetComponent<NotesUI>();
-    }
+    [SerializeField] private NotesUI notesUI;
 
     private void Start()
     {
