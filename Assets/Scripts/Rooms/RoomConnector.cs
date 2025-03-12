@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class RoomConnector : MonoBehaviour
 {
+    enum ConnectionType
+    {
+        None,
+        Portal,
+        Door
+    }
+
     [SerializeField] GameObject connectionObject, noConnectionObject;
 
     [SerializeField] Portal portal;
@@ -13,51 +20,69 @@ public class RoomConnector : MonoBehaviour
 
     public bool IsConnected => isConnected;
 
-    public void Awake()
+    void SetConnectionType(ConnectionType connectionType)
     {
-        SetConnection(false);
-    }
-
-    public void SetConnection(bool connected)
-    {
-        connectionObject.SetActive(connected);
-        noConnectionObject.SetActive(!connected);
-
-        isConnected = connected;
+        switch (connectionType)
+        {
+            case ConnectionType.None:
+                connectionObject.SetActive(false);
+                portal.gameObject.SetActive(false);
+                noConnectionObject.SetActive(true);
+                isConnected = false;
+                break;
+            case ConnectionType.Portal:
+                connectionObject.SetActive(true);
+                portal.gameObject.SetActive(true);
+                noConnectionObject.SetActive(false);
+                isConnected = true;
+                break;
+            case ConnectionType.Door:
+                connectionObject.SetActive(true);
+                portal.gameObject.SetActive(false);
+                noConnectionObject.SetActive(false);
+                isConnected = true;
+                break;
+        }
     }
 
     public float GetYRotation()
     {
-        print(name + "; LocalEulerAngles: " + transform.eulerAngles);
-
         return transform.eulerAngles.y;
     }
 
-    internal bool TrySetOtherConnector(RoomConnector otherConnector)
+    internal bool TrySetOtherConnector(RoomConnector otherConnector, bool usePortal)
     {
-        if(isConnected) return false;
+        if (isConnected)
+        {
+            return false;
+        }
 
-        SetConnection(true);
+        if (usePortal) SetConnectionType(ConnectionType.Portal);
+        else SetConnectionType(ConnectionType.Door);
 
-        otherConnector.TrySetOtherConnector(this);
+        otherConnector.TrySetOtherConnector(this, usePortal);
 
         this.otherConnector = otherConnector;
-        if(portal.LinkedPortal == null) Portal.Link(portal, otherConnector.portal);
+        if (portal.LinkedPortal == null && usePortal)
+        {
+            Portal.Link(portal, otherConnector.portal);
+            //otherConnector.transform.Rotate(Vector3.up, 180);
+        }
 
         return true;
     }
 
     internal void DeleteConnection()
     {
-        if(!isConnected) return;
+        if (!isConnected) return;
 
-        SetConnection(false);
+        SetConnectionType(ConnectionType.None);
 
         portal.Unlink();
 
-        if(otherConnector != null)
+        if (otherConnector != null)
         {
-            DeleteConnection();
+            otherConnector.DeleteConnection();
         }
     }
 }
