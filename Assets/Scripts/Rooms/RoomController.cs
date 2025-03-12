@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
+    [SerializeField] Vector2 roomSize;
+    public Vector2 RoomSize => roomSize;
+
     [SerializeField] RoomConnector[] roomConnectors;
     RoomController[] connectedRooms;
 
     [SerializeField] GameObject roomItemsParent1, roomItemsParent2;
 
+    [SerializeField] float collisionSizeFactor = 0.4f;
+
+    [SerializeField] int roomSpawnDistance = 20;
+
+    bool hasCollided;
+    public bool HasCollided => hasCollided;
+
     private void Awake()
     {
         roomItemsParent1.SetActive(true);
         roomItemsParent2.SetActive(false);
+    }
+
+    bool IsIntersectingWithExistingObjects(Vector2 size)
+    {
+        Vector3 halfExtents = new Vector3(size.x * collisionSizeFactor, 7, size.y * collisionSizeFactor);
+
+        Collider[] colliders = Physics.OverlapBox(transform.position, halfExtents, transform.rotation);
+
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject != gameObject && collider.gameObject.GetComponent<RoomController>())
+            {
+                print("room collision with " + collider.name);
+                return true;
+            }
+        }
+
+
+        return false;
     }
 
     public bool TryDespawnRoom()
@@ -27,7 +56,7 @@ public class RoomController : MonoBehaviour
             }
         }
 
-        if(connectionCount > 1)
+        if (connectionCount > 1)
         {
             Debug.LogError("Room has multiple connections");
             return false;
@@ -55,8 +84,9 @@ public class RoomController : MonoBehaviour
 
     internal RoomConnector GetFreeDoorConnector()
     {
+
         // Put roomConnections in a randomly ordered list
-        List<RoomConnector> shuffledConnectors = new List<RoomConnector>(roomConnectors);
+        List<RoomConnector> shuffledConnectors = new List<RoomConnector>();
 
         List<RoomConnector> connectorList = roomConnectors.ToList();
 
@@ -65,7 +95,7 @@ public class RoomController : MonoBehaviour
             int rand = Random.Range(0, connectorList.Count);
 
             shuffledConnectors.Add(connectorList[rand]);
-            shuffledConnectors.RemoveAt(rand);
+            connectorList.RemoveAt(rand);
         }
 
         for (int i = 0; i < shuffledConnectors.Count; i++)
@@ -79,7 +109,7 @@ public class RoomController : MonoBehaviour
         return null;
     }
 
-    public bool TryAttachRoom(RoomController otherRoom)
+    public bool TryAttachRoom(RoomController otherRoom, bool usePortal = false)
     {
         RoomConnector myConnector = GetFreeDoorConnector();
         if (myConnector == null)
@@ -96,8 +126,15 @@ public class RoomController : MonoBehaviour
         }
 
         otherRoom.transform.Rotate(Vector3.up, CalculateNewRoomRotation(myConnector, otherConnector));
+        otherRoom.transform.position = myConnector.transform.position - otherConnector.transform.position;
 
-        myConnector.TrySetOtherConnector(otherConnector);
+        while (otherRoom.IsIntersectingWithExistingObjects(otherRoom.RoomSize))
+        {
+            usePortal = true;
+            otherRoom.transform.position += Vector3.up * roomSpawnDistance;
+        }
+
+        myConnector.TrySetOtherConnector(otherConnector, usePortal);
 
         return true;
     }
@@ -105,7 +142,7 @@ public class RoomController : MonoBehaviour
     private float CalculateNewRoomRotation(RoomConnector myConnector, RoomConnector otherConnector)
     {
         float myYRotation = myConnector.GetYRotation();
-        float otherYRotation = otherConnector.GetYRotation(); 
+        float otherYRotation = otherConnector.GetYRotation();
 
         float angle = myYRotation - otherYRotation + 180;
 
