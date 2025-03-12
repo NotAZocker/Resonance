@@ -7,10 +7,9 @@ public class Core : MonoBehaviour, IInteract
     [Header("Settings")]
     [SerializeField] private GameObject weapon;
     [SerializeField] private Volume globalVolume;
-    [SerializeField] private float maxGlowDistance = 5f;
+    [SerializeField] private float maxDistance = 5f;
     [SerializeField] private float minGlowIntensity = 0f;
     [SerializeField] private float maxGlowIntensity = 5f;
-    [SerializeField] private float maxBloomDistance = 5f;
     [SerializeField] private float coreBloomThreshold = 1f;
     [SerializeField] private float standardBloomThreshold = 2f;
     [SerializeField] private float smoothTime = 1f;
@@ -61,8 +60,8 @@ public class Core : MonoBehaviour, IInteract
 
         float distance = Vector3.Distance(transform.position, weapon.transform.position);
 
-        float glowFactor = Mathf.Clamp01(1 - (distance / maxGlowDistance)) * maxGlowIntensity;
-        float bloomFactor = Mathf.Clamp01(1 - (distance / maxBloomDistance)) * coreBloomThreshold;
+        float glowFactor = Mathf.Clamp01(1 - (distance / maxDistance)) * maxGlowIntensity;
+        float bloomFactor = Mathf.Clamp01(1 - (distance / maxDistance)) * coreBloomThreshold;
 
         float targetGlowIntensity = Mathf.Lerp(minGlowIntensity, maxGlowIntensity, glowFactor);
         float targetBloomThreshold = Mathf.Lerp(standardBloomThreshold, coreBloomThreshold, bloomFactor);
@@ -73,7 +72,7 @@ public class Core : MonoBehaviour, IInteract
         Color emissionColor = baseEmissionColor * currentGlowIntensity;
         bloom.threshold.value = currentBloomThreshold;
 
-        if (distance <= maxGlowDistance)
+        if (distance <= maxDistance)
         {
             material.SetColor("_EmissionColor", emissionColor);
             material.EnableKeyword("_EMISSION");

@@ -1,8 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CoreManager : MonoBehaviour
 {
     public static CoreManager Instance { get; private set; }
+
+    [Header("Settings")]
+    [SerializeField] private List<Core> coreList;
 
     private int currentCoreAmount = 0;
     private int maxCoreAmount = 3;
@@ -19,6 +23,19 @@ public class CoreManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        HideCores();
+    }
+
+    private void HideCores()
+    {
+        foreach (var core in coreList)
+        {
+            core.gameObject.SetActive(false);
+        }
+    }
+
     private void Update()
     {
         CheckCoreCount();
@@ -29,6 +46,14 @@ public class CoreManager : MonoBehaviour
         if (currentCoreAmount == maxCoreAmount)
         {
             Debug.Log("All Cores collected!");
+        }
+    }
+
+    public void SpawnCores()
+    {
+        foreach (Core core in coreList)
+        {
+            core.gameObject.SetActive(true);
         }
     }
 

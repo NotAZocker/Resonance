@@ -30,6 +30,7 @@ public class Weapon : MonoBehaviour, IInteract
     public void Interact()
     {
         transform.SetParent(playerCamera.transform);
+        CoreManager.Instance.SpawnCores();
         isMoving = true;
     }
 }
