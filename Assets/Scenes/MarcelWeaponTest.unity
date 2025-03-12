@@ -1644,6 +1644,50 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9b46ac3b2e634c543aaa5c72b6959b62, type: 2}
   readNotesSOList: []
   unreadNotesSOList: []
+--- !u!1 &1811762997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1811762998}
+  - component: {fileID: 1811762999}
+  m_Layer: 0
+  m_Name: CoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1811762998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811762997}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1811762999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811762997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cac724ae9646fc4f9c55bacf703bf0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1861982877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,12 +1739,12 @@ MonoBehaviour:
   globalVolume: {fileID: 832575518}
   maxGlowDistance: 10
   minGlowIntensity: 0
-  maxGlowIntensity: 10
+  maxGlowIntensity: 5
   maxBloomDistance: 10
   coreBloomThreshold: 1
   standardBloomThreshold: 2
   smoothTime: 1
-  baseEmissionColor: {r: 0.0039215684, g: 0.60249996, b: 1, a: 1}
+  baseEmissionColor: {r: 0.31575078, g: 0.6402796, b: 0.9748427, a: 1}
   baseColor: {r: 0.9748427, g: 0.9748427, b: 0.9748427, a: 1}
 --- !u!65 &1861982880
 BoxCollider:
@@ -2064,13 +2108,13 @@ MonoBehaviour:
   globalVolume: {fileID: 832575518}
   maxGlowDistance: 10
   minGlowIntensity: 0
-  maxGlowIntensity: 10
+  maxGlowIntensity: 5
   maxBloomDistance: 10
   coreBloomThreshold: 1
   standardBloomThreshold: 2
   smoothTime: 1
-  baseEmissionColor: {r: 0.0039215684, g: 0.31058273, b: 1, a: 1}
-  baseColor: {r: 0.9764706, g: 0.9764706, b: 0.9764706, a: 1}
+  baseEmissionColor: {r: 0.29053432, g: 0.46278825, b: 0.81761, a: 1}
+  baseColor: {r: 0.9764706, g: 0.9764706, b: 0.9764706, a: 0}
 --- !u!1 &2117020833
 GameObject:
   m_ObjectHideFlags: 0
@@ -2122,12 +2166,12 @@ MonoBehaviour:
   globalVolume: {fileID: 832575518}
   maxGlowDistance: 10
   minGlowIntensity: 0
-  maxGlowIntensity: 10
+  maxGlowIntensity: 5
   maxBloomDistance: 10
   coreBloomThreshold: 1
   standardBloomThreshold: 2
   smoothTime: 1
-  baseEmissionColor: {r: 0.0039215684, g: 0.60249996, b: 1, a: 1}
+  baseEmissionColor: {r: 0.31575078, g: 0.6402796, b: 0.9748427, a: 1}
   baseColor: {r: 0.9748427, g: 0.9748427, b: 0.9748427, a: 1}
 --- !u!65 &2117020836
 BoxCollider:
@@ -2295,6 +2339,7 @@ SceneRoots:
   - {fileID: 1404112162}
   - {fileID: 1006970860}
   - {fileID: 2132928682}
+  - {fileID: 1195711841}
   - {fileID: 429028594}
   - {fileID: 1750878249}
-  - {fileID: 1195711841}
+  - {fileID: 1811762998}

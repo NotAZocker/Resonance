@@ -18,6 +18,7 @@ public class Core : MonoBehaviour, IInteract
     [SerializeField] private Color baseColor;
 
     private Material material;
+    private Bloom bloom;
 
     private float currentGlowIntensity = 0f;
     private float currentBloomThreshold = 0f;
@@ -27,7 +28,7 @@ public class Core : MonoBehaviour, IInteract
 
     public void Interact()
     {
-        Debug.Log("Picked up Core: " + name);
+        CoreManager.Instance.IncreaseCoreCount();
         Destroy(gameObject);
     }
 
@@ -47,15 +48,15 @@ public class Core : MonoBehaviour, IInteract
 
     private void Start()
     {
-        globalVolume.profile.TryGet(out Bloom bloom);
-        bloom.threshold.value = standardBloomThreshold;
+        if (globalVolume.profile.TryGet(out bloom))
+        {
+            bloom.threshold.value = standardBloomThreshold;
+        }
         material.color = baseColor;
     }
 
     private void Update()
     {
-        globalVolume.profile.TryGet(out Bloom bloom);
-
         if (weapon == null || material == null) return;
 
         float distance = Vector3.Distance(transform.position, weapon.transform.position);
@@ -63,8 +64,8 @@ public class Core : MonoBehaviour, IInteract
         float glowFactor = Mathf.Clamp01(1 - (distance / maxGlowDistance)) * maxGlowIntensity;
         float bloomFactor = Mathf.Clamp01(1 - (distance / maxBloomDistance)) * coreBloomThreshold;
 
-        float targetGlowIntensity = Mathf.Clamp01(1 - (distance / maxGlowDistance)) * maxGlowIntensity;
-        float targetBloomThreshold = Mathf.Clamp01(1 - (distance / maxBloomDistance)) * coreBloomThreshold;
+        float targetGlowIntensity = Mathf.Lerp(minGlowIntensity, maxGlowIntensity, glowFactor);
+        float targetBloomThreshold = Mathf.Lerp(standardBloomThreshold, coreBloomThreshold, bloomFactor);
 
         currentGlowIntensity = Mathf.SmoothDamp(currentGlowIntensity, targetGlowIntensity, ref glowVelocity, smoothTime);
         currentBloomThreshold = Mathf.SmoothDamp(currentBloomThreshold, targetBloomThreshold, ref bloomVelocity, smoothTime);
@@ -79,7 +80,6 @@ public class Core : MonoBehaviour, IInteract
         }
         else
         {
-            material.SetColor("_EmissionColor", baseColor);
             material.DisableKeyword("_EMISSION");
         }
     }
