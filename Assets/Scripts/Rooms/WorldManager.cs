@@ -2,21 +2,29 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using VInspector.Libs;
 
 public class WorldManager : MonoBehaviour
 {
     [SerializeField] Transform roomParent;
     [SerializeField] RoomController startRoom;
     [SerializeField] RoomController[] roomPrefabs;
+    [SerializeField] List<RoomController> specialRooms;
 
     [SerializeField] float roomSpawnDistanceToPlayer = 20;
 
     [SerializeField] int startRoomCount = 10;
     [SerializeField] float playerMoveDistanceToSpawn = 15;
 
+    [Header("World Change Probabilities")]
+    [SerializeField] float roomSpawnProbability = 5;
+    [SerializeField] float roomDestroyProbability = 1;
+    [SerializeField] float roomConnectProbability = 3;
+
     FirstPersonController player;
 
     List<RoomController> rooms = new List<RoomController>();
+    List<RoomController> placedSpecialRooms = new List<RoomController>();
 
     RoomController lastSpawnedRoom;
 
@@ -67,26 +75,60 @@ public class WorldManager : MonoBehaviour
 
     private void ChangeSomethingInTheWorld()
     {
-        int rand = UnityEngine.Random.Range(0, 10);
+        int placeSpecialRoomProbability = GetPlaceSpecialRoomProbability();
+        float totalProbability = roomSpawnProbability + roomConnectProbability + roomDestroyProbability + placeSpecialRoomProbability;
+        float rand = UnityEngine.Random.Range(0, totalProbability);
 
         print("Change sth: " + rand);
 
-        if(rand < 1)
+        if (rand < roomDestroyProbability)
         {
             DestroyRoom(GetRoomOutOfPlayerVision(true));
-        }else if(rand < 5)
-        {
-            ConnectRandomRooms();
+            return;
         }
-        else
+
+        rand -= roomDestroyProbability;
+        if (rand < roomSpawnProbability)
         {
             SpawnNewRandomRoom(GetRoomOutOfPlayerVision());
+            return;
         }
+
+        rand -= roomSpawnProbability;
+        if (rand < placeSpecialRoomProbability)
+        {
+            RoomController attachRoom = GetRoomOutOfPlayerVision();
+            if (attachRoom.TryAttachRoom(specialRooms[0]))
+            {
+                placedSpecialRooms.Add(specialRooms[0]);
+                specialRooms.RemoveAt(0);
+            }
+
+            return;
+        }
+
+        // No need to check further; if it's not destroy or spawn, it's connect
+        ConnectRandomRooms();
+    }
+
+    int GetPlaceSpecialRoomProbability()
+    {
+        if(specialRooms.Count == 0) return 0;
+
+        if (rooms.Count < 20) return 0;
+        else return rooms.Count / specialRooms.Count;
     }
 
     private void DestroyRoom(RoomController roomController)
     {
         rooms.Remove(roomController);
+
+        if (placedSpecialRooms.Contains(roomController))
+        {
+            specialRooms.AddAt(roomController, 0);
+            placedSpecialRooms.Remove(roomController);
+        }
+
         roomController.RemoveRoom();
     }
 
