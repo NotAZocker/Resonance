@@ -7,7 +7,7 @@ public class NotesManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private List<Sprite> noteSprites;
-    private List<Sprite> usedSprites;
+    private List<Sprite> usedSprites = new List<Sprite>();
 
     private void Awake()
     {

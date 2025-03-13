@@ -32,6 +32,14 @@ public class UIManager : MonoBehaviour
         HideNotesDisplay();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            HideNotesDisplay();
+        }
+    }
+
     public void HideNotesDisplay()
     {
         Cursor.visible = false;

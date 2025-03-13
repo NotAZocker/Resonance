@@ -249,6 +249,6 @@ public class RoomController : MonoBehaviour
     internal void RemoveRoom()
     {
         DisconnectRoom();
-        Destroy(gameObject);
+        if(gameObject != null) Destroy(gameObject);
     }
 }
