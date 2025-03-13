@@ -1,15 +1,15 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NotesUI : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private TextMeshProUGUI noteTitle;
-    [SerializeField] private TextMeshProUGUI noteText;
+    [SerializeField] private Image noteImage;
 
-    public void SetNotesUITitleAndText(NotesTextSO note)
+    internal void SetNote(Sprite sprite)
     {
-        noteTitle.text = note.name;
-        noteText.text = note.text;
+        noteImage.sprite = sprite;
     }
 }
