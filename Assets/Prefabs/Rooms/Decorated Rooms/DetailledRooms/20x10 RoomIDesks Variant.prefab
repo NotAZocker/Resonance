@@ -4460,6 +4460,14 @@ PrefabInstance:
       propertyPath: m_Textures0.Array.data[23].y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6148429358313663413, guid: 91710f36c26ba70459c5904333c10ea6, type: 3}
+      propertyPath: m_Size.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781705820709602460, guid: 91710f36c26ba70459c5904333c10ea6, type: 3}
+      propertyPath: roomSize.x
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 9059333055296770640, guid: 91710f36c26ba70459c5904333c10ea6, type: 3}
       propertyPath: m_Size.x
       value: 20
