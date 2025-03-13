@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -31,15 +32,27 @@ public class Portal : MonoBehaviour
     public static Camera MainCamera { get; set; }
     private RenderTexture screenTextrue;
     public Matrix4x4 TeleportMatrix { get; private set; }
-    private Bounds renderBoundingBox;
+    [SerializeField] private Bounds renderBoundingBox;
 
 
     //Functions
     private void Awake()
     {
-        if (renderBoundingBoxCorners.Length != 2 
-            ||  renderBoundingBoxCorners[0] == null 
-            || renderBoundingBoxCorners[1] == null)
+        CalculateBoundingBox();
+
+        if (linkedPortal != null)
+        {
+            CalculateTeleportMatrix();
+        }
+
+        InitScreenTexture();
+    }
+
+    public void CalculateBoundingBox()
+    {
+        if (renderBoundingBoxCorners.Length != 2
+                    || renderBoundingBoxCorners[0] == null
+                    || renderBoundingBoxCorners[1] == null)
         {
             // Debug.LogWarning("Portal needs exact 2 Render Bounding Box Corners.", this);
             renderBoundingBox = new Bounds(Vector3.zero, Vector3.positiveInfinity);
@@ -57,15 +70,9 @@ public class Portal : MonoBehaviour
                 Vector3 size = (renderBoundingBoxCorners[0].position - renderBoundingBoxCorners[1].position);
                 size = new Vector3(Mathf.Abs(size.x), Mathf.Abs(size.y), Mathf.Abs(size.z));
                 renderBoundingBox = new Bounds(center, size);
+                Debug.Log($"{renderBoundingBoxCorners[0].position} | {renderBoundingBoxCorners[1].position} | {center} | {size}", this);
             }
         }
-
-        if(linkedPortal != null)
-        {
-            CalculateTeleportMatrix();
-        }
-
-        InitScreenTexture();
     }
 
     private void CalculateTeleportMatrix()
@@ -73,20 +80,60 @@ public class Portal : MonoBehaviour
         Matrix4x4 rotationMatrix = Matrix4x4.Rotate(Quaternion.AngleAxis(180, Vector3.up));
         TeleportMatrix = linkedPortal.transform.localToWorldMatrix * rotationMatrix * transform.worldToLocalMatrix;
     }
+    private static int total;
+    private static int boundingBox;
+    private static int frustumCulled;
+
+    private void OnGUI()
+    {
+        if (total == 0)
+        {
+            //Debug.Log("No portals", this);
+            //return;
+        }
+        string s = $"Total: {total}; BoundingBox: {boundingBox}; FrustumCulled: {frustumCulled} ";
+        
+        GUI.Label(new Rect(10, 10, 300, 20), s);
+    }
+
+    private void Update()
+    {
+        total = 0;
+        boundingBox = 0;
+        frustumCulled = 0;
+    }
 
     private void LateUpdate()
     {
+        if (linkedPortal == null)
+        {
+            return;
+        }
+
+        if (MainCamera == null)
+        {
+            return;
+        }
+
+        total++;
+
+        CheckResolution();
+
         playerIsInBoundingBox = renderBoundingBox.Contains(MainCamera.transform.position);
 
-        if (MainCamera != null)
+        if (!renderBoundingBox.Contains(MainCamera.transform.position))
         {
-            CheckResolution();
-
-            if (renderBoundingBox.Contains(MainCamera.transform.position))
-            {
-                if(linkedPortal != null) RenderScreen(MainCamera);
-            }
+            boundingBox++;
+            return;
         }
+
+        if (!linkedPortal.ScreenRenderer.isVisible)
+        {
+            frustumCulled++;
+            return;
+        }
+
+        RenderScreen(MainCamera);
     }
 
 
@@ -186,6 +233,9 @@ public class Portal : MonoBehaviour
 
         portalA.CalculateTeleportMatrix();
         portalB.CalculateTeleportMatrix();
+
+        portalA.CalculateBoundingBox();
+        portalB.CalculateBoundingBox();
     }
 
     internal void Unlink()
