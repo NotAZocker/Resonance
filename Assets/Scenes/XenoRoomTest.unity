@@ -3614,10 +3614,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3874541486716880382, guid: 88e3dadbb430cde479180fa10f7abcbd, type: 3}
-      propertyPath: coreList.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4091514703584774917, guid: 88e3dadbb430cde479180fa10f7abcbd, type: 3}
       propertyPath: m_Name
       value: ResonanceAmplificationDevice

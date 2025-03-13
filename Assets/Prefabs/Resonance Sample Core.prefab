@@ -127,3 +127,6 @@ MonoBehaviour:
   smoothTime: 1
   baseEmissionColor: {r: 0.29053432, g: 0.46278825, b: 0.81761, a: 1}
   baseColor: {r: 0.9764706, g: 0.9764706, b: 0.9764706, a: 1}
+  weaponLayer:
+    serializedVersion: 2
+    m_Bits: 128

@@ -17,6 +17,8 @@ public class Core : MonoBehaviour, IInteract
     [SerializeField] private Color baseEmissionColor;
     [SerializeField] private Color baseColor;
 
+    [SerializeField] LayerMask weaponLayer;
+
     private Material material;
     private Bloom bloom;
     private Color emissionColor;
@@ -40,6 +42,16 @@ public class Core : MonoBehaviour, IInteract
     {
         isMoving = true;
         CoreManager.Instance.IncreaseCoreCount(this);
+
+        int weaponLayerIndex = Mathf.RoundToInt(Mathf.Log(weaponLayer.value, 2));
+
+        foreach (Transform child in transform)
+        {
+            child.gameObject.layer = weaponLayerIndex;
+        }
+        this.gameObject.layer = weaponLayerIndex; // Also set the main object’s layer
+
+        GetComponent<Collider>().enabled = false;
 
         OnInteract?.Invoke();
     }
