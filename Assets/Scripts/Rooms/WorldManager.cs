@@ -93,7 +93,12 @@ public class WorldManager : MonoBehaviour
             return;
         }
 
-        RoomController specialRoom = SpawnNewRoom(GetRoomOutOfPlayerVision(), specialRooms[0]);
+        RoomController specialRoom = null;
+
+        while(specialRoom == null)
+        {
+            specialRoom = SpawnNewRoom(GetRoomOutOfPlayerVision(), specialRooms[0]);
+        }
 
         currentSpecialRoomCopies.Add(specialRoom);
 

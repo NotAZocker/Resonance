@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
-    [SerializeField] Vector2 roomSize;
-    public Vector2 RoomSize => roomSize;
+    public Vector2 RoomSize => checkSpaceFreeCollider.size;
 
     [SerializeField] IInteract specialObject;
 
@@ -26,6 +25,8 @@ public class RoomController : MonoBehaviour
     bool hasCollided;
     public bool HasCollided => hasCollided;
 
+    BoxCollider checkSpaceFreeCollider;
+
     public event Action<RoomController> OnSpecialObjectCollected;
 
     private void Awake()
@@ -37,8 +38,7 @@ public class RoomController : MonoBehaviour
         if (roomItemsParent1 != null) roomItemsParent1.SetActive(true);
         if (roomItemsParent2 != null) roomItemsParent2.SetActive(false);
 
-        BoxCollider checkSpaceFreeCollider = GetComponent<BoxCollider>();
-        checkSpaceFreeCollider.size = new Vector3(roomSize.x, 1, roomSize.y);
+         checkSpaceFreeCollider = GetComponent<BoxCollider>();
 
         roomConnectors = transform.GetComponentsInChildren<RoomConnector>()
                 .Where(connector => !connector.IsWindow)
@@ -58,9 +58,9 @@ public class RoomController : MonoBehaviour
         OnSpecialObjectCollected?.Invoke(this);
     }
 
-    bool IsIntersectingWithExistingObjects(Vector2 size)
+    bool IsIntersectingWithExistingObjects(Vector3 size)
     {
-        Vector3 halfExtents = new Vector3(size.x * collisionSizeFactor, 7, size.y * collisionSizeFactor);
+        Vector3 halfExtents = new Vector3(size.x * collisionSizeFactor, 7, size.z * collisionSizeFactor);
 
         Collider[] colliders = Physics.OverlapBox(transform.position, halfExtents, transform.rotation);
 
