@@ -52,6 +52,7 @@ public class CoreManager : MonoBehaviour
     {
         if (currentCoreAmount == maxCoreAmount)
         {
+            FindAnyObjectByType<SceneChanger>().ChangeScene("Menu");
             Debug.Log("All Cores collected!");
         }
     }
