@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class NoteInteraction : MonoBehaviour, IInteract
@@ -6,6 +7,8 @@ public class NoteInteraction : MonoBehaviour, IInteract
     [SerializeField] private NotesTextSO noteSO;
 
     private NotesUI notesUI;
+
+    public event Action OnInteract;
 
     private void Awake()
     {
