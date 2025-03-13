@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomController : MonoBehaviour
@@ -7,9 +9,13 @@ public class RoomController : MonoBehaviour
     [SerializeField] Vector2 roomSize;
     public Vector2 RoomSize => roomSize;
 
+    [SerializeField] IInteract specialObject;
+
     RoomConnector[] roomConnectors;
     public RoomConnector[] RoomConnectors => roomConnectors;
-    RoomController[] connectedRooms;
+    [SerializeField]
+    RoomConnector[] windows;
+    public RoomConnector[] Windows => windows;
 
     [SerializeField] GameObject roomItemsParent1, roomItemsParent2;
 
@@ -19,6 +25,8 @@ public class RoomController : MonoBehaviour
 
     bool hasCollided;
     public bool HasCollided => hasCollided;
+
+    public event Action<RoomController> OnSpecialObjectCollected;
 
     private void Awake()
     {
@@ -32,7 +40,22 @@ public class RoomController : MonoBehaviour
         BoxCollider checkSpaceFreeCollider = GetComponent<BoxCollider>();
         checkSpaceFreeCollider.size = new Vector3(roomSize.x, 1, roomSize.y);
 
-        roomConnectors = transform.GetComponentsInChildren<RoomConnector>();
+        roomConnectors = transform.GetComponentsInChildren<RoomConnector>()
+                .Where(connector => !connector.IsWindow)
+                .ToArray();
+        windows = transform.GetComponentsInChildren<RoomConnector>()
+                .Where(connector => connector.IsWindow)
+                .ToArray();
+
+        if (specialObject != null)
+        {
+            specialObject.OnInteract += SpecialObjectCollected;
+        }
+    }
+
+    void SpecialObjectCollected()
+    {
+        OnSpecialObjectCollected?.Invoke(this);
     }
 
     bool IsIntersectingWithExistingObjects(Vector2 size)
@@ -45,11 +68,18 @@ public class RoomController : MonoBehaviour
         {
             if (collider.gameObject != gameObject && collider.gameObject.GetComponent<RoomController>())
             {
-                print("room collision with " + collider.name);
                 return true;
             }
         }
 
+        foreach (RoomController room in WorldManager.Instance.Rooms) // not sure why the other thing alone does not work. Sometimes spawns 2 rooms at the same position
+        {
+            if (Vector3.Distance(transform.position, room.transform.position) < size.x / 2)
+            {
+                Debug.LogWarning(name + " is very close to " + room.name + " but not intersecting");
+                return true;
+            }
+        }
 
         return false;
     }
@@ -109,6 +139,23 @@ public class RoomController : MonoBehaviour
         return null;
     }
 
+    public RoomConnector GetFreeWindow()
+    {
+        if (windows.Length == 0) return null;
+
+        for (int i = 0; i < 50; i++)
+        {
+            int rand = UnityEngine.Random.Range(0, windows.Length);
+
+            if (!windows[rand].IsConnected)
+            {
+                return roomConnectors[rand];
+            }
+        }
+
+        return null;
+    }
+
     public bool TryAttachRoom(RoomController otherRoom, bool usePortal = false, bool moveOtherRoom = true)
     {
         RoomConnector myConnector = GetFreeDoorConnector();
@@ -152,20 +199,6 @@ public class RoomController : MonoBehaviour
         return angle;
     }
 
-    internal void RemoveRoom()
-    {
-
-        foreach (RoomConnector connector in roomConnectors)
-        {
-            if (connector.IsConnected)
-            {
-                connector.DeleteConnection();
-            }
-        }
-
-        Destroy(gameObject);
-    }
-
     internal int GetConnectionCount()
     {
         int connections = 0;
@@ -178,5 +211,44 @@ public class RoomController : MonoBehaviour
             }
         }
         return connections;
+    }
+
+    internal bool TryConnectWindow(RoomController roomController)
+    {
+        RoomConnector window = GetFreeWindow();
+
+        if(window == null) 
+        { 
+            return false; 
+        }
+        else
+        {
+            return window.TrySetOtherConnector(roomController.GetFreeWindow(), true);
+        }
+    }
+
+    public void DisconnectRoom()
+    {
+        foreach (RoomConnector connector in roomConnectors)
+        {
+            if (connector.IsConnected)
+            {
+                connector.DeleteConnection();
+            }
+        }
+
+        foreach (RoomConnector window in windows)
+        {
+            if (window.IsConnected)
+            {
+                window.DeleteConnection();
+            }
+        }
+    }
+
+    internal void RemoveRoom()
+    {
+        DisconnectRoom();
+        Destroy(gameObject);
     }
 }
