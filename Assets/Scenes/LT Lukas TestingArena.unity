@@ -1801,9 +1801,21 @@ MonoBehaviour:
   roomParent: {fileID: 975222772}
   startRoom: {fileID: 1335684276}
   roomPrefabs:
-  - {fileID: 2736621275884251087, guid: be772d7f1c1473d41a26e3ad79bb5535, type: 3}
-  - {fileID: 6934914002485491107, guid: 30f174708925eba4088fd96b9b1a2bfc, type: 3}
+  - {fileID: 1163786210785882302, guid: 253799b1e184f0343a14fda2da0b9199, type: 3}
+  - {fileID: 1163786210785882302, guid: 20697d47ef58867488fbbc6bd6d1b432, type: 3}
+  - {fileID: 1163786210785882302, guid: 941b3e6f4b5ce434baad838579676048, type: 3}
+  - {fileID: 8814401899327395086, guid: 8a25a75dd702db0429adff4c933bda69, type: 3}
+  - {fileID: 8036427629279541685, guid: 30ee2c90fb0f7fc4599b2bf4898736d8, type: 3}
+  - {fileID: 2091273543105699592, guid: 7be77c10fe257ac4eaaac7e3607d137f, type: 3}
+  - {fileID: 6934914002485491107, guid: aca06769d33515545925cded4cc59d72, type: 3}
+  specialRooms:
+  - {fileID: 8944295790305245919, guid: 1418725aaa105f64e8e3c7497750d567, type: 3}
   roomSpawnDistanceToPlayer: 20
+  startRoomCount: 1
+  playerMoveDistanceToSpawn: 15
+  roomSpawnProbability: 50
+  roomDestroyProbabilityPerRoom: 3
+  roomConnectProbability: 5
 --- !u!4 &975222772
 Transform:
   m_ObjectHideFlags: 0
