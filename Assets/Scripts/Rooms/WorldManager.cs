@@ -97,7 +97,20 @@ public class WorldManager : MonoBehaviour
             return;
         }
 
-        RoomController specialRoom = SpawnNewRoom(GetRoomOutOfPlayerVision(), specialRooms[0]);
+        RoomController specialRoom = null;
+        int safetyCounter = 0;
+
+        while (specialRoom == null && safetyCounter < 50)
+        {
+            specialRoom = SpawnNewRoom(GetRoomOutOfPlayerVision(), specialRooms[0]);
+            safetyCounter++;
+        }
+
+        if (specialRoom == null)
+        {
+            Debug.LogWarning("Didn't find place to spawn special room.");
+            return;
+        }
 
         currentSpecialRoomCopies.Add(specialRoom);
 
