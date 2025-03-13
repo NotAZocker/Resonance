@@ -94,10 +94,12 @@ public class WorldManager : MonoBehaviour
         }
 
         RoomController specialRoom = null;
+        int safetyCounter = 0;
 
-        while(specialRoom == null)
+        while(specialRoom == null && safetyCounter < 50)
         {
             specialRoom = SpawnNewRoom(GetRoomOutOfPlayerVision(), specialRooms[0]);
+            safetyCounter++;
         }
 
         currentSpecialRoomCopies.Add(specialRoom);
