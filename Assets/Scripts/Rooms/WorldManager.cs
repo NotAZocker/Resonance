@@ -129,6 +129,7 @@ public class WorldManager : MonoBehaviour
 
             if (room != foundRoom)
             {
+                rooms.Remove(room);
                 room.RemoveRoom();
             }
         }
