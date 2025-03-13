@@ -22,12 +22,10 @@ public class WorldManager : MonoBehaviour
     [SerializeField] float roomDestroyProbabilityPerRoom = 1/5;
     [SerializeField] float roomConnectProbability = 3;
     [SerializeField] float repositionRoomProbability = 1;
-    [SerializeField] int minRoomsBeforeSpecialRoom = 5;
 
     FirstPersonController player;
 
     List<RoomController> rooms = new List<RoomController>();
-    //List<RoomController> placedSpecialRooms = new List<RoomController>();
     List<RoomController> currentSpecialRoomCopies = new List<RoomController>();
 
     RoomController lastSpawnedRoom;
@@ -131,7 +129,7 @@ public class WorldManager : MonoBehaviour
 
         if (rand < roomDestroyProbability)
         {
-            DestroyRoom(GetRoomOutOfPlayerVision(true));
+            DestroyRoom(GetRoomOutOfPlayerVision(false, true));
             return;
         }
 
@@ -145,7 +143,7 @@ public class WorldManager : MonoBehaviour
         rand -= roomSpawnProbability;
         if (rand < repositionRoomProbability)
         {
-            RepositionRoom(GetRoomOutOfPlayerVision(true));
+            RepositionRoom(GetRoomOutOfPlayerVision(true, true));
             return;
         }
 
@@ -166,7 +164,7 @@ public class WorldManager : MonoBehaviour
         roomController.RemoveRoom();
     }
 
-    RoomController GetRoomOutOfPlayerVision(bool isEndRoom = false)
+    RoomController GetRoomOutOfPlayerVision(bool returnRandomRoomIfNothingFound = true, bool isEndRoom = false, bool includeSpecialRooms = false)
     {
         RoomController room;
         int safetyCounter = 0;
@@ -175,17 +173,17 @@ public class WorldManager : MonoBehaviour
             room = rooms[UnityEngine.Random.Range(0, rooms.Count)];
             safetyCounter++;
         }
-        while ((IsInPlayerVision(room) || isEndRoom && room.GetConnectionCount() > 1) && safetyCounter < 50);
+        while ((IsInPlayerVision(room) || isEndRoom && room.GetConnectionCount() > 1 || !includeSpecialRooms && (currentSpecialRoomCopies.Contains(room))) && safetyCounter < 50);
 
         if (safetyCounter == 50)
         {
-            if (isEndRoom)
+            if (!returnRandomRoomIfNothingFound)
             {
                 return null;
             }
             else
             {
-                print("Safety spawn room in vision");
+                print("Safety choose room in vision");
             }
         }
 
