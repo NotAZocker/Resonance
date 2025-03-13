@@ -149,7 +149,7 @@ public class RoomController : MonoBehaviour
 
             if (!windows[rand].IsConnected)
             {
-                return roomConnectors[rand];
+                return windows[rand];
             }
         }
 

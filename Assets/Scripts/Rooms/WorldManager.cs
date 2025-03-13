@@ -74,19 +74,22 @@ public class WorldManager : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
-            lastSpawnedRoom = SpawnNewRandomRoom(lastSpawnedRoom);
-        }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                lastSpawnedRoom = SpawnNewRandomRoom(lastSpawnedRoom);
+            }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SpawnNewRandomRoom(GetRoomOutOfPlayerVision());
-        }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SpawnNewRandomRoom(GetRoomOutOfPlayerVision());
+            }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ConnectRandomRooms();
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                ConnectRandomRooms();
+            }
         }
     }
 
