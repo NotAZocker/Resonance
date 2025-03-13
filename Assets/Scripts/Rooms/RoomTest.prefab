@@ -202,11 +202,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6200af210cb11940bae0661290430cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomSize: {x: 5, y: 5}
   roomConnectors:
   - {fileID: 3801607455921610356}
   - {fileID: 1329395874521957324}
   - {fileID: 4673498881476047583}
   - {fileID: 3207958642125427238}
+  roomItemsParent1: {fileID: 0}
+  roomItemsParent2: {fileID: 0}
+  collisionSizeFactor: 0.4
 --- !u!1 &3824435530092276597
 GameObject:
   m_ObjectHideFlags: 0

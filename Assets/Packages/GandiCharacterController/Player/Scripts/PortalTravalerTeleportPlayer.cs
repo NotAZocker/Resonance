@@ -31,7 +31,12 @@ public class PortalTravalerTeleportPlayer : MonoBehaviour, IPortalTravelerTelepo
 
 		ownRigidbody.position = m.GetColumn(3);
 		ownRigidbody.rotation = m.rotation;
-		ownRigidbody.linearVelocity = teleportMatrix.MultiplyVector(ownRigidbody.linearVelocity);
+
+        Vector3 eulerRotation = ownRigidbody.rotation.eulerAngles;
+        ownRigidbody.rotation = Quaternion.Euler(0, eulerRotation.y, 0);
+
+
+        ownRigidbody.linearVelocity = teleportMatrix.MultiplyVector(ownRigidbody.linearVelocity);
 		ownRigidbody.angularVelocity = teleportMatrix.MultiplyVector(ownRigidbody.angularVelocity);
 
 		//playerTeleportedEvent.Invoke();
