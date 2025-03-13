@@ -57,6 +57,7 @@ public class Core : Interactable
     private void Awake()
     {
         Renderer renderer = GetComponent<Renderer>();
+        globalVolume = FindAnyObjectByType<Volume>();
 
         if (renderer != null)
         {
