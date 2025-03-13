@@ -16,26 +16,32 @@ public class Core : MonoBehaviour, IInteract
     [SerializeField] private float smoothTime = .5f;
     [SerializeField] private Color baseEmissionColor;
     [SerializeField] private Color baseColor;
-    [SerializeField] private Color emissionColor;
 
     private Material material;
     private Bloom bloom;
+    private Color emissionColor;
 
     private float currentGlowIntensity = 0f;
     private float currentBloomThreshold = 0f;
-
     private float glowVelocity = 2f;
     private float bloomVelocity = 2f;
+
+    private bool isMoving = false;
+
+    public bool IsMoving
+    {
+        get { return isMoving; }
+        set { isMoving = value; }
+    }
 
     public event Action OnInteract;
 
     public void Interact()
     {
-        CoreManager.Instance.IncreaseCoreCount();
+        isMoving = true;
+        CoreManager.Instance.IncreaseCoreCount(this);
 
         OnInteract?.Invoke();
-
-        Destroy(gameObject);
     }
 
     private void Awake()
@@ -64,7 +70,13 @@ public class Core : MonoBehaviour, IInteract
     private void Update()
     {
         if (weapon == null || material == null) return;
+        CoreGlow();
 
+
+    }
+
+    private void CoreGlow()
+    {
         float distance = Vector3.Distance(transform.position, weapon.transform.position);
 
         float glowFactor = Mathf.Clamp01(1 - (distance / maxDistance)) * maxGlowIntensity;
@@ -89,5 +101,4 @@ public class Core : MonoBehaviour, IInteract
             material.DisableKeyword("_EMISSION");
         }
     }
-
 }
