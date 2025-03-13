@@ -9,7 +9,7 @@ public class RoomController : MonoBehaviour
     [SerializeField] Vector2 roomSize;
     public Vector2 RoomSize => roomSize;
 
-    [SerializeField] IInteract specialObject;
+    [SerializeField] Interactable specialObject;
 
     RoomConnector[] roomConnectors;
     public RoomConnector[] RoomConnectors => roomConnectors;

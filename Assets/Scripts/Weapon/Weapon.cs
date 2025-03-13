@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Weapon : MonoBehaviour, IInteract
+public class Weapon : Interactable
 {
     [Header("Settings")]
     [SerializeField] private GameObject playerCamera;
@@ -11,8 +11,6 @@ public class Weapon : MonoBehaviour, IInteract
     [SerializeField] LayerMask weaponLayer;
 
     private bool isMoving = false;
-
-    public event System.Action OnInteract;
 
     void Start()
     {
@@ -36,7 +34,7 @@ public class Weapon : MonoBehaviour, IInteract
         }
     }
 
-    public void Interact()
+    public override void Interact()
     {
         transform.SetParent(playerCamera.transform);
         CoreManager.Instance.SpawnCores();
@@ -52,6 +50,6 @@ public class Weapon : MonoBehaviour, IInteract
 
         GetComponent<Collider>().enabled = false;
 
-        OnInteract?.Invoke();
+        base.Interact();
     }
 }

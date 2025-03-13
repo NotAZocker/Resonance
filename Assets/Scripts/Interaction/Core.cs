@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class Core : MonoBehaviour, IInteract
+public class Core : Interactable
 {
     [Header("Settings")]
     [SerializeField] private GameObject weapon;
@@ -36,9 +36,7 @@ public class Core : MonoBehaviour, IInteract
         set { isMoving = value; }
     }
 
-    public event Action OnInteract;
-
-    public void Interact()
+    public override void Interact()
     {
         isMoving = true;
         CoreManager.Instance.IncreaseCoreCount(this);
@@ -53,7 +51,7 @@ public class Core : MonoBehaviour, IInteract
 
         GetComponent<Collider>().enabled = false;
 
-        OnInteract?.Invoke();
+        base.Interact();
     }
 
     private void Awake()

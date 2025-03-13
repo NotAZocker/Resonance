@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class TestInteraction : MonoBehaviour, IInteract
+public class TestInteraction : Interactable
 {
-    public event System.Action OnInteract;
 
-    public void Interact()
+    public override void Interact()
     {
         Debug.Log(Random.Range(0, 100));
     }

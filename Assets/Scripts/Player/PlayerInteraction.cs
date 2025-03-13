@@ -24,7 +24,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             print("Hit: " + hitInfo.collider.gameObject.name);
 
-            if (hitInfo.collider != null && hitInfo.collider.gameObject.TryGetComponent(out IInteract interactObj))
+            if (hitInfo.collider != null && hitInfo.collider.gameObject.TryGetComponent(out Interactable interactObj))
             {
                 if (playerInput.Actions.Interact.WasPressedThisFrame())
                 {
