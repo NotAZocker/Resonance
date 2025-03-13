@@ -217,9 +217,9 @@ public class RoomController : MonoBehaviour
     {
         RoomConnector window = GetFreeWindow();
 
-        if(window == null) 
-        { 
-            return false; 
+        if (window == null)
+        {
+            return false;
         }
         else
         {
