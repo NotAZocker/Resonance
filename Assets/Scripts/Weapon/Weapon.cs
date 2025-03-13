@@ -8,9 +8,16 @@ public class Weapon : MonoBehaviour, IInteract
     [SerializeField] private Vector3 rotation;
     [SerializeField] private float lerpSpeed = 5f;
 
+    [SerializeField] LayerMask weaponLayer;
+
     private bool isMoving = false;
 
     public event System.Action OnInteract;
+
+    void Start()
+    {
+        playerCamera = FindAnyObjectByType<PortalMainCamera>().gameObject;
+    }
 
     private void Update()
     {
@@ -34,6 +41,16 @@ public class Weapon : MonoBehaviour, IInteract
         transform.SetParent(playerCamera.transform);
         CoreManager.Instance.SpawnCores();
         isMoving = true;
+
+        int weaponLayerIndex = Mathf.RoundToInt(Mathf.Log(weaponLayer.value, 2));
+
+        foreach (Transform child in transform)
+        {
+            child.gameObject.layer = weaponLayerIndex;
+        }
+        this.gameObject.layer = weaponLayerIndex; // Also set the main object’s layer
+
+        GetComponent<Collider>().enabled = false;
 
         OnInteract?.Invoke();
     }

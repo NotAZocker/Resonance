@@ -235,6 +235,9 @@ MonoBehaviour:
   offset: {x: 0.5, y: -0.5, z: 0.5}
   rotation: {x: -90, y: 0, z: 180}
   lerpSpeed: 5
+  weaponLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &3874541486716880382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,10 +250,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cac724ae9646fc4f9c55bacf703bf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coreList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  coreList: []
   coreSpotOne: {fileID: 6741829767880269454}
   coreSpotTwo: {fileID: 5784685161262608417}
   coreSpotThree: {fileID: 8019277874906222036}
+  offset: {x: 0, y: 0, z: 0}
+  lerpSpeed: 2
