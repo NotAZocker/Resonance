@@ -14,6 +14,8 @@ public class RoomConnector : MonoBehaviour
 
     [SerializeField] Portal portal;
     public Portal Portal => portal;
+    [SerializeField] bool isWindow;
+    public bool IsWindow => isWindow;
 
     RoomConnector otherConnector;
     bool isConnected;

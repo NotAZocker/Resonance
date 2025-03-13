@@ -254,6 +254,17 @@ public class WorldManager : MonoBehaviour
             rooms.Add(newRoom);
         }
 
+        if(newRoom.Windows.Length > 0)
+        {
+            for (int i = 0; i < placedSpecialRooms.Count; i++)
+            {
+                if(newRoom.TryConnectWindow(placedSpecialRooms[i]))
+                {
+                    break;
+                }
+            }
+        }
+
         return newRoom;
     }
 

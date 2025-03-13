@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomController : MonoBehaviour
@@ -9,7 +11,9 @@ public class RoomController : MonoBehaviour
 
     RoomConnector[] roomConnectors;
     public RoomConnector[] RoomConnectors => roomConnectors;
-    RoomController[] connectedRooms;
+    [SerializeField]
+    RoomConnector[] windows;
+    public RoomConnector[] Windows => windows;
 
     [SerializeField] GameObject roomItemsParent1, roomItemsParent2;
 
@@ -32,7 +36,12 @@ public class RoomController : MonoBehaviour
         BoxCollider checkSpaceFreeCollider = GetComponent<BoxCollider>();
         checkSpaceFreeCollider.size = new Vector3(roomSize.x, 1, roomSize.y);
 
-        roomConnectors = transform.GetComponentsInChildren<RoomConnector>();
+        roomConnectors = transform.GetComponentsInChildren<RoomConnector>()
+                .Where(connector => !connector.IsWindow)
+                .ToArray();
+        windows = transform.GetComponentsInChildren<RoomConnector>()
+                .Where(connector => connector.IsWindow)
+                .ToArray();
     }
 
     bool IsIntersectingWithExistingObjects(Vector2 size)
@@ -101,6 +110,23 @@ public class RoomController : MonoBehaviour
             int rand = UnityEngine.Random.Range(0, roomConnectors.Length);
 
             if (!roomConnectors[rand].IsConnected)
+            {
+                return roomConnectors[rand];
+            }
+        }
+
+        return null;
+    }
+
+    public RoomConnector GetFreeWindow()
+    {
+        if (windows.Length == 0) return null;
+
+        for (int i = 0; i < 50; i++)
+        {
+            int rand = UnityEngine.Random.Range(0, windows.Length);
+
+            if (!windows[rand].IsConnected)
             {
                 return roomConnectors[rand];
             }
@@ -178,5 +204,19 @@ public class RoomController : MonoBehaviour
             }
         }
         return connections;
+    }
+
+    internal bool TryConnectWindow(RoomController roomController)
+    {
+        RoomConnector window = GetFreeWindow();
+
+        if(window == null) 
+        { 
+            return false; 
+        }
+        else
+        {
+            return window.TrySetOtherConnector(roomController.GetFreeWindow(), true);
+        }
     }
 }
