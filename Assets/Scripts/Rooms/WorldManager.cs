@@ -103,7 +103,7 @@ public class WorldManager : MonoBehaviour
 
         while (specialRoom == null && safetyCounter < 50)
         {
-            specialRoom = SpawnNewRoom(GetRoomOutOfPlayerVision(), specialRooms[0]);
+            specialRoom = SpawnNewRoom(GetRoomOutOfPlayerVision(), specialRooms[0], true);
             safetyCounter++;
         }
 
@@ -278,7 +278,7 @@ public class WorldManager : MonoBehaviour
         return SpawnNewRoom(attachRoom, newRoom);
     }
 
-    public RoomController SpawnNewRoom(RoomController attachRoom, RoomController roomPrefab)
+    public RoomController SpawnNewRoom(RoomController attachRoom, RoomController roomPrefab, bool isSpecialRoom = false)
     {
         RoomController newRoom = Instantiate(roomPrefab, roomParent);
         newRoom.name = "Room " + rooms.Count + " - " + newRoom.name;
@@ -293,7 +293,7 @@ public class WorldManager : MonoBehaviour
             rooms.Add(newRoom);
         }
 
-        if (newRoom.Windows.Length > 0)
+        if (newRoom.Windows.Length > 0 && !isSpecialRoom)
         {
             for (int i = 0; i < currentSpecialRoomCopies.Count; i++)
             {
