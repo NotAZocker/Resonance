@@ -7,6 +7,7 @@ public class NotesManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private List<Sprite> noteSprites;
+    private List<Sprite> usedSprites;
 
     private void Awake()
     {
@@ -22,8 +23,18 @@ public class NotesManager : MonoBehaviour
 
     public Sprite GetRandomNoteAndRemoveFromList()
     {
+        if(noteSprites.Count == 0)
+        {
+            for (int i = 0; i < usedSprites.Count; i++)
+            {
+                noteSprites.Add(usedSprites[i]);
+            }
+            return null;
+        }
+
         Sprite note = noteSprites[0];
 
+        usedSprites.Add(note);
         noteSprites.Remove(note);
 
         return note;
