@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -26,9 +27,14 @@ public class Core : MonoBehaviour, IInteract
     private float glowVelocity = 2f;
     private float bloomVelocity = 2f;
 
+    public event Action OnInteract;
+
     public void Interact()
     {
         CoreManager.Instance.IncreaseCoreCount();
+
+        OnInteract?.Invoke();
+
         Destroy(gameObject);
     }
 

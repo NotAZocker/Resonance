@@ -9,6 +9,8 @@ public class RoomController : MonoBehaviour
     [SerializeField] Vector2 roomSize;
     public Vector2 RoomSize => roomSize;
 
+    [SerializeField] IInteract specialObject;
+
     RoomConnector[] roomConnectors;
     public RoomConnector[] RoomConnectors => roomConnectors;
     [SerializeField]
@@ -23,6 +25,8 @@ public class RoomController : MonoBehaviour
 
     bool hasCollided;
     public bool HasCollided => hasCollided;
+
+    public event Action<RoomController> OnSpecialObjectCollected;
 
     private void Awake()
     {
@@ -42,6 +46,16 @@ public class RoomController : MonoBehaviour
         windows = transform.GetComponentsInChildren<RoomConnector>()
                 .Where(connector => connector.IsWindow)
                 .ToArray();
+
+        if (specialObject != null)
+        {
+            specialObject.OnInteract += SpecialObjectCollected;
+        }
+    }
+
+    void SpecialObjectCollected()
+    {
+        OnSpecialObjectCollected?.Invoke(this);
     }
 
     bool IsIntersectingWithExistingObjects(Vector2 size)
@@ -178,20 +192,6 @@ public class RoomController : MonoBehaviour
         return angle;
     }
 
-    internal void RemoveRoom()
-    {
-
-        foreach (RoomConnector connector in roomConnectors)
-        {
-            if (connector.IsConnected)
-            {
-                connector.DeleteConnection();
-            }
-        }
-
-        Destroy(gameObject);
-    }
-
     internal int GetConnectionCount()
     {
         int connections = 0;
@@ -218,5 +218,30 @@ public class RoomController : MonoBehaviour
         {
             return window.TrySetOtherConnector(roomController.GetFreeWindow(), true);
         }
+    }
+
+    public void DisconnectRoom()
+    {
+        foreach (RoomConnector connector in roomConnectors)
+        {
+            if (connector.IsConnected)
+            {
+                connector.DeleteConnection();
+            }
+        }
+
+        foreach (RoomConnector window in windows)
+        {
+            if (window.IsConnected)
+            {
+                window.DeleteConnection();
+            }
+        }
+    }
+
+    internal void RemoveRoom()
+    {
+        DisconnectRoom();
+        Destroy(gameObject);
     }
 }

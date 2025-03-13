@@ -15,20 +15,25 @@ public class WorldManager : MonoBehaviour
 
     [SerializeField] int startRoomCount = 10;
     [SerializeField] float playerMoveDistanceToSpawn = 15;
+    [SerializeField] float timeToSpawnSpecialRoomCopy = 30;
 
     [Header("World Change Probabilities")]
     [SerializeField] float roomSpawnProbability = 5;
     [SerializeField] float roomDestroyProbabilityPerRoom = 1/5;
     [SerializeField] float roomConnectProbability = 3;
+    [SerializeField] float repositionRoomProbability = 1;
+    [SerializeField] int minRoomsBeforeSpecialRoom = 5;
 
     FirstPersonController player;
 
     List<RoomController> rooms = new List<RoomController>();
-    List<RoomController> placedSpecialRooms = new List<RoomController>();
+    //List<RoomController> placedSpecialRooms = new List<RoomController>();
+    List<RoomController> currentSpecialRoomCopies = new List<RoomController>();
 
     RoomController lastSpawnedRoom;
 
     Vector3 lastSpawnPlayerPosition;
+    float spawnNextSpecialRoomCopyTimer;
 
     private void Awake()
     {
@@ -47,6 +52,8 @@ public class WorldManager : MonoBehaviour
         {
             SpawnNewRandomRoom(GetRoomOutOfPlayerVision());
         }
+
+        SpawnCurrentSpecialRoomCopy();
     }
 
     private void Update()
@@ -56,6 +63,14 @@ public class WorldManager : MonoBehaviour
             ChangeSomethingInTheWorld();
             lastSpawnPlayerPosition = player.transform.position;
         }
+
+
+        spawnNextSpecialRoomCopyTimer -= Time.deltaTime;
+        if (spawnNextSpecialRoomCopyTimer <= 0)
+        {
+            SpawnCurrentSpecialRoomCopy();
+        }
+
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -73,14 +88,46 @@ public class WorldManager : MonoBehaviour
         }
     }
 
+    void SpawnCurrentSpecialRoomCopy()
+    {
+        if(specialRooms.Count == 0)
+        {
+            return;
+        }
+
+        RoomController specialRoom = SpawnNewRoom(GetRoomOutOfPlayerVision(), specialRooms[0]);
+
+        currentSpecialRoomCopies.Add(specialRoom);
+
+        specialRoom.OnSpecialObjectCollected += SpecialRoomFound;
+
+        spawnNextSpecialRoomCopyTimer = timeToSpawnSpecialRoomCopy;
+    }
+
+    public void SpecialRoomFound(RoomController foundRoom)
+    {
+        specialRooms.RemoveAt(0);
+
+        foreach (RoomController room in currentSpecialRoomCopies)
+        {
+            room.OnSpecialObjectCollected -= SpecialRoomFound;
+
+            if (room != foundRoom)
+            {
+                room.RemoveRoom();
+            }
+        }
+
+        currentSpecialRoomCopies.Clear();
+
+        SpawnCurrentSpecialRoomCopy();
+    }
+
     private void ChangeSomethingInTheWorld()
     {
-        int placeSpecialRoomProbability = GetPlaceSpecialRoomProbability();
         int roomDestroyProbability = (int)(rooms.Count  * roomDestroyProbabilityPerRoom);
-        float totalProbability = roomSpawnProbability + roomConnectProbability + roomDestroyProbability + placeSpecialRoomProbability;
+        float totalProbability = roomSpawnProbability + roomConnectProbability + roomDestroyProbability;
         float rand = UnityEngine.Random.Range(0, totalProbability);
-
-        print("Change sth: " + rand);
 
         if (rand < roomDestroyProbability)
         {
@@ -96,28 +143,14 @@ public class WorldManager : MonoBehaviour
         }
 
         rand -= roomSpawnProbability;
-        if (rand < placeSpecialRoomProbability)
+        if (rand < repositionRoomProbability)
         {
-            RoomController attachRoom = GetRoomOutOfPlayerVision();
-            if (attachRoom.TryAttachRoom(specialRooms[0]))
-            {
-                placedSpecialRooms.Add(specialRooms[0]);
-                specialRooms.RemoveAt(0);
-            }
-
+            RepositionRoom(GetRoomOutOfPlayerVision(true));
             return;
         }
 
         // No need to check further; if it's not destroy or spawn, it's connect
         ConnectRandomRooms();
-    }
-
-    int GetPlaceSpecialRoomProbability()
-    {
-        if(specialRooms.Count == 0) return 0;
-
-        if (rooms.Count < 20) return 0;
-        else return rooms.Count / specialRooms.Count;
     }
 
     private void DestroyRoom(RoomController roomController)
@@ -129,12 +162,6 @@ public class WorldManager : MonoBehaviour
         }
 
         rooms.Remove(roomController);
-
-        if (placedSpecialRooms.Contains(roomController))
-        {
-            specialRooms.AddAt(roomController, 0);
-            placedSpecialRooms.Remove(roomController);
-        }
 
         roomController.RemoveRoom();
     }
@@ -256,9 +283,9 @@ public class WorldManager : MonoBehaviour
 
         if(newRoom.Windows.Length > 0)
         {
-            for (int i = 0; i < placedSpecialRooms.Count; i++)
+            for (int i = 0; i < currentSpecialRoomCopies.Count; i++)
             {
-                if(newRoom.TryConnectWindow(placedSpecialRooms[i]))
+                if(newRoom.TryConnectWindow(currentSpecialRoomCopies[i]))
                 {
                     break;
                 }
@@ -266,6 +293,13 @@ public class WorldManager : MonoBehaviour
         }
 
         return newRoom;
+    }
+
+    private void RepositionRoom(RoomController roomController)
+    {
+        roomController.DisconnectRoom();
+
+        RoomController attachRoom = GetRoomOutOfPlayerVision();
     }
 
     private void ConnectRandomRooms()

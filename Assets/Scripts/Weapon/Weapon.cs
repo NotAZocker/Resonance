@@ -10,6 +10,8 @@ public class Weapon : MonoBehaviour, IInteract
 
     private bool isMoving = false;
 
+    public event System.Action OnInteract;
+
     private void Update()
     {
         if (isMoving)
@@ -32,5 +34,7 @@ public class Weapon : MonoBehaviour, IInteract
         transform.SetParent(playerCamera.transform);
         CoreManager.Instance.SpawnCores();
         isMoving = true;
+
+        OnInteract?.Invoke();
     }
 }
