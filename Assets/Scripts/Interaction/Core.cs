@@ -50,7 +50,7 @@ public class Core : MonoBehaviour, IInteract
 
         if (renderer != null)
         {
-            material = renderer.material;
+            material = renderer.materials[2];
         }
         else
         {
