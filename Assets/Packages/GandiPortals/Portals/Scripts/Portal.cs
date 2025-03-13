@@ -7,6 +7,8 @@ using UnityEngine;
 [SelectionBase]
 public class Portal : MonoBehaviour
 {
+    [SerializeField] bool playerIsInBoundingBox;
+
     //Settings
     [SerializeField]
     private Portal linkedPortal;
@@ -36,8 +38,8 @@ public class Portal : MonoBehaviour
     private void Awake()
     {
         if (renderBoundingBoxCorners.Length != 2 
-            ||  renderBoundingBoxCorners[0] != null 
-            || renderBoundingBoxCorners[1] != null)
+            ||  renderBoundingBoxCorners[0] == null 
+            || renderBoundingBoxCorners[1] == null)
         {
             Debug.LogWarning("Portal needs exact 2 Render Bounding Box Corners.", this);
             renderBoundingBox = new Bounds(Vector3.zero, Vector3.positiveInfinity);
@@ -46,7 +48,7 @@ public class Portal : MonoBehaviour
         {
             if (renderBoundingBoxCorners[0].localPosition.sqrMagnitude < 0.01 && renderBoundingBoxCorners[1].localPosition.sqrMagnitude < 0.01)
             {
-                Debug.Log("Portals with global render bounding box might eat up resources unnecessarily.", this);
+                // Debug.Log("Portals with global render bounding box might eat up resources unnecessarily.", this);
                 renderBoundingBox = new Bounds(Vector3.zero, Vector3.positiveInfinity);
             }
             else
@@ -74,6 +76,8 @@ public class Portal : MonoBehaviour
 
     private void LateUpdate()
     {
+        playerIsInBoundingBox = renderBoundingBox.Contains(MainCamera.transform.position);
+
         if (MainCamera != null)
         {
             CheckResolution();
@@ -182,5 +186,10 @@ public class Portal : MonoBehaviour
 
         portalA.CalculateTeleportMatrix();
         portalB.CalculateTeleportMatrix();
+    }
+
+    internal void Unlink()
+    {
+        linkedPortal = null;
     }
 }
