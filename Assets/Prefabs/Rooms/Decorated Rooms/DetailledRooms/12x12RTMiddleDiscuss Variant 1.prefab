@@ -32,6 +32,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 466
       objectReference: {fileID: 0}
+    - target: {fileID: 2277004449326483759, guid: 5424447eb6c54d349b8d538ecbf4fec0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 04907fe47d6b9dd4a901288348331b41, type: 2}
     - target: {fileID: 2705639659613302686, guid: 5424447eb6c54d349b8d538ecbf4fec0, type: 3}
       propertyPath: m_VersionIndex
       value: 4586
@@ -68,6 +72,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 5722
       objectReference: {fileID: 0}
+    - target: {fileID: 6765322068593054956, guid: 5424447eb6c54d349b8d538ecbf4fec0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 53dd94877ee4df54abf04220770424f0, type: 2}
     - target: {fileID: 7040224151815618480, guid: 5424447eb6c54d349b8d538ecbf4fec0, type: 3}
       propertyPath: m_VersionIndex
       value: 2877
