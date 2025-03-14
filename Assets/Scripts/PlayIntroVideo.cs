@@ -48,6 +48,14 @@ public class PlayIntroVideo : MonoBehaviour
         if (securityMode) securityCoroutine = StartCoroutine(IfBrokenStartGame());
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            StartGame();
+        }
+    }
+
     void OnVideoPrepared(VideoPlayer vp)
     {
         videoPlayer.Play();
@@ -90,6 +98,11 @@ public class PlayIntroVideo : MonoBehaviour
     IEnumerator StartGameCoroutine()
     {
         Debug.Log("StartGame Coroutine");
+
+        videoImage.gameObject.SetActive(false);
+
+        playerCam.transform.rotation = Quaternion.Euler(camStartAngle, playerCam.rotation.eulerAngles.y, playerCam.rotation.eulerAngles.z);
+
         for (float i = 0; i < fadeTime; i+= Time.unscaledDeltaTime)
         {
             uiPanel.alpha = 1 - (i / fadeTime);
@@ -99,10 +112,6 @@ public class PlayIntroVideo : MonoBehaviour
 
         uiPanel.alpha = 0;
         uiPanel.blocksRaycasts = false;
-
-        videoImage.gameObject.SetActive(false);
-
-        playerCam.transform.rotation = Quaternion.Euler(camStartAngle, playerCam.rotation.eulerAngles.y, playerCam.rotation.eulerAngles.z);
 
         for (float i = 0; i < camPanUpTime; i += Time.unscaledDeltaTime)
         {
