@@ -15,6 +15,7 @@ MonoBehaviour:
   sceneDatas_byGuid:
     keys:
     - 99c9720ab356a0642a771bea13969a05
+    - 8d695978e382eaa49a47b89057b3a81f
     values:
     - goDatas_byGlobalId:
         keys:
@@ -49,3 +50,27 @@ MonoBehaviour:
           iconNameOrGuid: Folder Icon
         - colorIndex: 3
           iconNameOrGuid: PreMatCylinder
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-8d695978e382eaa49a47b89057b3a81f-948061639-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8d695978e382eaa49a47b89057b3a81f-8410272694714699603-1193698474
+        - globalObjectIdString: GlobalObjectId_V1-2-8d695978e382eaa49a47b89057b3a81f-8225178258033825331-1901927094
+        - globalObjectIdString: GlobalObjectId_V1-2-8d695978e382eaa49a47b89057b3a81f-5276805445027605587-379889608
+        - globalObjectIdString: GlobalObjectId_V1-2-8d695978e382eaa49a47b89057b3a81f-7037901602948006437-2025746679
+        - globalObjectIdString: GlobalObjectId_V1-2-8d695978e382eaa49a47b89057b3a81f-203844586-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8d695978e382eaa49a47b89057b3a81f-668201541-0
+        values:
+        - colorIndex: 2
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 0
+          iconNameOrGuid: LightProbes Icon
+        - colorIndex: 5
+          iconNameOrGuid: AvatarMask On Icon
+        - colorIndex: 0
+          iconNameOrGuid: PreMatCylinder
+        - colorIndex: 2
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 0
+          iconNameOrGuid: DirectionalLight Icon
+        - colorIndex: 0
+          iconNameOrGuid: EventSystem Icon
