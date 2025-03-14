@@ -7,19 +7,23 @@ public class CoreManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private List<Core> coreList;
-    [SerializeField] private GameObject coreSpotOne;
-    [SerializeField] private GameObject coreSpotTwo;
-    [SerializeField] private GameObject coreSpotThree;
     [SerializeField] private Vector3 offset;
     [SerializeField] private float lerpSpeed = 2f;
 
     private Core core;
+
+    private Weapon weapon;
+    private GameObject coreSpotThree;
+    private GameObject coreSpotOne;
+    private GameObject coreSpotTwo;
 
     private int currentCoreAmount = 0;
     private int maxCoreAmount = 3;
 
     private void Awake()
     {
+        weapon = FindAnyObjectByType<Weapon>();
+
         if (Instance == null)
         {
             Instance = this;
@@ -32,6 +36,10 @@ public class CoreManager : MonoBehaviour
 
     private void Start()
     {
+        coreSpotOne = weapon.transform.GetChild(0).gameObject;
+        coreSpotTwo = weapon.transform.GetChild(1).gameObject;
+        coreSpotThree = weapon.transform.GetChild(2).gameObject;
+
         HideCores();
     }
     private void Update()

@@ -3,12 +3,13 @@ using UnityEngine;
 public class Weapon : Interactable
 {
     [Header("Settings")]
-    [SerializeField] private GameObject playerCamera;
     [SerializeField] private Vector3 offset;
     [SerializeField] private Vector3 rotation;
     [SerializeField] private float lerpSpeed = 5f;
 
     [SerializeField] LayerMask weaponLayer;
+
+    private GameObject playerCamera;
 
     private bool isMoving = false;
 
