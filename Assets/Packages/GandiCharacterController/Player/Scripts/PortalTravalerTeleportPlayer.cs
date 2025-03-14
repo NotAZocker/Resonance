@@ -35,6 +35,8 @@ public class PortalTravalerTeleportPlayer : MonoBehaviour, IPortalTravelerTelepo
 		ownRigidbody.position = m.GetColumn(3);
 		ownRigidbody.rotation = m.rotation;
 
+		transform.position = m.GetColumn(3);
+
         Vector3 eulerRotation = ownRigidbody.rotation.eulerAngles;
         ownRigidbody.rotation = Quaternion.Euler(0, eulerRotation.y, 0);
 
