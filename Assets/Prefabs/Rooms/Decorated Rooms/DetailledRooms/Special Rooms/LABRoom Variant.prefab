@@ -4014,7 +4014,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1316583363380707600, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_Range
-      value: 16.62
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1316583363380707600, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_Color.b
@@ -4030,7 +4030,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1316583363380707600, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_Intensity
-      value: 10
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316583363380707600, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1316583363380707600, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_BounceIntensity
@@ -4042,7 +4046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3955165791177841424, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_Range
-      value: 16.62
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3955165791177841424, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_Color.b
@@ -4058,7 +4062,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3955165791177841424, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_Intensity
-      value: 10
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3955165791177841424, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3955165791177841424, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_BounceIntensity
@@ -4066,7 +4074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8077095702558810165, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_Range
-      value: 16.62
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8077095702558810165, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_Color.b
@@ -4082,7 +4090,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8077095702558810165, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_Intensity
-      value: 10
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8077095702558810165, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8077095702558810165, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_BounceIntensity
