@@ -1,10 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<<< HEAD:Assets/Art/Models/Materials/Brushed Aluminum.001.mat
---- !u!114 &-892663744162550981
-========
---- !u!114 &-4463425991753390723
->>>>>>>> Tim-Model-Additions:Assets/Art/Models/FBX/Materials/Helsinki Office 35 Desk System by Desalto-Desk18.0.mat
+--- !u!114 &-7307295253531303505
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,11 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<<< HEAD:Assets/Art/Models/Materials/Brushed Aluminum.001.mat
   m_Name: Brushed Aluminum.001
-========
-  m_Name: Helsinki Office 35 Desk System by Desalto-Desk18.0
->>>>>>>> Tim-Model-Additions:Assets/Art/Models/FBX/Materials/Helsinki Office 35 Desk System by Desalto-Desk18.0.mat
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -47,7 +39,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 3d5a2bdb6709519438f6d03ebcf090b6, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -71,7 +63,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3d5a2bdb6709519438f6d03ebcf090b6, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -120,11 +112,7 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
-<<<<<<<< HEAD:Assets/Art/Models/Materials/Brushed Aluminum.001.mat
     - _Glossiness: 0.59999996
-========
-    - _Glossiness: 0.5
->>>>>>>> Tim-Model-Additions:Assets/Art/Models/FBX/Materials/Helsinki Office 35 Desk System by Desalto-Desk18.0.mat
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
@@ -132,11 +120,7 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-<<<<<<<< HEAD:Assets/Art/Models/Materials/Brushed Aluminum.001.mat
     - _Smoothness: 0.59999996
-========
-    - _Smoothness: 0.5
->>>>>>>> Tim-Model-Additions:Assets/Art/Models/FBX/Materials/Helsinki Office 35 Desk System by Desalto-Desk18.0.mat
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -146,13 +130,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-<<<<<<<< HEAD:Assets/Art/Models/Materials/Brushed Aluminum.001.mat
     - _BaseColor: {r: 0.9063317, g: 0.9063317, b: 0.9063317, a: 1}
     - _Color: {r: 0.9063317, g: 0.9063317, b: 0.9063317, a: 1}
-========
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
->>>>>>>> Tim-Model-Additions:Assets/Art/Models/FBX/Materials/Helsinki Office 35 Desk System by Desalto-Desk18.0.mat
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
