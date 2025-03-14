@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
-    public Vector2 RoomSize => checkSpaceFreeCollider.size;
+    public Vector3 RoomSize => checkSpaceFreeCollider.size;
 
     [SerializeField] Interactable specialObject;
 
@@ -76,9 +76,9 @@ public class RoomController : MonoBehaviour
         OnSpecialObjectCollected?.Invoke(this);
     }
 
-    bool IsIntersectingWithExistingObjects(Vector3 size)
+    bool IsIntersectingWithExistingObjects()
     {
-        Vector3 halfExtents = new Vector3(size.x * collisionSizeFactor, 7, size.z * collisionSizeFactor);
+        Vector3 halfExtents = new Vector3(RoomSize.x * collisionSizeFactor, 7, RoomSize.z * collisionSizeFactor);
 
         Collider[] colliders = Physics.OverlapBox(transform.position, halfExtents, transform.rotation);
 
@@ -90,13 +90,23 @@ public class RoomController : MonoBehaviour
             }
         }
 
+        Vector3 myPos = transform.position;
+
         foreach (RoomController room in WorldManager.Instance.Rooms) // not sure why the other thing alone does not work. Sometimes spawns 2 rooms at the same position
         {
-            if (Vector3.Distance(transform.position, room.transform.position) < size.x / 2)
+            Vector3 roomPos = room.transform.position;
+
+            if(Mathf.Abs(myPos.x - roomPos.x) > (RoomSize.x + room.RoomSize.x) * collisionSizeFactor) continue;
+            if(Mathf.Abs(myPos.y - roomPos.y) > 7) continue;
+            if(Mathf.Abs(myPos.z - roomPos.z) > (RoomSize.z + room.RoomSize.z) * collisionSizeFactor) continue;
+
+            if (Vector3.Distance(transform.position, room.transform.position) < RoomSize.x / 2)
             {
                 Debug.LogWarning(name + " is very close to " + room.name + " but not intersecting");
                 return true;
             }
+            Debug.LogWarning(name + " is not very close, but still intersecting with " + room.name);
+            return true;
         }
 
         return false;
@@ -196,7 +206,7 @@ public class RoomController : MonoBehaviour
             otherRoom.transform.position = myConnector.transform.position - otherConnector.transform.position;
             otherRoom.CheckPlayerClose();
 
-            while (otherRoom.IsIntersectingWithExistingObjects(otherRoom.RoomSize))
+            while (otherRoom.IsIntersectingWithExistingObjects())
             {
                 usePortal = true;
                 otherRoom.transform.position += Vector3.up * roomSpawnDistance;
