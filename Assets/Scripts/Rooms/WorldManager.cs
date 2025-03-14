@@ -143,31 +143,33 @@ public class WorldManager : MonoBehaviour
     private void ChangeSomethingInTheWorld()
     {
         int roomDestroyProbability = (int)(rooms.Count * roomDestroyProbabilityPerRoom);
-        float totalProbability = roomSpawnProbability + roomConnectProbability + roomDestroyProbability;
-        float rand = UnityEngine.Random.Range(0, totalProbability);
+        float rand = UnityEngine.Random.Range(0f, 1f);
 
-        if (rand < roomDestroyProbability)
+        if(rand < roomDestroyProbability)
         {
             DestroyRoom(GetRoomOutOfPlayerVision(false, true));
             return;
         }
 
-        rand -= roomDestroyProbability;
+        rand = UnityEngine.Random.Range(0f, 1f);
         if (rand < roomSpawnProbability)
         {
             SpawnNewRandomRoom(GetRoomOutOfPlayerVision());
             return;
         }
 
-        rand -= roomSpawnProbability;
+        rand = UnityEngine.Random.Range(0f, 1f);
         if (rand < repositionRoomProbability)
         {
             RepositionRoom(GetRoomOutOfPlayerVision(true, true));
             return;
         }
 
-        // No need to check further; if it's not destroy or spawn, it's connect
-        ConnectRandomRooms();
+        rand = UnityEngine.Random.Range(0f, 1f);
+        if (rand < roomConnectProbability)
+        {
+            ConnectRandomRooms();
+        }
     }
 
     private void DestroyRoom(RoomController roomController)
