@@ -55,7 +55,7 @@ public class RoomController : MonoBehaviour
 
     private void OnEnable()
     {
-        PortalTravelerTeleportPlayer playerTeleport = FindAnyObjectByType<PortalTravelerTeleportPlayer>();
+        PortalTravalerTeleportPlayer playerTeleport = FindAnyObjectByType<PortalTravalerTeleportPlayer>();
         if(playerTeleport == null)
         {
             Debug.LogWarning("No player found", this);
@@ -63,13 +63,12 @@ public class RoomController : MonoBehaviour
         }
         player = playerTeleport.transform;
         playerTeleport.OnTeleport += CheckPlayerClose;
-        CheckPlayerClose();
     }
 
     private void OnDisable()
     {
         if(player == null) return;
-        player.GetComponent<PortalTravelerTeleportPlayer>().OnTeleport -= CheckPlayerClose;
+        player.GetComponent<PortalTravalerTeleportPlayer>().OnTeleport -= CheckPlayerClose;
     }
 
     void SpecialObjectCollected()
@@ -195,6 +194,7 @@ public class RoomController : MonoBehaviour
         {
             otherRoom.transform.Rotate(Vector3.up, CalculateNewRoomRotation(myConnector, otherConnector));
             otherRoom.transform.position = myConnector.transform.position - otherConnector.transform.position;
+            otherRoom.CheckPlayerClose();
 
             while (otherRoom.IsIntersectingWithExistingObjects(otherRoom.RoomSize))
             {
@@ -272,7 +272,8 @@ public class RoomController : MonoBehaviour
     }
     void SetFurnitureParentActive(bool value)
     {
-        furnitureParent.SetActive(value);
+        Debug.Log("Set Furniture Parent " + value, this);
+        if(furnitureParent != null) furnitureParent.SetActive(value);
     }
     public void SetHasPortal(bool value)
     {
@@ -283,9 +284,16 @@ public class RoomController : MonoBehaviour
         }
     }
 
-    void CheckPlayerClose()
+    public void CheckPlayerClose()
     {
+        Debug.Log("Check Plyer Close");
+
         if (hasPortal) return;
+
+        if(player == null)
+        {
+            player = FindAnyObjectByType<PortalTravalerTeleportPlayer>().transform;
+        }
 
         if (Mathf.Abs(transform.position.y - player.position.y) < 10)
         {

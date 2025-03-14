@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,9 +17,11 @@ public class PortalTravalerTeleportPlayer : MonoBehaviour, IPortalTravelerTelepo
 	private FirstPersonController ownControler;
 	private Rigidbody ownRigidbody;
 
+    public event Action OnTeleport;
 
-	//Functions
-	private void Awake()
+
+    //Functions
+    private void Awake()
 	{
 		ownControler = GetComponent<FirstPersonController>();
 		ownRigidbody = GetComponent<Rigidbody>();
@@ -39,6 +42,6 @@ public class PortalTravalerTeleportPlayer : MonoBehaviour, IPortalTravelerTelepo
         ownRigidbody.linearVelocity = teleportMatrix.MultiplyVector(ownRigidbody.linearVelocity);
 		ownRigidbody.angularVelocity = teleportMatrix.MultiplyVector(ownRigidbody.angularVelocity);
 
-		//playerTeleportedEvent.Invoke();
-	}
+        OnTeleport?.Invoke();
+    }
 }

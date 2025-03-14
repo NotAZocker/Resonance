@@ -70,7 +70,7 @@ public class Portal : MonoBehaviour
                 Vector3 size = (renderBoundingBoxCorners[0].position - renderBoundingBoxCorners[1].position);
                 size = new Vector3(Mathf.Abs(size.x), Mathf.Abs(size.y), Mathf.Abs(size.z));
                 renderBoundingBox = new Bounds(center, size);
-                Debug.Log($"{renderBoundingBoxCorners[0].position} | {renderBoundingBoxCorners[1].position} | {center} | {size}", this);
+                //Debug.Log($"{renderBoundingBoxCorners[0].position} | {renderBoundingBoxCorners[1].position} | {center} | {size}", this);
             }
         }
     }
