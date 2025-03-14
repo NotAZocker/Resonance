@@ -12,6 +12,7 @@ public class CoreManager : MonoBehaviour
 
     private Core core;
     private Weapon weapon;
+    private BlackScreenFader blackScreenFader;
 
     [HideInInspector] public GameObject coreSpotOne;
     [HideInInspector] public GameObject coreSpotTwo;
@@ -19,6 +20,8 @@ public class CoreManager : MonoBehaviour
 
     private int currentCoreAmount = 0;
     private int maxCoreAmount = 3;
+
+    private bool isFadeTriggered = false;
 
     private void Awake()
     {
@@ -30,6 +33,8 @@ public class CoreManager : MonoBehaviour
         {
             Debug.LogError("There is more than one Instance of CoreManager in the Scene!");
         }
+
+        blackScreenFader = FindAnyObjectByType<BlackScreenFader>();
     }
 
     private void Start()
@@ -53,10 +58,11 @@ public class CoreManager : MonoBehaviour
 
     private void CheckCoreCount()
     {
-        if (currentCoreAmount == maxCoreAmount)
+        if (currentCoreAmount == maxCoreAmount && !isFadeTriggered)
         {
-            FindAnyObjectByType<SceneChanger>().ChangeScene("Menu");
-            Debug.Log("All Cores collected!");
+            isFadeTriggered = true;
+            blackScreenFader.StartFadeToBlack();
+            //FindAnyObjectByType<SceneChanger>().ChangeScene("Menu");
         }
     }
 
