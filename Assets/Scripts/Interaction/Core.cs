@@ -14,6 +14,7 @@ public class Core : Interactable
     [SerializeField] private Color baseEmissionColor;
     [SerializeField] private Color baseColor;
 
+    [SerializeField] private AudioClip pickupSound;
     [SerializeField] LayerMask weaponLayer;
 
     private Material material;
@@ -49,6 +50,8 @@ public class Core : Interactable
         this.gameObject.layer = weaponLayerIndex; // Also set the main object’s layer
 
         GetComponent<Collider>().enabled = false;
+
+        AudioManager.Instance.PlaySFX(pickupSound);
 
         base.Interact();
     }

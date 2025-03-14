@@ -6,7 +6,7 @@ public class Weapon : Interactable
     [SerializeField] private Vector3 offset;
     [SerializeField] private Vector3 rotation;
     [SerializeField] private float lerpSpeed = 5f;
-
+    [SerializeField] private AudioClip pickupSound;
     [SerializeField] LayerMask weaponLayer;
 
     private GameObject playerCamera;
@@ -54,6 +54,8 @@ public class Weapon : Interactable
         this.gameObject.layer = weaponLayerIndex; // Also set the main object’s layer
 
         GetComponent<Collider>().enabled = false;
+
+        AudioManager.Instance.PlaySFX(pickupSound);
 
         base.Interact();
     }

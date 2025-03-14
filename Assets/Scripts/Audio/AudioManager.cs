@@ -3,12 +3,28 @@ using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] AudioSource musicAudioSource;
+    public static AudioManager Instance { get; private set; }
+
+    [SerializeField] AudioSource musicAudioSource, sfxAudioSource;
     [SerializeField] AudioClip[] musicClips;
 
     List<AudioClip> shuffledClips;
     int currentClipIndex = 0;
     AudioClip lastPlayedClip;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
@@ -56,5 +72,10 @@ public class AudioManager : MonoBehaviour
         currentClipIndex++;
 
         Invoke(nameof(PlayNextTrack), lastPlayedClip.length);
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        sfxAudioSource.PlayOneShot(clip);
     }
 }
