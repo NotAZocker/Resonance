@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Weapon : Interactable
 {
+    static Weapon instance;
+
     [Header("Settings")]
     [SerializeField] private Vector3 offset;
     [SerializeField] private Vector3 rotation;
@@ -12,6 +14,18 @@ public class Weapon : Interactable
     private GameObject playerCamera;
 
     private bool isMoving = false;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {

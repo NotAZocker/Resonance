@@ -61,6 +61,8 @@ public class AudioManager : MonoBehaviour
 
     void PlayNextTrack()
     {
+        if (musicClips.Length == 0) return;
+
         if (currentClipIndex >= shuffledClips.Count)
         {
             ShuffleMusicList();
