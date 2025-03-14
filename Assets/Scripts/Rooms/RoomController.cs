@@ -22,6 +22,10 @@ public class RoomController : MonoBehaviour
 
     [SerializeField] int roomSpawnDistance = 20;
 
+    [SerializeField] GameObject furnitureParent;
+    bool hasPortal;
+    Transform player;
+
     bool hasCollided;
     public bool HasCollided => hasCollided;
 
@@ -31,14 +35,10 @@ public class RoomController : MonoBehaviour
 
     private void Awake()
     {
-        Setup();
-    }
-    private void Setup()
-    {
         if (roomItemsParent1 != null) roomItemsParent1.SetActive(true);
         if (roomItemsParent2 != null) roomItemsParent2.SetActive(false);
 
-         checkSpaceFreeCollider = GetComponent<BoxCollider>();
+        checkSpaceFreeCollider = GetComponent<BoxCollider>();
 
         roomConnectors = transform.GetComponentsInChildren<RoomConnector>()
                 .Where(connector => !connector.IsWindow)
@@ -51,6 +51,18 @@ public class RoomController : MonoBehaviour
         {
             specialObject.OnInteract += SpecialObjectCollected;
         }
+    }
+
+    private void OnEnable()
+    {
+        player = FindAnyObjectByType<FirstPersonController>().transform;
+        player.GetComponent<PortalTravelerTeleportPlayer>().OnTeleport += CheckPlayerClose;
+        CheckPlayerClose();
+    }
+
+    private void OnDisable()
+    {
+        player.GetComponent<PortalTravelerTeleportPlayer>().OnTeleport -= CheckPlayerClose;
     }
 
     void SpecialObjectCollected()
@@ -250,5 +262,31 @@ public class RoomController : MonoBehaviour
     {
         DisconnectRoom();
         if(gameObject != null) Destroy(gameObject);
+    }
+    void SetFurnitureParentActive(bool value)
+    {
+        furnitureParent.SetActive(value);
+    }
+    public void SetHasPortal(bool value)
+    {
+        hasPortal = value;
+        if (value == true)
+        {
+            SetFurnitureParentActive(true);
+        }
+    }
+
+    void CheckPlayerClose()
+    {
+        if (hasPortal) return;
+
+        if (Mathf.Abs(transform.position.y - player.position.y) < 10)
+        {
+            SetFurnitureParentActive(true);
+        }
+        else
+        {
+            SetFurnitureParentActive(false);
+        }
     }
 }
