@@ -83,6 +83,7 @@ public class Portal : MonoBehaviour
     private static int total;
     private static int boundingBox;
     private static int frustumCulled;
+    private static int planeFrustumCulled;
 
     private void OnGUI()
     {
@@ -91,9 +92,14 @@ public class Portal : MonoBehaviour
             //Debug.Log("No portals", this);
             //return;
         }
-        string s = $"Total: {total}; BoundingBox: {boundingBox}; FrustumCulled: {frustumCulled} ";
+
+        GUIStyle style = new()
+        {
+            fontSize = 50
+        };
+        string s = $"Total: {total}; BoundingBox: {boundingBox}; PlaneFrustumCulled: {planeFrustumCulled}";//; FrustumCulled: {frustumCulled} ";
         
-        GUI.Label(new Rect(10, 10, 300, 20), s);
+        GUI.Label(new Rect(10, 10, 800, 150), s);
     }
 
     private void Update()
@@ -101,6 +107,7 @@ public class Portal : MonoBehaviour
         total = 0;
         boundingBox = 0;
         frustumCulled = 0;
+        planeFrustumCulled = 0;
     }
 
     private void LateUpdate()
@@ -127,13 +134,25 @@ public class Portal : MonoBehaviour
             return;
         }
 
-        if (!linkedPortal.ScreenRenderer.isVisible)
+        if (!IsVisibleFrom(ScreenRenderer, MainCamera))
         {
-            frustumCulled++;
+            planeFrustumCulled++;
             return;
         }
 
+        //if (!linkedPortal.ScreenRenderer.isVisible)
+        //{
+        //    frustumCulled++;
+        //    //return;
+        //}
+
         RenderScreen(MainCamera);
+    }
+
+    bool IsVisibleFrom(Renderer renderer, Camera camera)
+    {
+        Plane[] frustumPlanes = GeometryUtility.CalculateFrustumPlanes(camera);
+        return GeometryUtility.TestPlanesAABB(frustumPlanes, renderer.bounds);
     }
 
 
