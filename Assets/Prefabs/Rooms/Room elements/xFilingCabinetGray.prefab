@@ -634,7 +634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1474067287859596223}
   m_Layer: 0
-  m_Name: FilingCabinetGray
+  m_Name: xFilingCabinetGray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

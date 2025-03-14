@@ -6993,7 +6993,9 @@ MonoBehaviour:
   - {fileID: 8036427629279541685, guid: 30ee2c90fb0f7fc4599b2bf4898736d8, type: 3}
   - {fileID: 8036427629279541685, guid: 30ee2c90fb0f7fc4599b2bf4898736d8, type: 3}
   - {fileID: 9166785087279079231, guid: f88ba44d1e5ec3b439d23dec0b7ac9d2, type: 3}
-  specialRooms: []
+  - {fileID: 547164813956500141, guid: 500aa9b107eefa54e88e9095f6eeed97, type: 3}
+  specialRooms:
+  - {fileID: 455474242597864498, guid: b1278aebfa9badc40949d51c48536d37, type: 3}
   roomSpawnDistanceToPlayer: 20
   startRoomCount: 1
   playerMoveDistanceToSpawn: 15
