@@ -52,15 +52,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3038040899464506279, guid: ca8248c28eb98774fbbb9a04584235cb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.05
+      value: 0.055000003
       objectReference: {fileID: 0}
     - target: {fileID: 3038040899464506279, guid: ca8248c28eb98774fbbb9a04584235cb, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.05
+      value: 0.055000003
       objectReference: {fileID: 0}
     - target: {fileID: 3038040899464506279, guid: ca8248c28eb98774fbbb9a04584235cb, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.05
+      value: 0.055000003
       objectReference: {fileID: 0}
     - target: {fileID: 3038040899464506279, guid: ca8248c28eb98774fbbb9a04584235cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -68,11 +68,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3038040899464506279, guid: ca8248c28eb98774fbbb9a04584235cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3313999
+      value: 1.365
       objectReference: {fileID: 0}
     - target: {fileID: 3038040899464506279, guid: ca8248c28eb98774fbbb9a04584235cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.6700001
+      value: -0.808
       objectReference: {fileID: 0}
     - target: {fileID: 3038040899464506279, guid: ca8248c28eb98774fbbb9a04584235cb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -294,6 +294,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6890546b69ba14040900cbfc3c888b6f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3175009033124997732}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6890546b69ba14040900cbfc3c888b6f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1341612783497087837}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6890546b69ba14040900cbfc3c888b6f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5789988168429018060}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6890546b69ba14040900cbfc3c888b6f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4326478680213578320}
   m_SourcePrefab: {fileID: 100100000, guid: 6890546b69ba14040900cbfc3c888b6f, type: 3}
 --- !u!4 &7173848890686288302 stripped
 Transform:
@@ -326,3 +335,57 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0070008254, y: 0.0058691404, z: 0.015633753}
   m_Center: {x: 0.0001388824, y: -0.00008365914, z: 0.007816876}
+--- !u!114 &1341612783497087837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7549564741922843412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f210e0c3df2c5c047b60c74f089d4f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTeleport:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!54 &5789988168429018060
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7549564741922843412}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 48
+  m_CollisionDetection: 0
+--- !u!114 &4326478680213578320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7549564741922843412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab9767775209f645bcda822f1044674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

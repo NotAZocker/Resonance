@@ -8,7 +8,7 @@ public class RoomController : MonoBehaviour
 {
     public Vector2 RoomSize => checkSpaceFreeCollider.size;
 
-    [SerializeField] IInteract specialObject;
+    [SerializeField] Interactable specialObject;
 
     RoomConnector[] roomConnectors;
     public RoomConnector[] RoomConnectors => roomConnectors;
@@ -68,11 +68,18 @@ public class RoomController : MonoBehaviour
         {
             if (collider.gameObject != gameObject && collider.gameObject.GetComponent<RoomController>())
             {
-                print("room collision with " + collider.name);
                 return true;
             }
         }
 
+        foreach (RoomController room in WorldManager.Instance.Rooms) // not sure why the other thing alone does not work. Sometimes spawns 2 rooms at the same position
+        {
+            if (Vector3.Distance(transform.position, room.transform.position) < size.x / 2)
+            {
+                Debug.LogWarning(name + " is very close to " + room.name + " but not intersecting");
+                return true;
+            }
+        }
 
         return false;
     }
@@ -142,7 +149,7 @@ public class RoomController : MonoBehaviour
 
             if (!windows[rand].IsConnected)
             {
-                return roomConnectors[rand];
+                return windows[rand];
             }
         }
 
@@ -210,9 +217,9 @@ public class RoomController : MonoBehaviour
     {
         RoomConnector window = GetFreeWindow();
 
-        if(window == null) 
-        { 
-            return false; 
+        if (window == null)
+        {
+            return false;
         }
         else
         {
@@ -242,6 +249,6 @@ public class RoomController : MonoBehaviour
     internal void RemoveRoom()
     {
         DisconnectRoom();
-        Destroy(gameObject);
+        if(gameObject != null) Destroy(gameObject);
     }
 }

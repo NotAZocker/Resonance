@@ -1,8 +1,6 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using VInspector.Libs;
 
 public class WorldManager : MonoBehaviour
 {
@@ -19,13 +17,15 @@ public class WorldManager : MonoBehaviour
 
     [Header("World Change Probabilities")]
     [SerializeField] float roomSpawnProbability = 5;
-    [SerializeField] float roomDestroyProbabilityPerRoom = 1/5;
+    [SerializeField] float roomDestroyProbabilityPerRoom = 1 / 5;
     [SerializeField] float roomConnectProbability = 3;
     [SerializeField] float repositionRoomProbability = 1;
 
+    public static WorldManager Instance;
     FirstPersonController player;
 
     List<RoomController> rooms = new List<RoomController>();
+    public List<RoomController> Rooms => rooms;
     List<RoomController> currentSpecialRoomCopies = new List<RoomController>();
 
     RoomController lastSpawnedRoom;
@@ -35,6 +35,8 @@ public class WorldManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         lastSpawnedRoom = startRoom;
 
         rooms.Add(startRoom);
@@ -56,7 +58,7 @@ public class WorldManager : MonoBehaviour
 
     private void Update()
     {
-        if(Vector3.Distance(player.transform.position, lastSpawnPlayerPosition) > playerMoveDistanceToSpawn)
+        if (Vector3.Distance(player.transform.position, lastSpawnPlayerPosition) > playerMoveDistanceToSpawn)
         {
             ChangeSomethingInTheWorld();
             lastSpawnPlayerPosition = player.transform.position;
@@ -70,25 +72,28 @@ public class WorldManager : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
-            lastSpawnedRoom = SpawnNewRandomRoom(lastSpawnedRoom);
-        }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                lastSpawnedRoom = SpawnNewRandomRoom(lastSpawnedRoom);
+            }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SpawnNewRandomRoom(GetRoomOutOfPlayerVision());
-        }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SpawnNewRandomRoom(GetRoomOutOfPlayerVision());
+            }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ConnectRandomRooms();
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                ConnectRandomRooms();
+            }
         }
     }
 
     void SpawnCurrentSpecialRoomCopy()
     {
-        if(specialRooms.Count == 0)
+        if (specialRooms.Count == 0)
         {
             return;
         }
@@ -96,10 +101,16 @@ public class WorldManager : MonoBehaviour
         RoomController specialRoom = null;
         int safetyCounter = 0;
 
-        while(specialRoom == null && safetyCounter < 50)
+        while (specialRoom == null && safetyCounter < 50)
         {
-            specialRoom = SpawnNewRoom(GetRoomOutOfPlayerVision(), specialRooms[0]);
+            specialRoom = SpawnNewRoom(GetRoomOutOfPlayerVision(), specialRooms[0], true);
             safetyCounter++;
+        }
+
+        if (specialRoom == null)
+        {
+            Debug.LogWarning("Didn't find place to spawn special room.");
+            return;
         }
 
         currentSpecialRoomCopies.Add(specialRoom);
@@ -119,6 +130,7 @@ public class WorldManager : MonoBehaviour
 
             if (room != foundRoom)
             {
+                rooms.Remove(room);
                 room.RemoveRoom();
             }
         }
@@ -130,7 +142,7 @@ public class WorldManager : MonoBehaviour
 
     private void ChangeSomethingInTheWorld()
     {
-        int roomDestroyProbability = (int)(rooms.Count  * roomDestroyProbabilityPerRoom);
+        int roomDestroyProbability = (int)(rooms.Count * roomDestroyProbabilityPerRoom);
         float totalProbability = roomSpawnProbability + roomConnectProbability + roomDestroyProbability;
         float rand = UnityEngine.Random.Range(0, totalProbability);
 
@@ -160,7 +172,7 @@ public class WorldManager : MonoBehaviour
 
     private void DestroyRoom(RoomController roomController)
     {
-        if(roomController == null)
+        if (roomController == null)
         {
             print("No room to destroy found.");
             return;
@@ -203,7 +215,7 @@ public class WorldManager : MonoBehaviour
 
         for (int i = 0; i < connectors.Length; i++)
         {
-            if (InInFrontOfPlayer(connectors[i].transform.position) 
+            if (InInFrontOfPlayer(connectors[i].transform.position)
                 && !IsViewObstructed(connectors[i].transform.position)
                 || IsCloseToPlayer(connectors[i].transform.position))
             {
@@ -232,11 +244,6 @@ public class WorldManager : MonoBehaviour
             {
                 if (hit.collider)
                 {
-                    if (hit.collider.gameObject == player.gameObject) print("aodiwoawfobfwo");
-                    else
-                    {
-                        print("view obstructed, by not player");
-                    }
                     return true;
                 }
             }
@@ -271,7 +278,7 @@ public class WorldManager : MonoBehaviour
         return SpawnNewRoom(attachRoom, newRoom);
     }
 
-    public RoomController SpawnNewRoom(RoomController attachRoom, RoomController roomPrefab)
+    public RoomController SpawnNewRoom(RoomController attachRoom, RoomController roomPrefab, bool isSpecialRoom = false)
     {
         RoomController newRoom = Instantiate(roomPrefab, roomParent);
         newRoom.name = "Room " + rooms.Count + " - " + newRoom.name;
@@ -286,11 +293,11 @@ public class WorldManager : MonoBehaviour
             rooms.Add(newRoom);
         }
 
-        if(newRoom.Windows.Length > 0)
+        if (newRoom.Windows.Length > 0 && !isSpecialRoom)
         {
             for (int i = 0; i < currentSpecialRoomCopies.Count; i++)
             {
-                if(newRoom.TryConnectWindow(currentSpecialRoomCopies[i]))
+                if (newRoom.TryConnectWindow(currentSpecialRoomCopies[i]))
                 {
                     break;
                 }
@@ -328,7 +335,7 @@ public class WorldManager : MonoBehaviour
         }
         while ((rand2 == rand1 || IsInPlayerVision(rooms[rand2])) && safetyCounter < 50);
 
-        if(!rooms[rand1].TryAttachRoom(rooms[rand2], true, false))
+        if (!rooms[rand1].TryAttachRoom(rooms[rand2], true, false))
         {
             Debug.Log("Can't attach room " + rand2 + " to room " + rand1);
         }

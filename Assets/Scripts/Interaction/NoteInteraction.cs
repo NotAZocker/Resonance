@@ -1,30 +1,21 @@
 using System;
 using UnityEngine;
 
-public class NoteInteraction : MonoBehaviour, IInteract
+public class NoteInteraction : Interactable
 {
     [Header("Settings")]
-    [SerializeField] private NotesTextSO noteSO;
 
-    private NotesUI notesUI;
-
-    public event Action OnInteract;
-
-    private void Awake()
-    {
-        notesUI = GameObject.FindWithTag("NotesUI").GetComponent<NotesUI>();
-    }
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     private void Start()
     {
-        NotesManager.Instance.unreadNotesSOList.Add(noteSO);
+        spriteRenderer.sprite = NotesManager.Instance.GetRandomNoteAndRemoveFromList();
     }
 
-    public void Interact()
+    public override void Interact()
     {
-        noteSO.isRead = true;
-        notesUI.SetNotesUITitleAndText(noteSO);
-        NotesManager.Instance.RemoveNoteFromList(noteSO);
-        UIManager.Instance.ShowNotesDisplay();
+        UIManager.Instance.ShowNote(spriteRenderer.sprite);
+
+        base.Interact();
     }
 }

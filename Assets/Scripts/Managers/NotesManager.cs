@@ -6,10 +6,8 @@ public class NotesManager : MonoBehaviour
     public static NotesManager Instance { get; private set; }
 
     [Header("Settings")]
-    [SerializeField] private List<NotesTextSO> noteTextSOList;
-
-    public List<NotesTextSO> readNotesSOList;
-    public List<NotesTextSO> unreadNotesSOList;
+    [SerializeField] private List<Sprite> noteSprites;
+    private List<Sprite> usedSprites = new List<Sprite>();
 
     private void Awake()
     {
@@ -23,26 +21,22 @@ public class NotesManager : MonoBehaviour
         }
     }
 
-    public NotesTextSO GetRandomNoteAndRemoveFromList()
+    public Sprite GetRandomNoteAndRemoveFromList()
     {
-        NotesTextSO randomNote = noteTextSOList[Random.Range(0, noteTextSOList.Count)];
-
-        noteTextSOList.Remove(randomNote);
-
-        return randomNote;
-    }
-
-    public void RemoveNoteFromList(NotesTextSO note)
-    {
-        if (note.isRead)
+        if(noteSprites.Count == 0)
         {
-            unreadNotesSOList.Remove(note);
-            if (readNotesSOList.Contains(note) == note)
+            for (int i = 0; i < usedSprites.Count; i++)
             {
-                readNotesSOList.Remove(note);
+                noteSprites.Add(usedSprites[i]);
             }
-            readNotesSOList.Add(note);
-            noteTextSOList.Remove(note);
+            return null;
         }
+
+        Sprite note = noteSprites[0];
+
+        usedSprites.Add(note);
+        noteSprites.Remove(note);
+
+        return note;
     }
 }

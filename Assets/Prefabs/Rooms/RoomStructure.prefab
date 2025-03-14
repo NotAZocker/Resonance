@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 665776037524025569}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000084293696, y: 1, z: -1.2079225e-13, w: 0.0000014305114}
-  m_LocalPosition: {x: 0.000003418429, y: 0.5, z: -1.0000001}
+  m_LocalPosition: {x: 0.000003418429, y: 0.5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -432,8 +432,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomSize: {x: 10, y: 10}
-  roomConnectors:
-  - {fileID: 8720503841964575469}
   roomItemsParent1: {fileID: 0}
   roomItemsParent2: {fileID: 0}
   collisionSizeFactor: 0.4
@@ -933,7 +931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3978302981813685917, guid: 43609089196ddfe4cb5657c6e4282f20, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3978302982097644198, guid: 43609089196ddfe4cb5657c6e4282f20, type: 3}
       propertyPath: m_LocalScale.x
@@ -965,14 +963,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3552358148957158158, guid: 43609089196ddfe4cb5657c6e4282f20, type: 3}
   m_PrefabInstance: {fileID: 7420651678576257505}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8720503841964575469 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2305288203152384780, guid: 43609089196ddfe4cb5657c6e4282f20, type: 3}
-  m_PrefabInstance: {fileID: 7420651678576257505}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56446752e1676cd4fa17aa5ceeaeaa06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -7,6 +7,13 @@ public class CoreManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private List<Core> coreList;
+    [SerializeField] private GameObject coreSpotOne;
+    [SerializeField] private GameObject coreSpotTwo;
+    [SerializeField] private GameObject coreSpotThree;
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private float lerpSpeed = 2f;
+
+    private Core core;
 
     private int currentCoreAmount = 0;
     private int maxCoreAmount = 3;
@@ -27,6 +34,11 @@ public class CoreManager : MonoBehaviour
     {
         HideCores();
     }
+    private void Update()
+    {
+        MoveCoresIntoWeapon(core);
+        CheckCoreCount();
+    }
 
     private void HideCores()
     {
@@ -36,15 +48,11 @@ public class CoreManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        CheckCoreCount();
-    }
-
     private void CheckCoreCount()
     {
         if (currentCoreAmount == maxCoreAmount)
         {
+            FindAnyObjectByType<SceneChanger>().ChangeScene("Menu");
             Debug.Log("All Cores collected!");
         }
     }
@@ -57,8 +65,41 @@ public class CoreManager : MonoBehaviour
         }
     }
 
-    public void IncreaseCoreCount()
+    public void IncreaseCoreCount(Core core)
     {
         currentCoreAmount++;
+        core.transform.SetParent(transform);
+        this.core = core;
+    }
+
+    private void MoveCoresIntoWeapon(Core core)
+    {
+        if (core == null) return;
+
+        Vector3 targetPosition = Vector3.zero;
+
+        if (currentCoreAmount == 1)
+        {
+            targetPosition = coreSpotOne.transform.localPosition + offset;
+        }
+        else if (currentCoreAmount == 2)
+        {
+            targetPosition = coreSpotTwo.transform.localPosition + offset;
+        }
+        else if (currentCoreAmount == 3)
+        {
+            targetPosition = coreSpotThree.transform.localPosition + offset;
+        }
+
+        if (core.IsMoving)
+        {
+            core.transform.localPosition = Vector3.Lerp(core.transform.localPosition, targetPosition, lerpSpeed * Time.deltaTime);
+            if (Vector3.Distance(core.transform.localPosition, targetPosition) < 0.01f)
+            {
+                core.IsMoving = false;
+                core.transform.localPosition = targetPosition;
+                core.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+            }
+        }
     }
 }
