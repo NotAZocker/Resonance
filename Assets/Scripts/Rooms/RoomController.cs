@@ -272,7 +272,6 @@ public class RoomController : MonoBehaviour
     }
     void SetFurnitureParentActive(bool value)
     {
-        Debug.Log("Set Furniture Parent " + value, this);
         if(furnitureParent != null) furnitureParent.SetActive(value);
     }
     public void SetHasPortal(bool value)
@@ -286,8 +285,6 @@ public class RoomController : MonoBehaviour
 
     public void CheckPlayerClose()
     {
-        Debug.Log("Check Plyer Close");
-
         if (hasPortal) return;
 
         if(player == null)

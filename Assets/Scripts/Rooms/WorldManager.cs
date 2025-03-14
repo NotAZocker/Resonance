@@ -174,7 +174,7 @@ public class WorldManager : MonoBehaviour
     {
         if (roomController == null)
         {
-            print("No room to destroy found.");
+            // print("No room to destroy found.");
             return;
         }
 
@@ -202,7 +202,7 @@ public class WorldManager : MonoBehaviour
             }
             else
             {
-                print("Safety choose room in vision");
+                // print("Safety choose room in vision");
             }
         }
 
