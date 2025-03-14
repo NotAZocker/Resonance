@@ -13,9 +13,9 @@ public class CoreManager : MonoBehaviour
     private Core core;
     private Weapon weapon;
 
-    private GameObject coreSpotThree;
-    private GameObject coreSpotOne;
-    private GameObject coreSpotTwo;
+    public GameObject coreSpotOne;
+    public GameObject coreSpotTwo;
+    public GameObject coreSpotThree;
 
     private int currentCoreAmount = 0;
     private int maxCoreAmount = 3;
@@ -70,6 +70,8 @@ public class CoreManager : MonoBehaviour
 
     public void IncreaseCoreCount(Core core)
     {
+        weapon = GameObject.FindWithTag("Player").GetComponentInChildren<Weapon>();
+
         currentCoreAmount++;
         core.transform.SetParent(weapon.transform);
         this.core = core;
@@ -77,12 +79,6 @@ public class CoreManager : MonoBehaviour
 
     private void MoveCoresIntoWeapon(Core core)
     {
-        weapon = FindAnyObjectByType<Weapon>();
-
-        coreSpotOne = weapon.transform.GetChild(0).gameObject;
-        coreSpotTwo = weapon.transform.GetChild(1).gameObject;
-        coreSpotThree = weapon.transform.GetChild(2).gameObject;
-
         if (core == null) return;
 
         Vector3 targetPosition = Vector3.zero;

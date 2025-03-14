@@ -41,6 +41,10 @@ public class Weapon : Interactable
         CoreManager.Instance.SpawnCores();
         isMoving = true;
 
+        CoreManager.Instance.coreSpotOne = transform.GetChild(0).gameObject;
+        CoreManager.Instance.coreSpotTwo = transform.GetChild(1).gameObject;
+        CoreManager.Instance.coreSpotThree = transform.GetChild(2).gameObject;
+
         int weaponLayerIndex = Mathf.RoundToInt(Mathf.Log(weaponLayer.value, 2));
 
         foreach (Transform child in transform)
