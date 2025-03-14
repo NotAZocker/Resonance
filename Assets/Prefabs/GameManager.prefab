@@ -183,20 +183,21 @@ MonoBehaviour:
   startRoom: {fileID: 0}
   roomPrefabs:
   - {fileID: 7505350106912559349, guid: be835d48efafb4b4e9d8a972e5f6ff8a, type: 3}
+  - {fileID: 9166785087279079231, guid: f88ba44d1e5ec3b439d23dec0b7ac9d2, type: 3}
   - {fileID: 1163786210785882302, guid: 253799b1e184f0343a14fda2da0b9199, type: 3}
-  - {fileID: 1163786210785882302, guid: 20697d47ef58867488fbbc6bd6d1b432, type: 3}
   - {fileID: 1163786210785882302, guid: 941b3e6f4b5ce434baad838579676048, type: 3}
   - {fileID: 8814401899327395086, guid: 8a25a75dd702db0429adff4c933bda69, type: 3}
+  - {fileID: 547164813956500141, guid: 500aa9b107eefa54e88e9095f6eeed97, type: 3}
   - {fileID: 1838007827308078682, guid: 5424447eb6c54d349b8d538ecbf4fec0, type: 3}
-  - {fileID: 8036427629279541685, guid: 365fae35ba6c6ca4e90a7ab9e77c2e3f, type: 3}
   - {fileID: 8036427629279541685, guid: 30ee2c90fb0f7fc4599b2bf4898736d8, type: 3}
   - {fileID: 8036427629279541685, guid: fc21063403ad9e94eb611ee28549b7fb, type: 3}
   - {fileID: 2091273543105699592, guid: 7be77c10fe257ac4eaaac7e3607d137f, type: 3}
   - {fileID: 6934914002485491107, guid: aca06769d33515545925cded4cc59d72, type: 3}
+  - {fileID: 4376132346011115172, guid: d83f8597ab353b048a9f277033f58ed0, type: 3}
   specialRooms:
-  - {fileID: 455474242597864498, guid: b1278aebfa9badc40949d51c48536d37, type: 3}
-  - {fileID: 1163786210785882302, guid: 387892e80ebee9a4fb0d50ceafc6655f, type: 3}
-  - {fileID: 1163786210785882302, guid: 387892e80ebee9a4fb0d50ceafc6655f, type: 3}
+  - {fileID: 3018453658495299388, guid: b9aa9588ae6be214e836b779c773bc15, type: 3}
+  - {fileID: 6040299512071368813, guid: 21533558c46474243acb29b0c383e05e, type: 3}
+  - {fileID: 7832607551401528002, guid: d0e3abeebb30462478bac95f2cd9fa74, type: 3}
   - {fileID: 1163786210785882302, guid: 387892e80ebee9a4fb0d50ceafc6655f, type: 3}
   roomSpawnDistanceToPlayer: 20
   startRoomCount: 10
