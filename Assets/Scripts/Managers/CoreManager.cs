@@ -11,8 +11,8 @@ public class CoreManager : MonoBehaviour
     [SerializeField] private float lerpSpeed = 2f;
 
     private Core core;
-
     private Weapon weapon;
+
     private GameObject coreSpotThree;
     private GameObject coreSpotOne;
     private GameObject coreSpotTwo;
@@ -22,8 +22,6 @@ public class CoreManager : MonoBehaviour
 
     private void Awake()
     {
-        weapon = FindAnyObjectByType<Weapon>();
-
         if (Instance == null)
         {
             Instance = this;
@@ -36,12 +34,9 @@ public class CoreManager : MonoBehaviour
 
     private void Start()
     {
-        coreSpotOne = weapon.transform.GetChild(0).gameObject;
-        coreSpotTwo = weapon.transform.GetChild(1).gameObject;
-        coreSpotThree = weapon.transform.GetChild(2).gameObject;
-
         HideCores();
     }
+
     private void Update()
     {
         MoveCoresIntoWeapon(core);
@@ -76,12 +71,18 @@ public class CoreManager : MonoBehaviour
     public void IncreaseCoreCount(Core core)
     {
         currentCoreAmount++;
-        core.transform.SetParent(transform);
+        core.transform.SetParent(weapon.transform);
         this.core = core;
     }
 
     private void MoveCoresIntoWeapon(Core core)
     {
+        weapon = FindAnyObjectByType<Weapon>();
+
+        coreSpotOne = weapon.transform.GetChild(0).gameObject;
+        coreSpotTwo = weapon.transform.GetChild(1).gameObject;
+        coreSpotThree = weapon.transform.GetChild(2).gameObject;
+
         if (core == null) return;
 
         Vector3 targetPosition = Vector3.zero;

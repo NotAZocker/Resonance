@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -82,8 +81,6 @@ public class Core : Interactable
     {
         if (weapon == null || material == null) return;
         CoreGlow();
-
-
     }
 
     private void CoreGlow()
