@@ -7,6 +7,7 @@ public class PlayIntroVideo : MonoBehaviour
     [SerializeField] VideoPlayer videoPlayer;
     [SerializeField] GameObject uiPanel;
     [SerializeField] bool securityMode = true;
+    [SerializeField] bool skipVideo = false;
 
     bool itHasWorked;
     double securityTimer;
@@ -15,6 +16,12 @@ public class PlayIntroVideo : MonoBehaviour
 
     void Start()
     {
+        if (skipVideo)
+        {
+            StartGame();
+            return;
+        }
+
         Time.timeScale = 0; // Pause the game
         uiPanel.SetActive(true);
         videoPlayer.Prepare();
