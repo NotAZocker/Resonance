@@ -55,13 +55,20 @@ public class RoomController : MonoBehaviour
 
     private void OnEnable()
     {
-        player = FindAnyObjectByType<FirstPersonController>().transform;
-        player.GetComponent<PortalTravelerTeleportPlayer>().OnTeleport += CheckPlayerClose;
+        PortalTravelerTeleportPlayer playerTeleport = FindAnyObjectByType<PortalTravelerTeleportPlayer>();
+        if(playerTeleport == null)
+        {
+            Debug.LogWarning("No player found", this);
+            return;
+        }
+        player = playerTeleport.transform;
+        playerTeleport.OnTeleport += CheckPlayerClose;
         CheckPlayerClose();
     }
 
     private void OnDisable()
     {
+        if(player == null) return;
         player.GetComponent<PortalTravelerTeleportPlayer>().OnTeleport -= CheckPlayerClose;
     }
 
