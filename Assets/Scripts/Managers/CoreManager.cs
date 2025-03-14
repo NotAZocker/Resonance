@@ -13,9 +13,9 @@ public class CoreManager : MonoBehaviour
     private Core core;
     private Weapon weapon;
 
-    public GameObject coreSpotOne;
-    public GameObject coreSpotTwo;
-    public GameObject coreSpotThree;
+    [HideInInspector] public GameObject coreSpotOne;
+    [HideInInspector] public GameObject coreSpotTwo;
+    [HideInInspector] public GameObject coreSpotThree;
 
     private int currentCoreAmount = 0;
     private int maxCoreAmount = 3;

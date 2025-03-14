@@ -61,7 +61,7 @@ public class Core : Interactable
 
         if (renderer != null)
         {
-            material = renderer.materials[1];
+            material = renderer.materials[2];
         }
         else
         {
