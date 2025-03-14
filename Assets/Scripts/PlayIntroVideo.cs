@@ -1,10 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Video;
 
 public class PlayIntroVideo : MonoBehaviour
 {
     [SerializeField] VideoPlayer videoPlayer;
     [SerializeField] GameObject uiPanel;
+    [SerializeField] bool securityMode = true;
+
+    bool itHasWorked;
+    double securityTimer;
+
+    Coroutine securityCoroutine;
 
     void Start()
     {
@@ -12,6 +19,9 @@ public class PlayIntroVideo : MonoBehaviour
         uiPanel.SetActive(true);
         videoPlayer.Prepare();
         videoPlayer.prepareCompleted += OnVideoPrepared;
+        securityTimer = videoPlayer.clip.length + 1; // Add 1 second to the video length
+
+        if(securityMode) securityCoroutine = StartCoroutine(IfBrokenStartGame());
     }
 
     void OnVideoPrepared(VideoPlayer vp)
@@ -23,9 +33,35 @@ public class PlayIntroVideo : MonoBehaviour
 
     void OnVideoFinished(VideoPlayer vp)
     {
-        Time.timeScale = 1; // Resume game
+        itHasWorked = true;
+
         vp.loopPointReached -= OnVideoFinished; // Unsubscribe event
+
+        StartGame();
+    }
+
+    void StartGame()
+    {
+        if(securityCoroutine != null)
+        {
+            StopCoroutine(securityCoroutine);
+        }
+
+        Time.timeScale = 1; // Resume game
         uiPanel.SetActive(false);
         Destroy(gameObject); // Destroy this script
+    }
+
+    IEnumerator IfBrokenStartGame()
+    {
+        for (float i = 0; i < securityTimer; i+= Time.unscaledDeltaTime)
+        {
+            yield return null;
+        }
+
+        if(!itHasWorked)
+        {
+            StartGame();
+        }
     }
 }
