@@ -437,6 +437,7 @@ MonoBehaviour:
   roomItemsParent2: {fileID: 0}
   collisionSizeFactor: 0.4
   roomSpawnDistance: 100
+  furnitureParent: {fileID: 3931386790692623809}
 --- !u!65 &6148429358313663413
 BoxCollider:
   m_ObjectHideFlags: 0
