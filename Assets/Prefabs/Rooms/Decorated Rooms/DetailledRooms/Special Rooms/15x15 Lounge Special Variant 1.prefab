@@ -6237,6 +6237,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 667954253537295343}
     m_Modifications:
     - target: {fileID: 2394874962379959603, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2394874962379959603, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -6250,7 +6254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2394874962379959603, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_Intensity
-      value: 1.97
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2571610212625742102, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6293,6 +6297,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3625374215891925618, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625374215891925618, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -6306,7 +6314,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3625374215891925618, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_Intensity
-      value: 1.97
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3995667587606895349, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
+      propertyPath: m_Range
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3995667587606895349, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_Color.b
@@ -6322,7 +6334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3995667587606895349, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_Intensity
-      value: 1.97
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5733338229828253541, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_Name
@@ -7158,11 +7170,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 108055969018065284, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1086036072774276609, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1229265122069303196, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_IsActive
@@ -7254,11 +7266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7374181123971784316, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7755315173608554499, guid: 5c9950df112fe3d4cbc1e2e4b1e5e278, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
