@@ -5,8 +5,6 @@ using UnityEngine.Rendering.Universal;
 public class Core : Interactable
 {
     [Header("Settings")]
-    [SerializeField] private GameObject weapon;
-    [SerializeField] private Volume globalVolume;
     [SerializeField] private float maxDistance = 5f;
     [SerializeField] private float minGlowIntensity = 0f;
     [SerializeField] private float maxGlowIntensity = 5f;
@@ -20,6 +18,8 @@ public class Core : Interactable
 
     private Material material;
     private Bloom bloom;
+    private GameObject weapon;
+    private Volume globalVolume;
     private Color emissionColor;
 
     private float currentGlowIntensity = 0f;
@@ -57,10 +57,11 @@ public class Core : Interactable
     {
         Renderer renderer = GetComponent<Renderer>();
         globalVolume = FindAnyObjectByType<Volume>();
+        weapon = FindAnyObjectByType<Weapon>().gameObject;
 
         if (renderer != null)
         {
-            material = renderer.materials[2];
+            material = renderer.materials[1];
         }
         else
         {

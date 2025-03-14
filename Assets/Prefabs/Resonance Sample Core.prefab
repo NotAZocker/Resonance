@@ -64,6 +64,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: add906364b77a244cb09f78bb9116e1c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f7aaf878548f33642838a87c48c1e5a1, type: 2}
+    - target: {fileID: -7511558181221131132, guid: add906364b77a244cb09f78bb9116e1c, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e06c463c877191b41978c4679f11f3c7, type: 2}
     - target: {fileID: 919132149155446097, guid: add906364b77a244cb09f78bb9116e1c, type: 3}
       propertyPath: m_Name
       value: Resonance Sample Core
@@ -121,11 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e5804311e8db044b2a21e6424ae2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
-  globalVolume: {fileID: 0}
   maxDistance: 5
   minGlowIntensity: 0
-  maxGlowIntensity: 10
+  maxGlowIntensity: 20
   coreBloomThreshold: 1
   standardBloomThreshold: 2
   smoothTime: 1
