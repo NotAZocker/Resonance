@@ -80,4 +80,14 @@ public class AudioManager : MonoBehaviour
     {
         sfxAudioSource.PlayOneShot(clip);
     }
+
+    public void StopMusic()
+    {
+        musicAudioSource.Stop();
+    }
+
+    public void StartMusic()
+    {
+        PlayNextTrack();
+    }
 }

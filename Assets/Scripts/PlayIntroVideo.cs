@@ -45,6 +45,8 @@ public class PlayIntroVideo : MonoBehaviour
         playerController = playerCam.GetComponentInParent<FirstPersonController>();
         playerController.enabled = false;
 
+        AudioManager.Instance.StopMusic();
+
         if (securityMode) securityCoroutine = StartCoroutine(IfBrokenStartGame());
     }
 
@@ -126,6 +128,8 @@ public class PlayIntroVideo : MonoBehaviour
         playerCam.transform.rotation = Quaternion.Euler(camEndAngle, playerCam.rotation.eulerAngles.y, playerCam.rotation.eulerAngles.z);
 
         if(playerController != null) playerController.enabled = true;
+
+        AudioManager.Instance.StartMusic();
 
         Time.timeScale = 1; // Resume game
 
