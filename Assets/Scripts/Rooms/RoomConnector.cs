@@ -45,6 +45,7 @@ public class RoomConnector : MonoBehaviour
                 portal.gameObject.SetActive(true);
                 noConnectionObject.SetActive(false);
                 isConnected = true;
+                GetComponentInParent<RoomController>().SetHasPortal(true);
                 break;
             case ConnectionType.Door:
                 connectionObject.SetActive(true);

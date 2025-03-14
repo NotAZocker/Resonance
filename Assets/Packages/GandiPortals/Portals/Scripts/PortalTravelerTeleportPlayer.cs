@@ -1,9 +1,12 @@
 using ECM2;
+using System;
 using UnityEngine;
 
 public class PortalTravelerTeleportPlayer : MonoBehaviour, IPortalTravelerTeleport
 {
     Character character;
+
+    public event Action OnTeleport;
 
     private void Awake()
     {
@@ -16,5 +19,7 @@ public class PortalTravelerTeleportPlayer : MonoBehaviour, IPortalTravelerTelepo
 
         character.TeleportPosition(teleportMatrix.GetColumn(3));
         character.TeleportRotation(teleportMatrix.rotation);
+
+        OnTeleport?.Invoke();
     }
 }
