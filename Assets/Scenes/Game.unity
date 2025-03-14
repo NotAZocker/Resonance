@@ -856,6 +856,26 @@ PrefabInstance:
       propertyPath: offset.z
       value: 0.00016
       objectReference: {fileID: 0}
+    - target: {fileID: 3013612814391435057, guid: e24b499ad7e40a64c8448682c8630e49, type: 3}
+      propertyPath: musicClips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013612814391435057, guid: e24b499ad7e40a64c8448682c8630e49, type: 3}
+      propertyPath: 'musicClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 227ad27b28608144d9a2ca9846fd35ef, type: 3}
+    - target: {fileID: 3013612814391435057, guid: e24b499ad7e40a64c8448682c8630e49, type: 3}
+      propertyPath: 'musicClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 47cead12e23781941b1a109ecf96bceb, type: 3}
+    - target: {fileID: 3013612814391435057, guid: e24b499ad7e40a64c8448682c8630e49, type: 3}
+      propertyPath: 'musicClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e9c01b06858f8ab43acb6944dc4c1241, type: 3}
+    - target: {fileID: 3013612814391435057, guid: e24b499ad7e40a64c8448682c8630e49, type: 3}
+      propertyPath: 'musicClips.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 80e0a26f9d26a7342b4a0b432f6e6ff3, type: 3}
     - target: {fileID: 3892531799068179115, guid: e24b499ad7e40a64c8448682c8630e49, type: 3}
       propertyPath: startRoom
       value: 
