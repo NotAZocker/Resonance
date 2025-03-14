@@ -431,11 +431,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6200af210cb11940bae0661290430cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomSize: {x: 10, y: 10}
+  specialObject: {fileID: 0}
+  windows: []
   roomItemsParent1: {fileID: 0}
   roomItemsParent2: {fileID: 0}
   collisionSizeFactor: 0.4
   roomSpawnDistance: 100
+  furnitureParent: {fileID: 3931386790692623809}
 --- !u!65 &6148429358313663413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -821,7 +823,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2218a165f58738d43aa3c09fee460e45, type: 2}
+  - {fileID: 2100000, guid: 53dd94877ee4df54abf04220770424f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
