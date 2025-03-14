@@ -21,6 +21,8 @@ public class PlayIntroVideo : MonoBehaviour
     [SerializeField] bool securityMode = true;
     [SerializeField] bool skipVideo = false;
 
+    bool coroutineStarted;
+
     bool itHasWorked;
     double securityTimer;
 
@@ -81,7 +83,7 @@ public class PlayIntroVideo : MonoBehaviour
             StopCoroutine(securityCoroutine);
         }
 
-        StartCoroutine(StartGameCoroutine());
+        if(!coroutineStarted) StartCoroutine(StartGameCoroutine());
     }
 
     IEnumerator IfBrokenStartGame()
@@ -99,7 +101,7 @@ public class PlayIntroVideo : MonoBehaviour
 
     IEnumerator StartGameCoroutine()
     {
-        Debug.Log("StartGame Coroutine");
+        coroutineStarted = true;
 
         videoImage.gameObject.SetActive(false);
 
