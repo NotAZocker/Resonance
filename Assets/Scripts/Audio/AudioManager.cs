@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource musicAudioSource, sfxAudioSource;
     [SerializeField] AudioClip[] musicClips;
 
+    [SerializeField] bool playOnStart = false;
+
     List<AudioClip> shuffledClips;
     int currentClipIndex = 0;
     AudioClip lastPlayedClip;
@@ -28,6 +30,11 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         ShuffleMusicList();
+
+        if(playOnStart)
+        {
+            StartMusic();
+        }
     }
 
     void ShuffleMusicList()
