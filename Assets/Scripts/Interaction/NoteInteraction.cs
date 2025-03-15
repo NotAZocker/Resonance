@@ -5,16 +5,28 @@ public class NoteInteraction : Interactable
 {
     [Header("Settings")]
 
-    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] MeshRenderer meshRenderer;
+
+    [SerializeField] Material paperMaterial;
+
+    Sprite noteSprite;
+
+    static int count;
 
     private void Start()
     {
-        spriteRenderer.sprite = NotesManager.Instance.GetRandomNoteAndRemoveFromList();
+        noteSprite = NotesManager.Instance.GetNextNoteAndRemoveFromList();
+        Texture2D noteTex = noteSprite.texture;
+
+        Material tempMat = new Material(paperMaterial);
+        tempMat.name = "mat_" + count++;
+        tempMat.SetTexture("_BaseMap", noteTex);
+        meshRenderer.material = tempMat;
     }
 
     public override void Interact()
     {
-        UIManager.Instance.ShowNote(spriteRenderer.sprite);
+        UIManager.Instance.ShowNote(noteSprite);
 
         base.Interact();
     }

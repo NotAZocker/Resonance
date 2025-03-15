@@ -21,7 +21,7 @@ public class NotesManager : MonoBehaviour
         }
     }
 
-    public Sprite GetRandomNoteAndRemoveFromList()
+    public Sprite GetNextNoteAndRemoveFromList()
     {
         if(noteSprites.Count == 0)
         {
@@ -38,5 +38,10 @@ public class NotesManager : MonoBehaviour
         noteSprites.Remove(note);
 
         return note;
+    }
+
+    public Texture2D GetTextureFromSprite(Sprite sprite)
+    {
+        return sprite.texture;
     }
 }
