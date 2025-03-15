@@ -26,7 +26,7 @@ public class Footsteps : MonoBehaviour
 
     void Update()
     {
-        if (rb.velocity.magnitude > 0.1f)
+        if (rb.linearVelocity.magnitude > 0.1f)
         {
             stepTimer -= Time.deltaTime;
             bobbingTimer += Time.deltaTime * bobbingSpeed;
