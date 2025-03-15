@@ -20,6 +20,7 @@ public class RoomConnector : MonoBehaviour
     RoomConnector otherConnector;
     bool isConnected;
 
+    ConnectionType connectionType;
     public bool IsConnected => isConnected;
 
     void Start()
@@ -27,6 +28,18 @@ public class RoomConnector : MonoBehaviour
         if (!isConnected)
         {
             SetConnectionType(ConnectionType.None);
+        }
+    }
+
+    private void Update()
+    {
+        if (isConnected && connectionType == ConnectionType.Portal)
+        {
+            if(portal.LinkedPortal == null)
+            {
+                Debug.LogWarning(name + "has lost conncected portal!");
+                SetConnectionType(ConnectionType.None);
+            }
         }
     }
 
@@ -54,6 +67,8 @@ public class RoomConnector : MonoBehaviour
                 isConnected = true;
                 break;
         }
+
+        this.connectionType = connectionType;
     }
 
     public float GetYRotation()
