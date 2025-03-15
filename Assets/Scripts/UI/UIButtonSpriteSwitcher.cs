@@ -5,8 +5,11 @@ using TMPro;
 
 public class UIButtonSpriteSwitcher : MonoBehaviour
 {
-    public Sprite normalSprite; // Default sprite
-    public Sprite selectedSprite; // Sprite when clicked
+    [SerializeField] Sprite normalSprite; // Default sprite
+    [SerializeField] Sprite selectedSprite; // Sprite when clicked
+    [SerializeField] GameObject textPanel;
+
+    [SerializeField] bool isDefaultSelected = false;
 
     private static List<UIButtonSpriteSwitcher> allButtons = new List<UIButtonSpriteSwitcher>();
     private Image buttonImage;
@@ -26,6 +29,14 @@ public class UIButtonSpriteSwitcher : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(OnButtonClick);
     }
 
+    private void Start()
+    {
+        if (isDefaultSelected)
+        {
+            OnButtonClick();
+        }
+    }
+
     public void OnButtonClick()
     {
         // Reset all other buttons
@@ -37,6 +48,7 @@ public class UIButtonSpriteSwitcher : MonoBehaviour
         // Set the clicked button's sprite to selected
         buttonImage.sprite = selectedSprite;
         text.color = Color.black;
+        textPanel.SetActive(true);
     }
 
     public void ResetToNormal()
@@ -44,5 +56,6 @@ public class UIButtonSpriteSwitcher : MonoBehaviour
         // print("Resetting to normal: " + gameObject.name);
         buttonImage.sprite = normalSprite;
         text.color = Color.white;
+        textPanel.SetActive(false);
     }
 }
