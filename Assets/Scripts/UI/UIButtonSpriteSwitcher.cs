@@ -55,7 +55,6 @@ public class UIButtonSpriteSwitcher : MonoBehaviour
     {
         if(textPanel == null)
         {
-            print(name + " has no text panel");
             return;
         }
 
