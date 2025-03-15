@@ -23,6 +23,7 @@ public class RoomController : MonoBehaviour
     [SerializeField] int roomSpawnDistance = 20;
 
     [SerializeField] GameObject furnitureParent;
+    [SerializeField] int furnitureCloseHeightDifference = 30;
     bool hasPortal;
     Transform player;
 
@@ -302,7 +303,7 @@ public class RoomController : MonoBehaviour
             player = FindAnyObjectByType<PortalTravalerTeleportPlayer>().transform;
         }
 
-        if (Mathf.Abs(transform.position.y - player.position.y) < 10)
+        if (Mathf.Abs(transform.position.y - player.position.y) < furnitureCloseHeightDifference)
         {
             SetFurnitureParentActive(true);
         }
