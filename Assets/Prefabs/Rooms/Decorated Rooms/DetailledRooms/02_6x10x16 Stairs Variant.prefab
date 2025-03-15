@@ -1098,7 +1098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8852382174806823161, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8
+      value: 7.88
       objectReference: {fileID: 0}
     - target: {fileID: 8852382174806823161, guid: d8896443aeac65a4e83ef0ded00b5f4d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1150,6 +1150,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1927815189815078418}
     m_Modifications:
+    - target: {fileID: 1390137386105351927, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Size.x
+      value: 26.970154
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390137386105351927, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Size.z
+      value: 6.877959
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390137386105351927, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Center.x
+      value: -2.7364943
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390137386105351927, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Center.y
+      value: 5.0724773
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390137386105351927, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Center.z
+      value: 3.5025735
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471135441701825529, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Size.x
+      value: 23.881172
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471135441701825529, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Size.z
+      value: 1.9762024
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471135441701825529, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Center.x
+      value: -1.3352336
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471135441701825529, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Center.y
+      value: 3.760147
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471135441701825529, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Center.z
+      value: 0.50199825
+      objectReference: {fileID: 0}
     - target: {fileID: 4699840974112935010, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
       propertyPath: m_Name
       value: SteelStairs Variant
@@ -1205,6 +1245,22 @@ PrefabInstance:
     - target: {fileID: 5364597339642369752, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259841239086552843, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Size.x
+      value: 16.059338
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259841239086552843, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Center.x
+      value: -2.3931851
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259841239086552843, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Center.y
+      value: -2.290902
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259841239086552843, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
+      propertyPath: m_Center.z
+      value: -0.00000061821635
       objectReference: {fileID: 0}
     - target: {fileID: 8908294206293483899, guid: db1aaddf1dba84f479d09fd397c7ca93, type: 3}
       propertyPath: m_Size.x
@@ -4803,7 +4859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8304152038100538305, guid: 3c7cce4d7b116904e832d7f22ec50604, type: 3}
       propertyPath: m_Name
-      value: 6x10x16 Stairs Variant
+      value: 02_6x10x16 Stairs Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8447171542271660512, guid: 3c7cce4d7b116904e832d7f22ec50604, type: 3}
       propertyPath: m_Mesh

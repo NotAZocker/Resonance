@@ -48,6 +48,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7982094230610920629, guid: 52bb39ed2af55554793953f2ab6fdcc8, type: 3}
+      propertyPath: m_Size.y
+      value: 0.0056798565
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982094230610920629, guid: 52bb39ed2af55554793953f2ab6fdcc8, type: 3}
+      propertyPath: m_Size.z
+      value: 0.013584074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982094230610920629, guid: 52bb39ed2af55554793953f2ab6fdcc8, type: 3}
+      propertyPath: m_Center.x
+      value: -0.006474395
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982094230610920629, guid: 52bb39ed2af55554793953f2ab6fdcc8, type: 3}
+      propertyPath: m_Center.y
+      value: -0.002839943
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982094230610920629, guid: 52bb39ed2af55554793953f2ab6fdcc8, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0067920364
+      objectReference: {fileID: 0}
     - target: {fileID: 8256079299259401229, guid: 52bb39ed2af55554793953f2ab6fdcc8, type: 3}
       propertyPath: m_Name
       value: FilingCabinetGray Variant
