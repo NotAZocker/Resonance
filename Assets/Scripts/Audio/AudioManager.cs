@@ -29,7 +29,6 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         ShuffleMusicList();
-        PlayNextTrack();
     }
 
     void ShuffleMusicList()
