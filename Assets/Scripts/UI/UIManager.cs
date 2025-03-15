@@ -71,6 +71,7 @@ public class UIManager : MonoBehaviour
 
     public void HideNotesDisplay()
     {
+        if (timer > 0) return;
         Debug.Log("Hide Interact Performed: " + timer);
 
         Cursor.visible = false;

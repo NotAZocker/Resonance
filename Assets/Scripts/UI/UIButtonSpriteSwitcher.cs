@@ -41,7 +41,7 @@ public class UIButtonSpriteSwitcher : MonoBehaviour
 
     public void ResetToNormal()
     {
-        print("Resetting to normal: " + gameObject.name);
+        // print("Resetting to normal: " + gameObject.name);
         buttonImage.sprite = normalSprite;
         text.color = Color.white;
     }
