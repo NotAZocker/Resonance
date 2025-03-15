@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OfficeDocument03 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5398566754032673432, guid: f33f87ad6dd92e048b2933a48a482643, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8795504421679024286, guid: f33f87ad6dd92e048b2933a48a482643, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.491935

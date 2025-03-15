@@ -66,7 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5154421950119037832, guid: c41e81f4ff4be3044adf289e297e7c22, type: 3}
       propertyPath: m_Name
-      value: Speaker (1) Variant
+      value: Speaker Scaled - Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154421950119037832, guid: c41e81f4ff4be3044adf289e297e7c22, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

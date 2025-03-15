@@ -50,7 +50,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5682874157037960303, guid: f397909b2e1e1b844a7b23b62c1aa491, type: 3}
       propertyPath: m_Name
-      value: ElectricalBox06 Variant
+      value: ElectricalBox Scaled - Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682874157037960303, guid: f397909b2e1e1b844a7b23b62c1aa491, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660871214511139458, guid: f397909b2e1e1b844a7b23b62c1aa491, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

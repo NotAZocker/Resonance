@@ -64,9 +64,49 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7073129263758809661, guid: 1e140876ac1d5af4aaf6de8b0cf4bb29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -6862771583142098070, guid: 1e140876ac1d5af4aaf6de8b0cf4bb29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -5729501844745531958, guid: 1e140876ac1d5af4aaf6de8b0cf4bb29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -4849197680091649065, guid: 1e140876ac1d5af4aaf6de8b0cf4bb29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -2970558428731406015, guid: 1e140876ac1d5af4aaf6de8b0cf4bb29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -593608754943487413, guid: 1e140876ac1d5af4aaf6de8b0cf4bb29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1e140876ac1d5af4aaf6de8b0cf4bb29, type: 3}
       propertyPath: m_Name
-      value: FireExtinguisher (3)
+      value: FireExtinguisher Scaled
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e140876ac1d5af4aaf6de8b0cf4bb29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359892718121586646, guid: 1e140876ac1d5af4aaf6de8b0cf4bb29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6074097788452038658, guid: 1e140876ac1d5af4aaf6de8b0cf4bb29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703712239174988816, guid: 1e140876ac1d5af4aaf6de8b0cf4bb29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

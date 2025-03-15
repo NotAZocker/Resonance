@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3073606354843580009
 Transform:
@@ -96,9 +96,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2383432022306871209, guid: ba331f6adcef41e4782971fa6e4d9912, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8138084253862049645, guid: ba331f6adcef41e4782971fa6e4d9912, type: 3}
       propertyPath: m_Name
       value: PlasticChair
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138084253862049645, guid: ba331f6adcef41e4782971fa6e4d9912, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

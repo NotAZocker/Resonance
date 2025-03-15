@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OfficeDocument02 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8891406836696048474, guid: 5705d06426aaa7e4e8c0e11a687341ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

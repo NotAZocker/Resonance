@@ -66,7 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3c68d7ab3d58e447ab28d7a857cdbcf, type: 3}
       propertyPath: m_Name
-      value: PaperBag
+      value: PaperBag Scaled
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c3c68d7ab3d58e447ab28d7a857cdbcf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

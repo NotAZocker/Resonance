@@ -48,9 +48,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3993589766506913979, guid: 1cb36ec386fa908479214102d32bde0b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -2675055824087229332, guid: 1cb36ec386fa908479214102d32bde0b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -2474414984240203287, guid: 1cb36ec386fa908479214102d32bde0b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1cb36ec386fa908479214102d32bde0b, type: 3}
       propertyPath: m_Name
-      value: Clock
+      value: Clock Scaled
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1cb36ec386fa908479214102d32bde0b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495735697102120412, guid: 1cb36ec386fa908479214102d32bde0b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993865723879567235, guid: 1cb36ec386fa908479214102d32bde0b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469681526601367055, guid: 1cb36ec386fa908479214102d32bde0b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

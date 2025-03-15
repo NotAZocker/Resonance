@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8753407321279689339
 Transform:
@@ -43,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 59377776962499706, guid: 868633db781b79d4b90fb890d794a276, type: 3}
       propertyPath: m_Name
       value: FolderBasicWork
+      objectReference: {fileID: 0}
+    - target: {fileID: 59377776962499706, guid: 868633db781b79d4b90fb890d794a276, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3193582262493567090, guid: 868633db781b79d4b90fb890d794a276, type: 3}
       propertyPath: m_LocalScale.x

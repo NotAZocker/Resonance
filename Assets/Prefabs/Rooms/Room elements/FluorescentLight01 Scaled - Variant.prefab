@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7716093478496551556
 Transform:
@@ -137,7 +137,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2937846622502440556
 Transform:
@@ -258,7 +258,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1144471581091333690
 Transform:
@@ -371,13 +371,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 104678066252596136, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 190713140103118016, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 605340510648211392, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 710378521630061774, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
       propertyPath: m_CastShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992838761604122863, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017427703239728250, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1430176808221781387, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
       propertyPath: m_CastShadows
@@ -391,6 +407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FluorescentLight01 Scaled - Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2815118676706864912, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3338004322637137281, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -399,9 +419,25 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4708716098232560345, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143971684566633960, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5345367898755660277, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
       propertyPath: m_CastShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5368818198451044187, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391575962320704459, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7343072404681592168, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
       propertyPath: m_CastShadows
@@ -462,6 +498,10 @@ PrefabInstance:
     - target: {fileID: 8101167740649331134, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8765584948797744942, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9081798391604831007, guid: e6c3ff2296f33024ca55481a015c99be, type: 3}
       propertyPath: m_CastShadows
