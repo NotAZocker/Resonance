@@ -33,7 +33,7 @@ public class UIButtonSpriteSwitcher : MonoBehaviour
     {
         if (isDefaultSelected)
         {
-            OnButtonClick();
+            // OnButtonClick();
         }
     }
 
@@ -53,6 +53,12 @@ public class UIButtonSpriteSwitcher : MonoBehaviour
 
     public void ResetToNormal()
     {
+        if(textPanel == null)
+        {
+            print(name + " has no text panel");
+            return;
+        }
+
         // print("Resetting to normal: " + gameObject.name);
         buttonImage.sprite = normalSprite;
         text.color = Color.white;

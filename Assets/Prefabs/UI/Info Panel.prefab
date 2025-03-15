@@ -99,7 +99,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7756479113958146863}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.09313179
+  m_Size: 0.08755555
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -425,8 +425,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 391.83975, y: -4316.41}
-  m_SizeDelta: {x: 783.6795, y: 0}
+  m_AnchoredPosition: {x: 379.79947, y: -4359.61}
+  m_SizeDelta: {x: 759.59894, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7772691319683806111
 CanvasRenderer:
@@ -456,26 +456,22 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'INFO:
+  m_text: 'This build of Paradise was built in 5 days for a game jam by a group of
+    4 people. Expect performance issues and inconsistencies as certain things had
+    to be cut or rushed.
 
 
 
-    This build of Paradise was built in 5 days for a game jam
-    by a group of 4 people. Expect performance issues and inconsistencies as certain
-    things had to be cut or rushed.
+    As for the story and theme: The theme for this jam
+    we took was "The Edge Of Chaos." Previous inspirations from media like the Source
+    games, Control, The Stanley Parable, The Backrooms, and SCP led to the overall
+    style of this game. Crammed halls, jagged corridors, incomprehensible geometry,
+    and an oppressively thick and dry atmosphere are the main course of action.
 
 
 
-    As for the story and theme: The theme
-    for this jam we took was "The Edge Of Chaos." Previous inspirations from media
-    like the Source games, Control, The Stanley Parable, The Backrooms, and SCP led
-    to the overall style of this game. Crammed halls, jagged corridors, incomprehensible
-    geometry, and an oppressively thick and dry atmosphere are the main course of
-    action.
-
-
-
-    With that being said, we wish you a fun and chaotic time playing.
+    With
+    that being said, we wish you a fun and chaotic time playing.
 
 
 
@@ -923,8 +919,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -18.005005}
-  m_SizeDelta: {x: -0.41, y: -36.01}
+  m_AnchoredPosition: {x: 0, y: -38.29193}
+  m_SizeDelta: {x: -0.41, y: -76.5839}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6907692748420818106
 CanvasRenderer:
