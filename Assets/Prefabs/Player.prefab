@@ -364,6 +364,10 @@ MonoBehaviour:
   footstepAudioSource: {fileID: 4327599982470263544}
   footstepClips: []
   stepInterval: 0.5
+  headTransform: {fileID: 2325682196349699350}
+  bobbingAmount: 0.1
+  bobbingSpeed: 6
+  lerpSpeed: 5
 --- !u!82 &4327599982470263544
 AudioSource:
   m_ObjectHideFlags: 0
