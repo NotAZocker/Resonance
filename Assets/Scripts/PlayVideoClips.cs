@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class PlayIntroVideo : MonoBehaviour
+public class PlayVideoClips : MonoBehaviour
 {
+    [SerializeField] VideoClip[] visionVideoClips;
+
     [SerializeField] VideoPlayer videoPlayer;
     [SerializeField] CanvasGroup uiPanel;
     [SerializeField] RawImage videoImage;
@@ -20,6 +22,8 @@ public class PlayIntroVideo : MonoBehaviour
     [Header("For Testing: Security Mode")]
     [SerializeField] bool securityMode = true;
     [SerializeField] bool skipVideo = false;
+
+    int visioinClipIndex = 0;
 
     bool coroutineStarted;
 
@@ -36,6 +40,44 @@ public class PlayIntroVideo : MonoBehaviour
             return;
         }
 
+        FindAnyObjectByType<PlayerInteraction>().OnInteract += CheckPlayClip;
+
+
+        PrepareForVideo();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            StartGame();
+        }
+    }
+
+    void CheckPlayClip(Interactable interactable)
+    {
+        if(visioinClipIndex == 0 && interactable is Weapon)
+        {
+            PlayVideoClip(visionVideoClips[visioinClipIndex]);
+            visioinClipIndex++;
+        }
+        else if(interactable is Core)
+        {
+            PlayVideoClip(visionVideoClips[visioinClipIndex]);
+            visioinClipIndex++;
+        }
+    }
+
+    void PlayVideoClip(VideoClip clip)
+    {
+        videoPlayer.clip = clip;
+
+        PrepareForVideo();
+    }
+
+    void PrepareForVideo()
+    {
+
         Debug.Log("Start Video");
 
         Time.timeScale = 0; // Pause the game
@@ -50,14 +92,6 @@ public class PlayIntroVideo : MonoBehaviour
         AudioManager.Instance.StopMusic();
 
         if (securityMode) securityCoroutine = StartCoroutine(IfBrokenStartGame());
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StartGame();
-        }
     }
 
     void OnVideoPrepared(VideoPlayer vp)
@@ -136,6 +170,5 @@ public class PlayIntroVideo : MonoBehaviour
         Time.timeScale = 1; // Resume game
 
         uiPanel.gameObject.SetActive(false);
-        Destroy(gameObject); // Destroy this script
     }
 }
