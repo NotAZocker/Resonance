@@ -613,7 +613,9 @@ PrefabInstance:
       propertyPath: m_text
       value: 'WASD: Move
 
-        E: Interact'
+        E: Interact
+
+        F: Flashlight'
       objectReference: {fileID: 0}
     - target: {fileID: 3397180972349119401, guid: 42e7ded57b4440d4bb4e0af3110d8ac9, type: 3}
       propertyPath: m_text
