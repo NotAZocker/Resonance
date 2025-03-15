@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
     {
         interactAction = playerInput.Actions.Interact;
         interactAction.performed += ToggleNotesDisplay;
+        isNoteOpen = true;
         HideNotesDisplay();
 
         Debug.Log("PlayerInput is: " + playerInput);
