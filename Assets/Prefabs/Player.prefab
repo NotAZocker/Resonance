@@ -291,7 +291,7 @@ MonoBehaviour:
   GroundDeceleration: 40
   AirAcceleration: 7.5
   StartJerk: 250
-  enableJump: 1
+  enableJump: 0
   jumpMode: 1
   jumpHeight: 1.5
   coyoteTime: 0.1
