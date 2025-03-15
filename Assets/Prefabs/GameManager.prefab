@@ -72,7 +72,7 @@ MonoBehaviour:
   roomSpawnDistanceToPlayer: 20
   startRoomCount: 5
   playerMoveDistanceToSpawn: 15
-  timeToSpawnSpecialRoomCopy: 30
+  timeToSpawnSpecialRoomCopy: 15
   roomSpawnProbability: 5
   roomDestroyProbabilityPerRoom: 0
   roomConnectProbability: 3
