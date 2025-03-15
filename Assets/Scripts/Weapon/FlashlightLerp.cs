@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class FlashlightLerp : MonoBehaviour
@@ -9,10 +10,14 @@ public class FlashlightLerp : MonoBehaviour
 
     private Light flashlight;
 
+    bool hasChangedHand = false;
+
     void Start()
     {
         flashlight = GetComponent<Light>();
         flashlight.enabled = false;
+
+        FindAnyObjectByType<PlayerInteraction>().OnInteract += CheckChangeHand;
     }
 
     void Update()
@@ -28,5 +33,21 @@ public class FlashlightLerp : MonoBehaviour
         {
             flashlight.enabled = !flashlight.enabled; // yuh
         }
+    }
+
+    private void CheckChangeHand(Interactable interactable)
+    {
+        if (hasChangedHand) return;
+
+        if(interactable is Weapon)
+        {
+            ChangeHand();
+            hasChangedHand = true;
+        }
+    }
+
+    void ChangeHand()
+    {
+        transformOffset.x *= -1;
     }
 }

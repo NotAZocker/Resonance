@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using VInspector;
 
@@ -14,6 +15,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private GameObject interactInputTip;
 
     private PlayerInput playerInput;
+
+    public event Action<Interactable> OnInteract;
 
     private void Awake()
     {
@@ -40,6 +43,8 @@ public class PlayerInteraction : MonoBehaviour
                 if (playerInput.Actions.Interact.WasPressedThisFrame())
                 {
                     interactObj.Interact();
+
+                    OnInteract(interactObj);
 
                     interactInputTip.SetActive(false);
                 }
