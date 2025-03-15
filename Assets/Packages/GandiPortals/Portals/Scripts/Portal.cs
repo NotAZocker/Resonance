@@ -80,35 +80,6 @@ public class Portal : MonoBehaviour
         Matrix4x4 rotationMatrix = Matrix4x4.Rotate(Quaternion.AngleAxis(180, Vector3.up));
         TeleportMatrix = linkedPortal.transform.localToWorldMatrix * rotationMatrix * transform.worldToLocalMatrix;
     }
-    private static int total;
-    private static int boundingBox;
-    private static int frustumCulled;
-    private static int planeFrustumCulled;
-
-    private void OnGUI()
-    {
-        if (total == 0)
-        {
-            //Debug.Log("No portals", this);
-            //return;
-        }
-
-        GUIStyle style = new()
-        {
-            fontSize = 50
-        };
-        string s = $"Total: {total}; BoundingBox: {boundingBox}; PlaneFrustumCulled: {planeFrustumCulled}";//; FrustumCulled: {frustumCulled} ";
-        
-        GUI.Label(new Rect(10, 10, 800, 150), s);
-    }
-
-    private void Update()
-    {
-        total = 0;
-        boundingBox = 0;
-        frustumCulled = 0;
-        planeFrustumCulled = 0;
-    }
 
     private void LateUpdate()
     {
@@ -122,21 +93,17 @@ public class Portal : MonoBehaviour
             return;
         }
 
-        total++;
-
         CheckResolution();
 
         playerIsInBoundingBox = renderBoundingBox.Contains(MainCamera.transform.position);
 
         if (!renderBoundingBox.Contains(MainCamera.transform.position))
         {
-            boundingBox++;
             return;
         }
 
         if (!IsVisibleFrom(ScreenRenderer, MainCamera))
         {
-            planeFrustumCulled++;
             return;
         }
 
