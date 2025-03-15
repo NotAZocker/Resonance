@@ -43,11 +43,11 @@ public class MenuDocuments : MonoBehaviour
         {
             if (readNoteIndices.Contains(i))
             {
-                buttonTexts[i].text = "view file";
+                buttonTexts[i].text = "FILE " + (i+1).ToString("D3");
             }
             else
             {
-                buttonTexts[i].text = "locked";
+                buttonTexts[i].text = "LOCKED";
             }
         }
     }

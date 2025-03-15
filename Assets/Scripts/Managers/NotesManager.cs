@@ -7,6 +7,7 @@ public class NotesManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private List<Sprite> noteSprites;
+    List<Sprite> unreadNotesSprites = new List<Sprite>();
     private List<Sprite> usedSprites = new List<Sprite>();
     private HashSet<Sprite> readNotes = new HashSet<Sprite>();
 
@@ -20,6 +21,11 @@ public class NotesManager : MonoBehaviour
         {
             Debug.LogError("There is already a NotesManager in the Scene.");
         }
+
+        foreach (Sprite note in noteSprites)
+        {
+            unreadNotesSprites.Add(note);
+        }
     }
 
     private void Start()
@@ -28,24 +34,24 @@ public class NotesManager : MonoBehaviour
 
         foreach (Sprite note in usedSprites)
         {
-            noteSprites.Remove(note);
+            unreadNotesSprites.Remove(note);
         }
     }
 
     public Sprite GetNextNoteAndRemoveFromList()
     {
-        if(noteSprites.Count == 0)
+        if(unreadNotesSprites.Count == 0)
         {
             for (int i = 0; i < usedSprites.Count; i++)
             {
-                noteSprites.Add(usedSprites[i]);
+                unreadNotesSprites.Add(usedSprites[i]);
             }
             return null;
         }
 
-        Sprite note = noteSprites[0];
+        Sprite note = unreadNotesSprites[0];
 
-        noteSprites.RemoveAt(0);
+        unreadNotesSprites.RemoveAt(0);
         usedSprites.Add(note);
 
         return note;
@@ -64,7 +70,12 @@ public class NotesManager : MonoBehaviour
         }
 
         readNotes.Add(noteSprite);
+
         PlayerPrefs.SetString("readNoteIndices", PlayerPrefs.GetString("readNoteIndices") + noteSprites.IndexOf(noteSprite) + ";");
+
+        PlayerPrefs.Save();
+
+        Debug.Log("Saved Notes: " + PlayerPrefs.GetString("readNoteIndices"));
     }
 
     List<Sprite> GetAllReadSprites()
