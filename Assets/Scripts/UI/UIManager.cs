@@ -71,6 +71,8 @@ public class UIManager : MonoBehaviour
 
     public void HideNotesDisplay()
     {
+        if (!isNoteOpen) return;
+
         if (timer > 0) return;
         Debug.Log("Hide Interact Performed: " + timer);
 
@@ -85,6 +87,8 @@ public class UIManager : MonoBehaviour
 
     public void ShowNotesDisplay()
     {
+        if (isNoteOpen) return;
+
         if (timer > 0) return;
         Debug.Log("Show Interact Performed: " + timer);
 
