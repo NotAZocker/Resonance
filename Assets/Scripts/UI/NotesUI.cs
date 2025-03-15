@@ -11,5 +11,10 @@ public class NotesUI : MonoBehaviour
     internal void SetNote(Sprite sprite)
     {
         noteImage.sprite = sprite;
+
+        if(NotesManager.Instance != null)
+        {
+            NotesManager.Instance.SetNodeRead(sprite);
+        }
     }
 }

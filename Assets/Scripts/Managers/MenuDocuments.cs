@@ -32,6 +32,11 @@ public class MenuDocuments : MonoBehaviour
             buttonTexts.Add(button.GetComponentInChildren<TMP_Text>());
         }
 
+        UpdateButtonTexts();
+    }
+
+    void UpdateButtonTexts()
+    {
         readNoteIndices = GetAllReadIndices();
 
         for (int i = 0; i < buttonTexts.Count; i++)
@@ -47,6 +52,21 @@ public class MenuDocuments : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.O))
+        {
+            PlayerPrefs.SetString("readNoteIndices", "");
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PlayerPrefs.SetString("readNoteIndices", PlayerPrefs.GetString("readNoteIndices") + UnityEngine.Random.Range(0, notes.Length) + ";");
+            print("Unlocked:" + PlayerPrefs.GetString("readNoteIndices"));
+            UpdateButtonTexts();
+        }
+    }
+
     private void TryOpenDocument(int index)
     {
         if (!readNoteIndices.Contains(index)) return;
@@ -58,14 +78,6 @@ public class MenuDocuments : MonoBehaviour
     public void CloseDocument()
     {
         notesUI.gameObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.O))
-        {
-            PlayerPrefs.SetString("readNoteIndices", "");
-        }
     }
 
     List<int> GetAllReadIndices()
