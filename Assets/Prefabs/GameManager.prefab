@@ -73,10 +73,10 @@ MonoBehaviour:
   startRoomCount: 5
   playerMoveDistanceToSpawn: 15
   timeToSpawnSpecialRoomCopy: 15
-  roomSpawnProbability: 5
-  roomDestroyProbabilityPerRoom: 0
-  roomConnectProbability: 3
-  repositionRoomProbability: 1
+  roomSpawnProbability: 0.05
+  roomDestroyProbabilityPerRoom: 0.05
+  roomConnectProbability: 0.03
+  repositionRoomProbability: 0
 --- !u!114 &5257634298455923563
 MonoBehaviour:
   m_ObjectHideFlags: 0

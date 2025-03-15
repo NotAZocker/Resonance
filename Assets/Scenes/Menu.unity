@@ -613,7 +613,9 @@ PrefabInstance:
       propertyPath: m_text
       value: 'WASD: Move
 
-        E: Interact'
+        E: Interact
+
+        F: Flashlight'
       objectReference: {fileID: 0}
     - target: {fileID: 3397180972349119401, guid: 42e7ded57b4440d4bb4e0af3110d8ac9, type: 3}
       propertyPath: m_text
@@ -783,8 +785,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 573.3605, y: 840}
+  m_AnchoredPosition: {x: 0, y: 34}
+  m_SizeDelta: {x: 819.2046, y: 1200.1736}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &751114137
 MonoBehaviour:
