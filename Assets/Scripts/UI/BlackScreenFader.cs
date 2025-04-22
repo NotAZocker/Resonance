@@ -1,16 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BlackScreenFader : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float fadeDuration = 2f;
-    private Image blackScreen;
+    [SerializeField] Image blackScreen;
 
     private void Start()
     {
-        blackScreen = GetComponent<Image>();
         blackScreen.color = new Color(0, 0, 0, 0);
         blackScreen.gameObject.SetActive(false);
     }
@@ -31,5 +31,7 @@ public class BlackScreenFader : MonoBehaviour
             yield return null;
         }
         blackScreen.color = new Color(0, 0, 0, 1);
+
+        SceneManager.LoadScene("Menu");
     }
 }

@@ -18,8 +18,8 @@ public class CoreManager : MonoBehaviour
     [HideInInspector] public GameObject coreSpotTwo;
     [HideInInspector] public GameObject coreSpotThree;
 
-    private int currentCoreAmount = 0;
-    private int maxCoreAmount = 3;
+    [SerializeField] int currentCoreAmount = 0;
+    [SerializeField] int maxCoreAmount = 3;
 
     private bool isFadeTriggered = false;
 
@@ -60,6 +60,7 @@ public class CoreManager : MonoBehaviour
     {
         if (currentCoreAmount == maxCoreAmount && !isFadeTriggered)
         {
+            Debug.Log("End Game");
             isFadeTriggered = true;
             blackScreenFader.StartFadeToBlack();
             //FindAnyObjectByType<SceneChanger>().ChangeScene("Menu");
